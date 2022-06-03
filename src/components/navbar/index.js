@@ -33,7 +33,7 @@ function Navbar(props) {
         </li>
         <form className="d-flex form-inline my-2 my-lg-0 p-2">
           <input
-            className="form-control mr-sm-2"
+            className="form-control mr-sm-2 rounded-pill"
             type="search"
             placeholder="Location"
             aria-label="Search"
@@ -42,7 +42,7 @@ function Navbar(props) {
             className={
               props.page === "search"
                 ? "nav-link active"
-                : "btn btn-outline-success my-2 my-sm-0"
+                : "btn btn-outline-success my-2 my-sm-0 rounded-pill"
             }
             type="submit"
           >
@@ -51,7 +51,7 @@ function Navbar(props) {
         </form>
         <form className="d-flex flex-row form-inline my-2 my-lg-0 p-2">
           <button
-            className="btn btn-outline-success my-2 my-sm-0"
+            className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
             type="submit"
           >
             Create Event
@@ -59,7 +59,7 @@ function Navbar(props) {
         </form>
         <form className="d-flex flex-row form-inline my-2 my-lg-0 p-2">
           <button
-            className="btn btn-outline-success my-2 my-sm-0"
+            className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
             type="submit"
           >
             Login/Sign Up
