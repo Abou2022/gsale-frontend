@@ -1,35 +1,24 @@
-import React, { useState } from "react";
-import Home from "../../pages/Home";
-import Event from "../../pages/Event";
-import Login from "../../pages/Login";
-import Map from "../../pages/Map";
-import Profile from "../../pages/Profile";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+
 import Navbar from "../navbar";
+import Home from "../home";
+import Profile from "../profile";
+import GarageSaleEvent from '../garageSaleEvent';
 import NotFound from '../notFound';
 
 function App() {
-    const [page, setPage] = useState("home"); //page variable holds the word home
-    const PageRender = () => {
-        switch (page) {
-            case "home":
-                return <Home />; //if the case has the work about in it it's going to return the component
-            case "login":
-                return <Login />;
-            case "profile":
-                return <Profile />;
-            case "event":
-                return <Event />;
-            case "map":
-                return <Map />;
-            default:
-                return <NotFound />;
-        }
-    };
     return (
         <div>
-            <Navbar page={page} setPage={setPage} />
-            {/* naming the prop page, but passing the value inside the state called page */}
-            <PageRender />
+            <div>
+                <Navbar />
+            </div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/garagesale/:id" element={<GarageSaleEvent />} />
+                <Route path="*" element={<NotFound />}></Route>
+            </Routes>
         </div>
     );
 }
