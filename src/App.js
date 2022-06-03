@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from "react";
+import Home from "./pages/Home";
+import Event from "./pages/Event";
+import Login from "./pages/Login";
+import Map from "./pages/Map";
+import Profile from "./pages/Profile";
+import Navbar from "./components/Navbar";
 
 function App() {
+    const [page, setPage] = useState("home"); //page variable holds the word home
+    const PageRender = () => {
+      switch (page) {
+        case "home":
+          return <Home />; //if the case has the work about in it it's going to return the component
+        case "login":
+          return <Login />;
+        case "profile":
+          return <Profile />;
+        case "event":
+          return <Event />;
+        case "map":
+          return <Map />;
+      }
+    };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar page={page} setPage={setPage} />
+      {/* naming the prop page, but passing the value inside the state called page */}
+      <PageRender />
     </div>
   );
 }
