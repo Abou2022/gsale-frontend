@@ -1,4 +1,6 @@
 import React from 'react';
+import GSale from '../../assets/GSale.png'
+import img from '../../style/Navbar.css'
 
 function Navbar(props) {
     const clickHandler = (event) => {
@@ -6,81 +8,64 @@ function Navbar(props) {
         props.setPage(id);
     }
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="/">
-                GSALE
-            </a>
-            <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarText"
-                aria-controls="navbarText"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse" id="navbarText">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <a
-                            id="about"
-                            className={
-                                props.page === "about" ? "nav-link active" : "nav-link"
-                            }
-                            onClick={clickHandler}
-                            href="/about"
-                        >
-                            About Me
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a
-                            id="work"
-                            className={props.page === "work" ? "nav-link active" : "nav-link"}
-                            onClick={clickHandler}
-                            href="/work"
-                        >
-                            Work
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a
-                            id="contact"
-                            className={
-                                props.page === "contact" ? "nav-link active" : "nav-link"
-                            }
-                            onClick={clickHandler}
-                            href="/contact"
-                        >
-                            Contact Me
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a
-                            className="nav-link"
-                            href="/resume"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Resume
-                        </a>
-                        {/* <a href={process.env.PUBLIC_URL+"favicon.ico"}>favicon</a> */}
-                    </li>
-                    <li className="nav-item">
-                        <a
-                            className="nav-link"
-                            href="/github"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            GitHub
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+      <ul className="nav nav-pills nav-fill p-2 border border-success">
+        <li className="nav-item p-2">
+          {/* <a className="nav-link active" aria-current="page" href="#">
+            Active
+          </a> */}
+          <img src={GSale} alt="gsale" />
+        </li>
+        <form className="d-flex flex-row form-inline my-2 my-lg-0 p-2">
+          <button
+            className="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >
+            Location
+          </button>
+        </form>
+        <li className="nav-item p-2">
+          <a className="nav-link" href="#">
+            Date
+          </a>
+        </li>
+        <li className="nav-item p-2">
+          <a className="nav-link disabled">Filter</a>
+        </li>
+        <form className="d-flex form-inline my-2 my-lg-0 p-2">
+          <input
+            className="form-control mr-sm-2 rounded-pill"
+            type="search"
+            placeholder="Location"
+            aria-label="Search"
+          />
+          <button
+            className={
+              props.page === "search"
+                ? "nav-link active"
+                : "btn btn-outline-success my-2 my-sm-0 rounded-pill"
+            }
+            type="submit"
+          >
+            Search
+          </button>
+        </form>
+        <form className="d-flex flex-row form-inline my-2 my-lg-0 p-2">
+          <button
+            className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
+            type="submit"
+          >
+            Create Event
+          </button>
+        </form>
+        <form className="d-flex flex-row form-inline my-2 my-lg-0 p-2">
+          <button
+            className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
+            type="submit"
+          >
+            Login/Sign Up
+          </button>
+        </form>
+      </ul>
     );
 };
 
