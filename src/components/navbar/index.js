@@ -1,4 +1,6 @@
 import React from 'react';
+import GSale from '../../assets/GSale.png'
+import img from '../../style/Navbar.css'
 
 function Navbar(props) {
     const clickHandler = (event) => {
@@ -8,15 +10,19 @@ function Navbar(props) {
     return (
       <ul className="nav nav-pills nav-fill p-2 border border-success">
         <li className="nav-item p-2">
-          <a className="nav-link active" aria-current="page" href="#">
+          {/* <a className="nav-link active" aria-current="page" href="#">
             Active
-          </a>
+          </a> */}
+          <img src={GSale} alt="gsale" />
         </li>
-        <li className="nav-item p-2">
-          <a className="nav-link active" aria-current="page" href="#">
+        <form className="d-flex flex-row form-inline my-2 my-lg-0 p-2">
+          <button
+            className="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >
             Location
-          </a>
-        </li>
+          </button>
+        </form>
         <li className="nav-item p-2">
           <a className="nav-link" href="#">
             Date
@@ -29,7 +35,7 @@ function Navbar(props) {
           <input
             className="form-control mr-sm-2"
             type="search"
-            placeholder="Search"
+            placeholder="Location"
             aria-label="Search"
           />
           <button
@@ -61,6 +67,6 @@ function Navbar(props) {
         </form>
       </ul>
     );
-            };
+};
 
 export default Navbar;
