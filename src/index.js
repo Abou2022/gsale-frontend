@@ -12,11 +12,14 @@ const root = createRoot(rootEl);
 let store = appCreateStore();
 
 let AppContainer = () => {
-  return (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+    // to do: remove strict mode before presentation
+    return (
+        <Provider store={store}>
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        </Provider>
+    );
 };
 
 root.render(<AppContainer />);

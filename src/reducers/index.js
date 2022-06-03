@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 import userAuth from './userAuth-reducers';
 import userProfile from './userProfile-reducers';
-import buyers from './buyer-reducers';
-import comments from './comment-reducers';
-import garageSaleEvents from './garageSaleEvent-reducers';
-import sellers from './seller-reducers';
+import attendees from './attendees-reducers';
+import comments from './comments-reducers';
+import garageSaleEvent from './garageSaleEvent-reducers';
+import vendors from './vendors-reducers';
 
 export default combineReducers({
-  userAuth,
-  userProfile,
-  buyers,
-  comments,
-  garageSaleEvents,
-  sellers,
+    userAuth,
+    userProfile,
+    attendees,
+    comments,
+    garageSaleEvent,
+    vendors
 });

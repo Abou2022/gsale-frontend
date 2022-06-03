@@ -11,8 +11,8 @@ export const signOut = () => {
 };
 
 export const signUpRequest = user => dispatch => {
-  return superagent.post(`${process.env.API_URL}/api/signup`)
-    // .withCredentials()
+  return superagent.post(`${process.env.API_URL}/api/users`)
+    .withCredentials()
     .send(user)
     .then( res => {
       dispatch(signIn(res.text));
@@ -22,9 +22,9 @@ export const signUpRequest = user => dispatch => {
 };
 
 export const signInRequest = user => dispatch => {
-  return superagent.get(`${process.env.API_URL}/api/signin`)
-    // .withCredentials()
-    .auth(user.username, user.password)
+  return superagent.get(`${process.env.API_URL}/api/users/login`)
+    .withCredentials()
+    .auth(user.email, user.password)
     .then( res => {
       dispatch(signIn(res.text));
       localStorage.token = res.text;
@@ -32,12 +32,12 @@ export const signInRequest = user => dispatch => {
     });
 };
 
-export const tokenSignInRequest = token => dispatch => {
-  return superagent.get(`${process.env.API_URL}/api/signin/token`)
-    .set('Authorization', `Bearer ${token}`)
-    .then( res => {
-      dispatch(signIn(res.text));
-      localStorage.token = res.text;
-      return res;
-    });
-};
+// export const tokenSignInRequest = token => dispatch => {
+//   return superagent.get(`${process.env.API_URL}/api/users/login/token`)
+//     .set('Authorization', `Bearer ${token}`)
+//     .then( res => {
+//       dispatch(signIn(res.text));
+//       localStorage.token = res.text;
+//       return res;
+//     });
+// };
