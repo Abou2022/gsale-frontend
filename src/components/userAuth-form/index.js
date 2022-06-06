@@ -96,17 +96,6 @@ class UserAuthForm extends React.Component {
                 {renderIf(this.props.authFormAction === 'Sign Up',
                     <div>
                         <h2 className='title'>sign up.</h2>
-                        <input
-                            className={classToggler({ error: emailError })}
-                            type='text'
-                            name='email'
-                            placeholder='Email Address'
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                            onFocus={this.handleFocus}
-                            onBlur={this.handleBlur}
-                        />
-                        <Tooltip message={emailError} show={focused === 'email' || submitted} />
                     </div>
                 )}
                 {renderIf(this.props.authFormAction !== 'Sign Up',
@@ -114,6 +103,17 @@ class UserAuthForm extends React.Component {
                         <h2 className='title'>sign in.</h2>
                     </div>
                 )}
+                <input
+                    className={classToggler({ error: emailError })}
+                    type='text'
+                    name='email'
+                    placeholder='Email Address'
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                />
+                <Tooltip message={emailError} show={focused === 'email' || submitted} />
                 <input
                     className={classToggler({ passwordError })}
                     type='password'
