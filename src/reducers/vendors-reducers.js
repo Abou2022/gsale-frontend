@@ -4,7 +4,7 @@ const validateVendor = vendor => {
     }
 };
 
-export default (state = [], action) => {
+let vendors = (state = [], action) => {
     let { type, payload } = action;
 
     switch (type) {
@@ -23,3 +23,5 @@ export default (state = [], action) => {
             return state;
     }
 };
+
+export default vendors;

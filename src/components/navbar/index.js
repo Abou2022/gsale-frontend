@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import GSaleLogo from "../../assets/GSale.png";
 import searchIcon from "../../assets/images/search.svg";
+
+import Modal from "../helpers/modal";
+import UserAuthForm from "../userAuth-form";
+import { renderIf } from "./../../lib/util.js";
+import {
+  signUpRequest,
+  signInRequest,
+} from "../../actions/userAuth-actions.js";
+
 import "./navbar.css";
 
 function Navbar(props) {
+  let [authFormAction, setAuthFormAction] = useState("Sign Up");
+  let [formDisplay, setFormDisplay] = useState(false);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("form submitted event: ", e);
@@ -76,4 +89,20 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  userAuth: state.userAuth,
+  userProfile: state.userProfile,
+  attendees: state.attendess,
+  comments: state.comments,
+  garageSaleEvent: state.garageSaleEvent,
+  vendors: state.vendors,
+});
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (user) => dispatch(signUpRequest(user)),
+    signIn: (user) => dispatch(signInRequest(user)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

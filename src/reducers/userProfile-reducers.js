@@ -4,16 +4,13 @@ const validateUserProfile = userProfile => {
     }
 };
 
-// to do: make sure profile has users categories
-export default (state = null, action) => {
+let userProfile = (state = null, action) => {
     let { type, payload } = action;
 
     switch (type) {
-        case 'USERPROFILE_CREATE':
-            validateUserProfile(payload);
-            if (!payload.vendingEvents) payload.vendingEvents = [];
-            if (!payload.attendeeEvents) payload.attendeeEvents = [];
-            return payload;
+        case 'SIGN_IN':
+            validateUserProfile(payload.profile);
+            return payload.profile;
         case 'USERPROFILE_UPDATE':
             if (!state) throw new Error('USAGE ERROR: can not update when user profile is null');
             validateUserProfile(payload);
@@ -34,3 +31,5 @@ export default (state = null, action) => {
             return state;
     }
 };
+
+export default userProfile;
