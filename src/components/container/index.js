@@ -7,7 +7,6 @@ function Container() {
 
     const handleSignup = (user, errCB) => {
         return superagent.post(`http://localhost:3001/api/users/signup`)
-            .withCredentials()
             .send(user)
             .then(res => {
                 console.log("res: ", res);

@@ -65,8 +65,12 @@ function Navbar(props) {
                             <button id=""><img id="searchIcon" src={searchIcon} alt="search icon" /></button>
                         </form>
                     </div>
-                    <button id="createEventButton" className="btn btn-outline-success my-2 my-sm-0 rounded-pill" onClick={handleCreateEvent}> Create Event</button>
-                    <button id="loginSignUpButton" className="btn btn-outline-success my-2 my-sm-0 rounded-pill" onClick={handleLoginSignUp}>Login/Sign Up</button>
+                    {renderIf(props.userAuth,
+                        <button id="createEventButton" className="btn btn-outline-success my-2 my-sm-0 rounded-pill" onClick={handleCreateEvent}> Create Event</button>
+                    )}
+                    {renderIf(!props.userAuth,
+                        <button id="loginSignUpButton" className="btn btn-outline-success my-2 my-sm-0 rounded-pill" onClick={handleLoginSignUp}>Login/Sign Up</button>
+                    )}
                 </div>
             </div>
             <div>
