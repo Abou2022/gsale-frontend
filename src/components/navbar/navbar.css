@@ -1,0 +1,173 @@
+#navGSaleLogo {
+    vertical-align: middle;
+    height: 40px;
+}
+
+#searchFiltersContainer {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(221, 221, 221);
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(221, 221, 221);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgb(221, 221, 221);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: rgb(221, 221, 221);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px, rgba(0, 0, 0, 0.05) 0px 4px 12px 0px;
+    box-sizing: border-box;
+    color: rgb(34, 34, 34);
+    display: inline-flex;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    height: 48px;
+    line-break: strict;
+    line-height: 20px;
+    max-width: 100%;
+    text-align: left;
+    text-size-adjust: 100%;
+    transition-delay: 0s;
+    transition-duration: 0.2s;
+    transition-property: box-shadow;
+    transition-timing-function: ease;
+    vertical-align: middle;
+    visibility: visible;
+    -webkit-box-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+#navbar form input {
+    border: none;
+    box-sizing: border-box;
+    color: rgb(34, 34, 34);
+    cursor: pointer;
+    display: block;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 600;
+    height: 18px;
+    letter-spacing: normal;
+    line-break: strict;
+    line-height: 18px;
+    min-width: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 0px;
+    text-align: left;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-overflow: ellipsis;
+    text-rendering: auto;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: none;
+    user-select: auto;
+    visibility: visible;
+    white-space: nowrap;
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-font-smoothing: antialiased;
+}
+
+.spacer {
+    background-color: rgb(221, 221, 221);
+    box-sizing: border-box;
+    color: rgb(34, 34, 34);
+    display: block;
+    flex-basis: 1px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    height: 24px;
+    line-break: strict;
+    line-height: 20px;
+    text-align: left;
+    text-size-adjust: 100%;
+    visibility: visible;
+    width: 1px;
+    -webkit-font-smoothing: antialiased;
+    text-indent: 0px;
+    text-overflow: ellipsis;
+    text-rendering: auto;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: none;
+    user-select: auto;
+    visibility: visible;
+    white-space: nowrap;
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-font-smoothing: antialiased;
+}
+
+#searchFiltersContainer form button {
+    background: transparent;
+    border: none;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: normal;
+    line-break: strict;
+    line-height: 20px;
+    margin-bottom: 7px;
+    margin-left: 0px;
+    margin-right: 7px;
+    margin-top: 7px;
+    text-align: left;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-rendering: auto;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: none;
+    user-select: auto;
+    visibility: visible;
+    width: 32px;
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-font-smoothing: antialiased;
+}
+
+#searchIcon {
+    height: 20px;
+    width: 20px;
+}
