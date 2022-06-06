@@ -6,7 +6,7 @@ const validateGarageSaleEvent = garageSaleEvent => {
     }
 };
 
-export default (state = [], action) => {
+let garageSaleEvent = (state = [], action) => {
     let { type, payload } = action;
 
     switch (type) {
@@ -33,3 +33,5 @@ export default (state = [], action) => {
             return state;
     }
 };
+
+export default garageSaleEvent;

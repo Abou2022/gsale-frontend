@@ -1,11 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function Home() {
-    return (
-        <div className="">
-            <p>Home</p>
-        </div>
-    );
+import { signOut } from '../../actions/userAuth-actions.js';
+
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentDidMount() {
+        console.log(this.props.userAuth);
+    };
+    handleSignOut = () => {
+        this.props.signOut();
+        this.props.history.push('/');
+    };
+    render() {
+        return (
+            <div className="">
+                <p>Home</p>
+            </div>
+        );
+    }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    userAuth: state.userAuth,
+    userProfile: state.userProfile,
+    attendees: state.attendess,
+    comments: state.comments,
+    garageSaleEvent: state.garageSaleEvent,
+    vendors: state.vendors
+});
+
+const mapDispatchToProps = dispatch => ({
+    signOut: () => dispatch(signOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

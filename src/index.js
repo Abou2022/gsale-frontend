@@ -1,4 +1,5 @@
 // to do import main style
+// import './style/.css';
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -10,19 +11,18 @@ import appCreateStore from './lib/app-create-store.js';
 
 const rootEl = document.getElementById('root');
 const root = createRoot(rootEl);
-let store = appCreateStore();
+
 
 let AppContainer = () => {
     // to do: remove strict mode before presentation
     return (
-
-        <Provider store={store}>
-            <React.StrictMode>
+        <React.StrictMode>
+            <Provider store={appCreateStore()}>
                 <BrowserRouter>
                     <App />
                 </BrowserRouter>
-            </React.StrictMode>
-        </Provider>
+            </Provider>
+        </React.StrictMode>
     );
 };
 
