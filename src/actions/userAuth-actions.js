@@ -18,7 +18,7 @@ export const signUpRequest = user => dispatch => {
             console.log("res: ", res);
             dispatch(signIn(res.body));
             localStorage.gSaleToken = res.body.token;
-            return res;
+            return res.body;
         });
 };
 
@@ -28,17 +28,17 @@ export const signInRequest = user => dispatch => {
         .auth(user.email, user.password)
         .then(res => {
             dispatch(signIn(res.body));
-            localStorage.gSaleToken = res.text;
-            return res;
+            localStorage.gSaleToken = res.body.token;
+            return res.body;
         });
 };
 
-// export const tokenSignInRequest = token => dispatch => {
-//   return superagent.get(`${process.env.REACT_APP_API_URL}/api/users/login/token`)
-//     .set('Authorization', `Bearer ${token}`)
-//     .then( res => {
-//       dispatch(signIn(res.body));
-//       localStorage.gSaleToken = res.body.token;
-//       return res;
-//     });
-// };
+export const tokenSignInRequest = token => dispatch => {
+  return superagent.get(`${process.env.REACT_APP_API_URL}/api/users/login/token`)
+    .set('Authorization', `Bearer ${token}`)
+    .then( res => {
+      dispatch(signIn(res.body));
+      localStorage.gSaleToken = res.body.token;
+      return res.body;
+    });
+};
