@@ -4,7 +4,7 @@ const validateAttendee = attendee => {
     }
 };
 
-export default (state = [], action) => {
+let attendees = (state = [], action) => {
     let { type, payload } = action;
 
     switch (type) {
@@ -23,3 +23,5 @@ export default (state = [], action) => {
             return state;
     }
 };
+
+export default attendees;
