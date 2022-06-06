@@ -19,7 +19,7 @@ export const userProfileFetch = userProfile => ({
 
 export const userProfileCreateRequest = userProfile => (dispatch, getState) => {
     const { userAuth } = getState();
-    return superagent.post(`${process.env.API_URL}/api/profiles`)
+    return superagent.post(`${process.env.REACT_APP_API_URL}/api/profiles`)
         .set('Authorization', `Bearer ${userAuth}`)
         .field({ username: userProfile.username, image: userProfile.image, country: userProfile.country, state: userProfile.state, birthdate: userProfile.birthdate, tags: userProfile.tags })
         .then(res => {
@@ -30,7 +30,7 @@ export const userProfileCreateRequest = userProfile => (dispatch, getState) => {
 
 export const userProfileUpdateRequest = profile => (dispatch, getState) => {
     const { userAuth, userProfile } = getState();
-    return superagent.put(`${process.env.API_URL}/api/profiles/${userProfile.id}`)
+    return superagent.put(`${process.env.REACT_APP_API_URL}/api/profiles/${userProfile.id}`)
         .set('Authorization', `Bearer ${userAuth}`)
         .send(profile)
         .then(res => {
@@ -41,7 +41,7 @@ export const userProfileUpdateRequest = profile => (dispatch, getState) => {
 
 export const userProfileFetchRequest = () => (dispatch, getState) => {
     const { userAuth, userProfile } = getState();
-    return superagent.get(`${process.env.API_URL}/api/profiles/${userProfile.id}`)
+    return superagent.get(`${process.env.REACT_APP_API_URL}/api/profiles/${userProfile.id}`)
         .set('Authorization', `Bearer ${userAuth}`)
         .then(res => {
             dispatch(userProfileFetch(res.body));
@@ -49,7 +49,7 @@ export const userProfileFetchRequest = () => (dispatch, getState) => {
         });
     // to do work on this
     // const { userAuth } = getState();
-    // return superagent.get(`${process.env.API_URL}/api/profiles/currentuser`)
+    // return superagent.get(`${process.env.REACT_APP_API_URL}/api/profiles/currentuser`)
     //     .set('Authorization', `Bearer ${userAuth}`)
     //     .then(res => {
     //         dispatch(userProfileFetch(res.body));

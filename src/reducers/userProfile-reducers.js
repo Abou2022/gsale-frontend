@@ -5,10 +5,13 @@ const validateUserProfile = userProfile => {
 };
 
 // to do: make sure profile has users categories
-export default (state = null, action) => {
+let userProfile = (state = null, action) => {
     let { type, payload } = action;
 
     switch (type) {
+        case 'SIGN_IN':
+            validateUserProfile(payload.profile);
+            return payload.profile;
         case 'USERPROFILE_CREATE':
             validateUserProfile(payload);
             if (!payload.vendingEvents) payload.vendingEvents = [];
@@ -34,3 +37,5 @@ export default (state = null, action) => {
             return state;
     }
 };
+
+export default userProfile;
