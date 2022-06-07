@@ -7,6 +7,7 @@ export const signIn = token => ({
 
 export const signOut = () => {
     delete localStorage.gSaleToken;
+    // localStorage.removeItem("gSaleToken");
     return { type: 'SIGN_OUT' };
 };
 
@@ -16,7 +17,7 @@ export const signUpRequest = user => dispatch => {
         .then(res => {
             console.log("signUpRequest res: ", res);
             dispatch(signIn(res.body));
-            localStorage.gSaleToken = res.body.token;
+            localStorage.setItem("gSaleToken", res.body.token);
             return res.body;
         })
         .catch(err => {
@@ -31,7 +32,7 @@ export const signInRequest = user => dispatch => {
         .then(res => {
             console.log(" signInRequest res: ", res);
             dispatch(signIn(res.body));
-            localStorage.gSaleToken = res.body.token;
+            localStorage.setItem("gSaleToken", res.body.token);
             return res.body;
         })
         .catch(err => {
