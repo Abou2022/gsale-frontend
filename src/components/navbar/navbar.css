@@ -67,7 +67,6 @@
     font-variant-ligatures: normal;
     font-variant-numeric: normal;
     font-weight: 600;
-    height: 18px;
     letter-spacing: normal;
     line-break: strict;
     line-height: 18px;
@@ -104,7 +103,6 @@
     flex-shrink: 0;
     font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     font-size: 16px;
-    height: 24px;
     line-break: strict;
     line-height: 20px;
     text-align: left;
