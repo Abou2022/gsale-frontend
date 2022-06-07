@@ -1,5 +1,6 @@
 .tooltip {
     height: 0;
+    opacity: 1 !important;
 }
 
 .tooltip section {
