@@ -33,3 +33,16 @@ export const getZipsArray = async (lat, lng, radius = 10) => {
         return [];
     }
 }
+
+export const getGeocode = location => {
+    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+        .then(re => { 
+            console.log("here")
+            return re.json()
+        })
+        .then(res => {
+            console.log("geocode res: ", res.results[0].geometry.location)
+            return res.results[0].geometry.location;
+        })
+        .catch(err => console.log("err: ", err))
+}

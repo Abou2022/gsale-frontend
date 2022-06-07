@@ -6,6 +6,7 @@ import searchIcon from "../../assets/images/search.svg";
 
 import Modal from "../helpers/modal";
 import UserAuthForm from "../userAuth-form";
+import LocationAutocomplete from '../locationAutocomplete';
 import { renderIf } from "./../../lib/util.js";
 import {
   signUpRequest,
@@ -77,12 +78,13 @@ function Navbar(props) {
               className="d-flex flex-row form-inline my-2 my-lg-0 p-4"
               onSubmit={handleFormSubmit}
             >
-              <input
+                <LocationAutocomplete onChange={() => null} />
+              {/* <input
                 id="locationInput"
                 type="text"
                 placeholder="Location"
                 name="location"
-              ></input>
+              ></input> */}
               <span className="spacer"></span>
               <input
                 id="dateInput"
