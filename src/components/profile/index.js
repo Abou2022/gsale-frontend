@@ -10,33 +10,57 @@ function Profile() {
       setEditFirstName(true);
     }
   };
+  const [editLastName, setEditLastName] = useState(false);
+  const lastNameHandler = () => {
+    if (editLastName) {
+      setEditLastName(false);
+    } else {
+      setEditLastName(true);
+    }
+  };
+  const [editEmail, setEditEmail] = useState(false);
+  const emailHandler = () => {
+    if (editEmail) {
+      setEditEmail(false);
+    } else {
+      setEditEmail(true);
+    }
+  };
+  const [editPhoneNumber, setEditPhoneNumber] = useState(false);
+  const phoneNumberHandler = () => {
+    if (editPhoneNumber) {
+      setEditPhoneNumber(false);
+    } else {
+      setEditPhoneNumber(true);
+    }
+  };
 
   const tempObject = {
     firstName: "Andrew",
     lastName: "Ryu",
     email: "email@email.com",
-    phoneNumber: "123-456-7899",
+    phoneNumber: "123-456-7890",
   };
   const [tempData, setTempData] = useState(tempObject);
-  const firstNameOnChange = (e) => {
+  const profileInfoOnChange = (e) => {
     setTempData({ ...tempData, [e.target.name]: e.target.value });
   };
 
   return (
     <div className="container">
-      <h2 className="my-4 py-2">Profile</h2>
+      <h1 className="my-4 py-2">Profile</h1>
       <div className="row">
         <div className="col-md-7">
           <div className="d-flex justify-content-between">
             <div className="">
-              <p className="mb-0">First Name</p>
-              <p className="text-muted mb-0">
+              <p className="mb-0 text-muted">First Name</p>
+              <p className="mb-0">
                 {editFirstName ? (
                   <input
                     type="text"
                     name="firstName"
                     value={tempData.firstName}
-                    onChange={firstNameOnChange}
+                    onChange={profileInfoOnChange}
                   />
                 ) : (
                   tempData.firstName
@@ -44,38 +68,73 @@ function Profile() {
               </p>
             </div>
             <button onClick={firstNameHandler} className="btn my-2 my-sm-0">
-              <u>{editFirstName ? "Save" : "Edit"}</u>
+              <u className="text-success">{editFirstName ? "Save" : "Edit"}</u>
             </button>
           </div>
           <div className="d-flex justify-content-between">
             <div>
-              <p className="mt-3 mb-0">Last Name</p>
-              <p className="text-muted mb-0">Ryu</p>
+              <p className="text-muted mt-3 mb-0">Last Name</p>
+              <p className="mb-0">
+                {editLastName ? (
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={tempData.lastName}
+                    onChange={profileInfoOnChange}
+                  />
+                ) : (
+                  tempData.lastName
+                )}
+              </p>
             </div>
-            <button className="btn my-2 my-sm-0">
-              <u>Edit</u>
+            <button onClick={lastNameHandler} className="btn my-2 my-sm-0">
+              <u className="text-success">{editLastName ? "Save" : "Edit"}</u>
             </button>
           </div>
           <div className="d-flex justify-content-between">
             <div>
-              <p className="mt-3 mb-0">Email</p>
-              <p className="text-muted mb-0">email@email.com</p>
+              <p className="text-muted mt-3 mb-0">Email</p>
+              <p className="mb-0">
+                {editEmail ? (
+                  <input
+                    type="email"
+                    name="email"
+                    value={tempData.email}
+                    onChange={profileInfoOnChange}
+                  />
+                ) : (
+                  tempData.email
+                )}
+              </p>
             </div>
-            <button className="btn my-2 my-sm-0">
-              <u>Edit</u>
+            <button onClick={emailHandler} className="btn my-2 my-sm-0">
+              <u className="text-success">{editEmail ? "Save" : "Edit"}</u>
             </button>
           </div>
           <div className="d-flex justify-content-between">
             <div>
-              <p className="mt-3 mb-0">Phone Number</p>
-              <p className="text-muted mb-0">123-456-7890</p>
+              <p className="text-muted mt-3 mb-0">Phone Number</p>
+              <p className="mb-0">
+                {editPhoneNumber ? (
+                  <input
+                    type="string"
+                    name="phoneNumber"
+                    value={tempData.phoneNumber}
+                    onChange={profileInfoOnChange}
+                  />
+                ) : (
+                  tempData.phoneNumber
+                )}
+              </p>
             </div>
-            <button className="btn my-2 my-sm-0">
-              <u>Edit</u>
+            <button onClick={phoneNumberHandler} className="btn my-2 my-sm-0">
+              <u className="text-success">
+                {editPhoneNumber ? "Save" : "Edit"}
+              </u>
             </button>
           </div>
           <div>
-            <p className="mt-3 mb-1">Categories</p>
+            <p className="text-muted mt-3 mb-1">Categories</p>
             <div className="row">
               <div className="">
                 <div className="form-check form-check-inline col-md-3">
