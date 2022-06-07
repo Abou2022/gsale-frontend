@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { signOut } from '../../actions/userAuth-actions.js';
+import Map from '../map';
 
 class Home extends React.Component {
     constructor(props) {
@@ -20,6 +20,7 @@ class Home extends React.Component {
         return (
             <div className="">
                 <p>Home</p>
+                <Map />
             </div>
         );
     }
