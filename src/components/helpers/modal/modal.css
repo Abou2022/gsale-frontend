@@ -106,6 +106,7 @@
 
 .show {
     display: block !important;
+    z-index: 499 !important;
 }
 
 @media (min-width: 768px) {

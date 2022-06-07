@@ -13,7 +13,7 @@ let garageSaleEvent = (state = [], action) => {
         case 'GARAGE_SALE_EVENT_FETCH':
             return checkAndAdd(payload, state);
         case 'GARAGE_SALE_EVENTS_FETCH':
-            return [...payload, ...state];
+            return payload;
         case 'GARAGE_SALE_EVENT_CREATE':
             validateGarageSaleEvent(payload);
             return [payload, ...state];
@@ -25,8 +25,6 @@ let garageSaleEvent = (state = [], action) => {
             if (state === []) throw new Error('USAGE ERROR: can not delete garageSaleEvent not in state');
             validateGarageSaleEvent(payload);
             return state.filter(garageSaleEvent => garageSaleEvent.id !== payload.id);
-        case 'GARAGE_SALE_EVENT_JOIN':
-            return [payload, ...state];
         case 'SIGN_OUT':
             return [];
         default:

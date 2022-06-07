@@ -4,7 +4,6 @@ const validateUserProfile = userProfile => {
     }
 };
 
-// to do: make sure profile has users categories
 let userProfile = (state = null, action) => {
     let { type, payload } = action;
 
@@ -12,11 +11,6 @@ let userProfile = (state = null, action) => {
         case 'SIGN_IN':
             validateUserProfile(payload.profile);
             return payload.profile;
-        case 'USERPROFILE_CREATE':
-            validateUserProfile(payload);
-            if (!payload.vendingEvents) payload.vendingEvents = [];
-            if (!payload.attendeeEvents) payload.attendeeEvents = [];
-            return payload;
         case 'USERPROFILE_UPDATE':
             if (!state) throw new Error('USAGE ERROR: can not update when user profile is null');
             validateUserProfile(payload);
