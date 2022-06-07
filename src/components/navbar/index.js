@@ -55,14 +55,20 @@ function Navbar(props) {
             <div id="navbar">
                 <div>
                     <div id="navGSaleLogoContainer">
-                        <Link to="/"><img id="navGSaleLogo" src={GSaleLogo} alt="gsale logo" /></Link>
+                        <Link to="/">
+                            <img id="navGSaleLogo" src={GSaleLogo} alt="gsale logo" />
+                            </Link>
                     </div>
                     <div id="searchFiltersContainer">
                         <form className="d-flex flex-row form-inline my-2 my-lg-0 p-2" onSubmit={handleFormSubmit}>
-                            <input id='locationInput' type="text" placeholder='Location' name='location'></input><span className="spacer"></span>
-                            <input id='dateInput' type="text" placeholder='Date' name='date'></input><span className="spacer"></span>
+                            <input id='locationInput' type="text" placeholder='Location' name='location'></input>
+                            <span className="spacer"></span>
+                            <input id='dateInput' type="text" placeholder='Date' name='date'></input>
+                            <span className="spacer"></span>
                             <input id='filterInput' type="text" placeholder='Filter' name='filter'></input>
-                            <button id=""><img id="searchIcon" src={searchIcon} alt="search icon" /></button>
+                            <button id="">
+                                <img id="searchIcon" src={searchIcon} alt="search icon" />
+                            </button>
                         </form>
                     </div>
                     <button id="createEventButton" className="btn btn-outline-success my-2 my-sm-0 rounded-pill" onClick={handleCreateEvent}> Create Event</button>
@@ -76,7 +82,6 @@ function Navbar(props) {
 
                         <Modal heading='G-Sale' close={() => setFormDisplay(false)}>
                             <UserAuthForm authFormAction={authFormAction} onComplete={handleComplete} />
-
                             <div className='userauth-buttons'>
                                 {renderIf(authFormAction === 'Sign In',
                                     <button className='b-button dark-button' onClick={() => setAuthFormAction('Sign Up')}>Sign Up</button>
