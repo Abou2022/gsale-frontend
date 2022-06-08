@@ -16,8 +16,9 @@ let attendees = (state = [], action) => {
       validateAttendee(payload);
       return [payload, ...state];
     case 'ATTENDEE_DELETE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not delete attendee not in state');
+      }
       validateAttendee(payload);
       return state.filter(attendee => attendee.id !== payload.id);
     case 'SIGN_OUT':

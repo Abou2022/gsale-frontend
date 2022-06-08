@@ -1,5 +1,6 @@
 import { logError } from './util.js';
 
+// eslint-disable-next-line
 const reporter = store => next => action => {
   try {
     let result = next(action);

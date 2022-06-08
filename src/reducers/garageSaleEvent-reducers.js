@@ -24,24 +24,27 @@ let garageSaleEvent = (state = [], action) => {
     case 'GARAGE_SALE_EVENTS_FETCH':
       return payload;
     case 'GARAGE_SALE_EVENTS_FILTER':
+      console.log('categorySelection data: ', payload[0], payload.length);
       return payload;
     case 'GARAGE_SALE_EVENT_CREATE':
       validateGarageSaleEvent(payload);
       return [payload, ...state];
     case 'GARAGE_SALE_EVENT_UPDATE':
-      if (state === [])
+      if (state === []) {
         throw new Error(
           'USAGE ERROR: can not update garageSaleEvent not in state'
         );
+      }
       validateGarageSaleEvent(payload);
       return state.map(garageSaleEvent =>
         garageSaleEvent.id === payload.id ? payload : garageSaleEvent
       );
     case 'GARAGE_SALE_EVENT_DELETE':
-      if (state === [])
+      if (state === []) {
         throw new Error(
           'USAGE ERROR: can not delete garageSaleEvent not in state'
         );
+      }
       validateGarageSaleEvent(payload);
       return state.filter(garageSaleEvent => garageSaleEvent.id !== payload.id);
     case 'SIGN_OUT':

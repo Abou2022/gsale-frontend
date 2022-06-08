@@ -25,13 +25,15 @@ let vendors = (state = [], action) => {
       validateVendor(payload);
       return [payload, ...state];
     case 'VENDOR_UPDATE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not update VENDOR not in state');
+      }
       validateVendor(payload);
       return state.map(vendor => (vendor.id === payload.id ? payload : vendor));
     case 'VENDOR_DELETE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not delete vendor not in state');
+      }
       validateVendor(payload);
       return state.filter(vendor => vendor.id !== payload.id);
     case 'SIGN_OUT':

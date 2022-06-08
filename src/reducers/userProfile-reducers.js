@@ -12,15 +12,20 @@ let userProfile = (state = null, action) => {
       validateUserProfile(payload.profile);
       return payload.profile;
     case 'USERPROFILE_UPDATE':
-      if (!state)
+      if (!state) {
         throw new Error(
           'USAGE ERROR: can not update when user profile is null'
         );
+      }
       validateUserProfile(payload);
       return { ...state, ...payload };
     case 'USERPROFILE_FETCH':
-      if (!payload.vendingEvents) payload.vendingEvents = [];
-      if (!payload.attendeeEvents) payload.attendeeEvents = [];
+      if (!payload.vendingEvents) {
+        payload.vendingEvents = [];
+      }
+      if (!payload.attendeeEvents) {
+        payload.attendeeEvents = [];
+      }
       return payload;
     case 'ADD_VENDOR':
       state.vendingEvents.push(payload);
