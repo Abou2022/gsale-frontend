@@ -12,13 +12,6 @@ import {
   signInRequest,
   signOut,
 } from "../../actions/userAuth-actions.js";
-import { createRoot } from "react-dom/client";
-import {
-  DatePicker,
-  DatePickerProvider,
-  useDatePickGetter,
-  useDatePickReset,
-} from "@bcad1591/react-date-picker";
 
 import "./navbar.css";
 
