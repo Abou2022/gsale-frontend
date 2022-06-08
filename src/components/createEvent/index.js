@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import profilePic from "../../assets/GSale.png";
+import React, { useState } from 'react';
+import profilePic from '../../assets/GSale.png';
 
 function CreateEvent() {
   const [editEventName, setEditEventName] = useState(false);
@@ -60,16 +60,16 @@ function CreateEvent() {
   };
 
   const tempObject = {
-    eventName: "Garage Sale",
-    startTime: "10 AM",
-    endTime: "05 PM",
-    startDate: "6/17/2022",
-    endDate: "6/19/2022",
-    location: "98125",
+    eventName: 'Garage Sale',
+    startTime: '10 AM',
+    endTime: '05 PM',
+    startDate: '6/17/2022',
+    endDate: '6/19/2022',
+    location: '98125',
     description: "we're moving",
   };
   const [tempData, setTempData] = useState(tempObject);
-  const eventInfoOnChange = (e) => {
+  const eventInfoOnChange = e => {
     setTempData({ ...tempData, [e.target.name]: e.target.value });
   };
 
@@ -95,7 +95,7 @@ function CreateEvent() {
               </p>
             </div>
             <button onClick={eventNameHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editEventName ? "Save" : "Edit"}</u>
+              <u className="text-success">{editEventName ? 'Save' : 'Edit'}</u>
             </button>
           </div>
 
@@ -116,7 +116,7 @@ function CreateEvent() {
               </p>
             </div>
             <button onClick={startTimeHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editStartTime ? "Save" : "Edit"}</u>
+              <u className="text-success">{editStartTime ? 'Save' : 'Edit'}</u>
             </button>
           </div>
 
@@ -137,7 +137,7 @@ function CreateEvent() {
               </p>
             </div>
             <button onClick={endTimeHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editEndTime ? "Save" : "Edit"}</u>
+              <u className="text-success">{editEndTime ? 'Save' : 'Edit'}</u>
             </button>
           </div>
 
@@ -158,7 +158,7 @@ function CreateEvent() {
               </p>
             </div>
             <button onClick={startDateHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editStartDate ? "Save" : "Edit"}</u>
+              <u className="text-success">{editStartDate ? 'Save' : 'Edit'}</u>
             </button>
           </div>
 
@@ -179,7 +179,7 @@ function CreateEvent() {
               </p>
             </div>
             <button onClick={endDateHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editEndDate ? "Save" : "Edit"}</u>
+              <u className="text-success">{editEndDate ? 'Save' : 'Edit'}</u>
             </button>
           </div>
 
@@ -200,7 +200,7 @@ function CreateEvent() {
               </p>
             </div>
             <button onClick={locationHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editLocation ? "Save" : "Edit"}</u>
+              <u className="text-success">{editLocation ? 'Save' : 'Edit'}</u>
             </button>
           </div>
 
@@ -222,7 +222,7 @@ function CreateEvent() {
             </div>
             <button onClick={descriptionHandler} className="btn my-2 my-sm-0">
               <u className="text-success">
-                {editDescription ? "Save" : "Edit"}
+                {editDescription ? 'Save' : 'Edit'}
               </u>
             </button>
           </div>

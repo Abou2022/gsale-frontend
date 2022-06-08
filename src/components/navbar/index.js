@@ -1,55 +1,55 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import GSaleLogo from "../../assets/GSale.png";
-import searchIcon from "../../assets/images/search.svg";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import GSaleLogo from '../../assets/GSale.png';
+import searchIcon from '../../assets/images/search.svg';
 
-import Modal from "../helpers/modal";
-import UserAuthForm from "../userAuth-form";
-import { renderIf } from "./../../lib/util.js";
+import Modal from '../helpers/modal';
+import UserAuthForm from '../userAuth-form';
+import { renderIf } from './../../lib/util.js';
 import {
   signUpRequest,
   signInRequest,
   signOut,
-} from "../../actions/userAuth-actions.js";
+} from '../../actions/userAuth-actions.js';
 
-import "./navbar.css";
+import './navbar.css';
 
 function Navbar(props) {
-  let [authFormAction, setAuthFormAction] = useState("Sign Up");
+  let [authFormAction, setAuthFormAction] = useState('Sign Up');
   let [formDisplay, setFormDisplay] = useState(false);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = e => {
     e.preventDefault();
-    console.log("form submitted event: ", e);
+    console.log('form submitted event: ', e);
   };
 
-  const handleCreateEvent = (e) => {
-    console.log("handleCreateEvent event: ", e);
+  const handleCreateEvent = e => {
+    console.log('handleCreateEvent event: ', e);
   };
 
-  const handleLoginSignUp = (e) => {
-    console.log("handleLoginSignUp event: ", e);
+  const handleLoginSignUp = e => {
+    console.log('handleLoginSignUp event: ', e);
     setFormDisplay(true);
   };
 
-  const handleSignin = async (e) => {
+  const handleSignin = async e => {
     try {
-      console.log("handleSignin: ", e);
+      console.log('handleSignin: ', e);
       await props.signIn({ password: e.password, email: e.email });
       setFormDisplay(false);
     } catch (err) {
-      console.log("signIn err: ", err);
+      console.log('signIn err: ', err);
     }
   };
 
-  const handleSignup = async (e) => {
+  const handleSignup = async e => {
     try {
-      console.log("handleSignup: ", e);
+      console.log('handleSignup: ', e);
       await props.signUp({ password: e.password, email: e.email });
       setFormDisplay(false);
     } catch (err) {
-      console.log("signUp err: ", err);
+      console.log('signUp err: ', err);
     }
   };
 
@@ -58,11 +58,11 @@ function Navbar(props) {
   };
 
   let handleComplete =
-    authFormAction === "Sign Up" ? handleSignup : handleSignin;
+    authFormAction === 'Sign Up' ? handleSignup : handleSignin;
   let profileLink =
     props.userProfile && props.userProfile.id
       ? `/profile/${props.userProfile.id}`
-      : "";
+      : '';
   return (
     <div>
       <div id="navbar" className="border-bottom">
@@ -109,7 +109,7 @@ function Navbar(props) {
               className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
               onClick={handleCreateEvent}
             >
-              {" "}
+              {' '}
               Create Event
             </button>
           )}
@@ -144,20 +144,20 @@ function Navbar(props) {
 
               <div className="userauth-buttons">
                 {renderIf(
-                  authFormAction === "Sign In",
+                  authFormAction === 'Sign In',
                   <button
                     className="b-button dark-button"
-                    onClick={() => setAuthFormAction("Sign Up")}
+                    onClick={() => setAuthFormAction('Sign Up')}
                   >
                     Sign Up
                   </button>
                 )}
 
                 {renderIf(
-                  authFormAction === "Sign Up",
+                  authFormAction === 'Sign Up',
                   <button
                     className="b-button dark-button"
-                    onClick={() => setAuthFormAction("Sign In")}
+                    onClick={() => setAuthFormAction('Sign In')}
                   >
                     Sign In
                   </button>
@@ -171,7 +171,7 @@ function Navbar(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   userAuth: state.userAuth,
   userProfile: state.userProfile,
   // attendees: state.attendess,
@@ -180,10 +180,10 @@ const mapStateToProps = (state) => ({
   // vendors: state.vendors
 });
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = dispatch => {
   return {
-    signUp: (user) => dispatch(signUpRequest(user)),
-    signIn: (user) => dispatch(signInRequest(user)),
+    signUp: user => dispatch(signUpRequest(user)),
+    signIn: user => dispatch(signInRequest(user)),
     signOutRequest: () => dispatch(signOut()),
   };
 };

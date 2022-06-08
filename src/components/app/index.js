@@ -1,12 +1,12 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import Navbar from "../navbar";
-import Home from "../home";
-import Profile from "../profile";
-import GarageSaleEvent from "../garageSaleEvent";
-import CreateEvent from "../createEvent";
-import NotFound from "../notFound";
+import Navbar from '../navbar';
+import Home from '../home';
+import Profile from '../profile';
+import GarageSaleEvent from '../garageSaleEvent';
+import CreateEvent from '../createEvent';
+import NotFound from '../notFound';
 
 function App() {
   return (

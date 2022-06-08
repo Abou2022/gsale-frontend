@@ -1,12 +1,12 @@
-import superagent from "superagent";
+import superagent from 'superagent';
 
 export const log = (...args) => console.log(...args);
 export const logError = (...args) => console.error(...args);
 export const renderIf = (test, component) => (test ? component : undefined);
-export const classToggler = (options) =>
+export const classToggler = options =>
   Object.keys(options)
-    .filter((key) => !!options[key])
-    .join(" ");
+    .filter(key => !!options[key])
+    .join(' ');
 
 export const checkAndAdd = (payload, state) => {
   var found = state.some(function (el) {
@@ -39,7 +39,7 @@ export const getZipsArray = async (lat, lng, radius = 10) => {
     );
     return zips;
   } catch (err) {
-    console.log("getZipsArray error: ", err);
+    console.log('getZipsArray error: ', err);
     return [];
   }
 };

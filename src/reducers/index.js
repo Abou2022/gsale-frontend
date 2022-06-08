@@ -7,10 +7,10 @@ import garageSaleEvent from './garageSaleEvent-reducers';
 import vendors from './vendors-reducers';
 
 export default combineReducers({
-    userAuth,
-    userProfile,
-    attendees,
-    comments,
-    garageSaleEvent,
-    vendors
+  userAuth,
+  userProfile,
+  attendees,
+  comments,
+  garageSaleEvent,
+  vendors,
 });
