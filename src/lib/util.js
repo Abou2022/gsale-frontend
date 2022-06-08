@@ -12,7 +12,9 @@ export const checkAndAdd = (payload, state) => {
   var found = state.some(function (el) {
     return el.id === payload.id;
   });
-  if (!found) state.push(payload);
+  if (!found) {
+    state.push(payload);
+  }
   return state;
 };
 

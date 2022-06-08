@@ -14,6 +14,7 @@ class Map extends Component {
     this.props.vendorsFetch().catch(err => logError(err));
   }
 
+  // eslint-disable-next-line
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.vendors !== this.props.vendors;
   }
