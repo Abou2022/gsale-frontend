@@ -5,8 +5,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const appCreateStore = () => (
-    process.env.REACT_APP_NODE_ENV !== 'production' ? createStore(reducer, composeWithDevTools(applyMiddleware(createLogger(), thunk, reporter))) : createStore(reducer, applyMiddleware(thunk))
-);
+const appCreateStore = () =>
+  process.env.REACT_APP_NODE_ENV !== 'production'
+    ? createStore(
+        reducer,
+        composeWithDevTools(applyMiddleware(createLogger(), thunk, reporter))
+      )
+    : createStore(reducer, applyMiddleware(thunk));
 
 export default appCreateStore;

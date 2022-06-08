@@ -1,8 +1,8 @@
 .leaflet-container {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .leaflet-bottom.leaflet-right {
-    display: none !important;
+  display: none !important;
 }
