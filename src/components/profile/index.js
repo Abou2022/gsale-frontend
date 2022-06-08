@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import profilePic from "../../assets/GSale.png";
+import React, { useState } from 'react';
+import profilePic from '../../assets/GSale.png';
 
 function Profile() {
   const [editFirstName, setEditFirstName] = useState(false);
@@ -36,13 +36,13 @@ function Profile() {
   };
 
   const tempObject = {
-    firstName: "Andrew",
-    lastName: "Ryu",
-    email: "email@email.com",
-    phoneNumber: "123-456-7890",
+    firstName: 'Andrew',
+    lastName: 'Ryu',
+    email: 'email@email.com',
+    phoneNumber: '123-456-7890',
   };
   const [tempData, setTempData] = useState(tempObject);
-  const profileInfoOnChange = (e) => {
+  const profileInfoOnChange = e => {
     setTempData({ ...tempData, [e.target.name]: e.target.value });
   };
 
@@ -68,7 +68,7 @@ function Profile() {
               </p>
             </div>
             <button onClick={firstNameHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editFirstName ? "Save" : "Edit"}</u>
+              <u className="text-success">{editFirstName ? 'Save' : 'Edit'}</u>
             </button>
           </div>
           <div className="d-flex justify-content-between">
@@ -88,7 +88,7 @@ function Profile() {
               </p>
             </div>
             <button onClick={lastNameHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editLastName ? "Save" : "Edit"}</u>
+              <u className="text-success">{editLastName ? 'Save' : 'Edit'}</u>
             </button>
           </div>
           <div className="d-flex justify-content-between">
@@ -108,7 +108,7 @@ function Profile() {
               </p>
             </div>
             <button onClick={emailHandler} className="btn my-2 my-sm-0">
-              <u className="text-success">{editEmail ? "Save" : "Edit"}</u>
+              <u className="text-success">{editEmail ? 'Save' : 'Edit'}</u>
             </button>
           </div>
           <div className="d-flex justify-content-between">
@@ -129,7 +129,7 @@ function Profile() {
             </div>
             <button onClick={phoneNumberHandler} className="btn my-2 my-sm-0">
               <u className="text-success">
-                {editPhoneNumber ? "Save" : "Edit"}
+                {editPhoneNumber ? 'Save' : 'Edit'}
               </u>
             </button>
           </div>
