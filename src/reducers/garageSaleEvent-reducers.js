@@ -24,8 +24,12 @@ let garageSaleEvent = (state = [], action) => {
     case 'GARAGE_SALE_EVENTS_FETCH':
       return payload;
     case 'GARAGE_SALE_EVENTS_FILTER':
-      console.log('categorySelection data: ', payload[0], payload.length);
-      return payload;
+      console.log(
+        'categorySelection data: ',
+        payload.gse[0],
+        payload.gse.length
+      );
+      return payload.gse;
     case 'GARAGE_SALE_EVENT_CREATE':
       validateGarageSaleEvent(payload);
       return [payload, ...state];
