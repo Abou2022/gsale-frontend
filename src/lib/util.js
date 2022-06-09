@@ -1,5 +1,3 @@
-import superagent from 'superagent';
-
 export const log = (...args) => console.log(...args);
 export const logError = (...args) => console.error(...args);
 export const renderIf = (test, component) => (test ? component : undefined);
@@ -18,30 +16,20 @@ export const checkAndAdd = (payload, state) => {
   return state;
 };
 
-export const getZipsArray = async (lat, lng, radius = 10) => {
-  try {
-    radius = (radius * 1.60934).toFixed(2);
-    let zips = JSON.parse(
-      localStorage.getItem(`gSaleZips-lat-${lat}-lng-${lng}-rad-${radius}`)
-    );
-    if (zips) {
-      return zips;
+export const distance = (lat1, lon1, lat2, lon2) => {
+    console.log(lat1, lon1, lat2, lon2)
+    console.log(typeof lat1, typeof lon1, typeof lat2, typeof lon2);
+    var radlat1 = Math.PI * lat1/180;
+    var radlat2 = Math.PI * lat2/180;
+    var theta = lon1-lon2;
+    var radtheta = Math.PI * theta/180;
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    if (dist > 1) {
+        dist = 1;
     }
-    const res = await superagent.get(
-      `https://www.freemaptools.com/ajax/us/get-all-zip-codes-inside.php?radius=${radius}&lat=${lat}&lng=${lng}&rn=563&showPOboxes=false`
-    );
-    let arr = res.text.split('<postcode postcode="');
-    zips = [];
-    for (let i = 1; i < arr.length; i++) {
-      zips.push(arr[i].substring(0, 5));
-    }
-    localStorage.setItem(
-      `gSaleZips-lat-${lat}-lng-${lng}-rad-${radius}`,
-      JSON.stringify(zips)
-    );
-    return zips;
-  } catch (err) {
-    console.log('getZipsArray error: ', err);
-    return [];
-  }
+    dist = Math.acos(dist);
+    dist = dist * 180/Math.PI;
+    dist = dist * 60 * 1.1515;
+    console.log("dist: ", dist)
+    return dist;
 };

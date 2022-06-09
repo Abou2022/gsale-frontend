@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
+import { appendScript } from '../../actions/appendedScript-actions.js';
 
 let autoComplete;
 
@@ -47,23 +49,31 @@ async function handlePlaceSelect(updateQuery, updateGeoCoords) {
   ]);
 }
 
-function SearchLocationAutocomplete({ handleSearchLocationAutocomplete }) {
+function SearchLocationAutocomplete({
+  handleSearchLocationAutocomplete,
+  appendedScript,
+  appendScriptRequest,
+}) {
   const [query, setQuery] = useState('');
   const [geoCoords, setGeoCoords] = useState('');
   const autoCompleteRef = useRef(null);
+  let appendedScriptFlag = false;
 
-  //   TO DO: make this only execute once
   useEffect(() => {
-    console.log('***************');
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&v=weekly`,
-      () => handleScriptLoad(setQuery, autoCompleteRef, setGeoCoords)
-    );
+    if (!appendedScript && !appendedScriptFlag) {
+      appendedScriptFlag = true;
+      appendScriptRequest();
+      loadScript(
+        `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&v=weekly`,
+        () => handleScriptLoad(setQuery, autoCompleteRef, setGeoCoords)
+      );
+    }
   }, []);
 
   useEffect(() => {
-    console.log('geoCoords: ', geoCoords, ' query ', query);
-    handleSearchLocationAutocomplete(query, geoCoords);
+    if (geoCoords && geoCoords.length) {
+      handleSearchLocationAutocomplete(query, geoCoords);
+    }
   }, [geoCoords]);
 
   return (
@@ -82,4 +92,12 @@ function SearchLocationAutocomplete({ handleSearchLocationAutocomplete }) {
   );
 }
 
-export default SearchLocationAutocomplete;
+const mapStateToProps = state => ({ appendedScript: state.appendedScript });
+const mapDispatchToProps = dispatch => ({
+  appendScriptRequest: () => dispatch(appendScript()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchLocationAutocomplete);

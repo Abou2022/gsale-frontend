@@ -1,42 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { signOut } from '../../actions/userAuth-actions.js';
-import Map from '../map';
+import { garageSaleEventsFetchRequest } from '../../actions/garageSaleEvent-actions';
+import { logError } from '../../lib/util';
+import MapLeaflet from '../mapLeaflet';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function Home(props) {
+  let garageSaleEventsFetchedFlag = false;
 
-  componentDidMount() {
-    console.log(this.props.userAuth);
-  }
-  handleSignOut = () => {
-    this.props.signOut();
-    this.props.history.push('/');
-  };
-  render() {
-    return (
-      <div className="">
-        <p>Home</p>
-        <Map />
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (!garageSaleEventsFetchedFlag) {
+      garageSaleEventsFetchedFlag = true;
+      props.garageSaleEventsFetch().catch(err => logError(err));
+    }
+  }, []);
+
+  return (
+    <div>
+      <MapLeaflet coords={props.garageSaleEvent} />;
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({
-  userAuth: state.userAuth,
-  userProfile: state.userProfile,
-  attendees: state.attendess,
-  comments: state.comments,
   garageSaleEvent: state.garageSaleEvent,
-  vendors: state.vendors,
 });
 
 const mapDispatchToProps = dispatch => ({
-  signOut: () => dispatch(signOut()),
+  garageSaleEventsFetch: () => dispatch(garageSaleEventsFetchRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
