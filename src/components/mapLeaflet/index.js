@@ -23,7 +23,9 @@ const group = L.featureGroup();
 function Bounds({ coords }) {
   const map = useMap();
   useEffect(() => {
-    if (!map) return;
+    if (!map) {
+      return;
+    }
     group.clearLayers();
     if (coords && coords.length) {
       coords.forEach(marker =>

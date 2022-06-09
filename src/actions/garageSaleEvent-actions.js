@@ -1,5 +1,11 @@
 import superagent from 'superagent';
-import { getZipsArray } from '../lib/util';
+// import { batch } from 'react-redux';
+import {
+  dateFilterHelper,
+  locationFilterHelper,
+  categoryFilterHelper,
+} from '../lib/util';
+import { unfilteredGarageSaleEventsFetch } from './unfilteredGarageSaleEvent-actions';
 
 export const garageSaleEventFetch = garageSaleEvent => ({
   type: 'GARAGE_SALE_EVENT_FETCH',
@@ -31,72 +37,46 @@ export const garageSaleEventDelete = garageSaleEvent => ({
   payload: garageSaleEvent,
 });
 
-let filter = {
-  startDate: '6/17/2022',
-  endDate: '6/19/2022',
-  lat: '41.031031',
-  lng: '-121.054765',
-  categories: ['antiques', 'furniture'],
+// let filter = {
+//   startDate: '6/17/2022',
+//   endDate: '6/19/2022',
+//   lat: '41.031031',
+//   lng: '-121.054765',
+//   categories: ['antiques', 'furniture'],
+// };
+
+export const filterGarageSaleEvents = (data, filterObject) => dispatch => {
+  console.log('filterGarageSaleEvents: ', filterObject);
+  data = dateFilterHelper(data, filterObject);
+  data = locationFilterHelper(data, filterObject);
+  data = categoryFilterHelper(data, filterObject);
+  dispatch(garageSaleEventsFilter({ gse: data, filter: filterObject }));
 };
 
-const garageSaleEventsFilterRequestHelper = async (data, filter) => {
-  try {
-    if (filter.lat && filter.lng) {
-      const zipsArray = await getZipsArray(filter.lat, filter.lng);
-      data = data.filter(gse => zipsArray.indexOf(gse.zip) >= 0);
-    }
-    // myfunction(data,filter)
-  } catch (err) {
-    console.log('err: ', err);
-    // myfunction(data,filter)
-  }
-};
-
-export const garageSaleEventsFilterRequest = filter => dispatch => {
+// requires end and start date
+// eslint-disable-next-line
+export const garageSaleEventsFilterRequest = filterObject => dispatch => {
+  console.log('garageSaleEventsFilterRequest filter: ', filterObject);
   return superagent
     .get(`${process.env.REACT_APP_API_URL}/api/garageSaleEvents`)
     .then(res => {
-      const filteredByDates = res.body.filter(data => {
-        if (filter.startDate) {
-          const dataEndDate = new Date(data.endDate);
-          const dataStartDate = new Date(data.startDate);
-          const filterEndDate = new Date(filter.endDate);
-          const filterStartDate = new Date(filter.startDate);
-          return (
-            (dataEndDate >= filterStartDate && dataEndDate <= filterEndDate) ||
-            (dataStartDate >= filterStartDate && dataStartDate <= filterEndDate)
-          );
-        }
-        return data;
-      });
-      garageSaleEventsFilterRequestHelper(filteredByDates, filter);
+      console.log('res.body: ', res.body);
+      let data = dateFilterHelper(res.body, filterObject);
+      console.log('data: ', data);
+      data = locationFilterHelper(data, filterObject);
+      data = categoryFilterHelper(data, filterObject);
+      dispatch(unfilteredGarageSaleEventsFetch(res.body));
+      dispatch(garageSaleEventsFilter({ gse: data, filter: filterObject }));
+      //   batch(() => {
+      //     dispatch(unfilteredGarageSaleEventsFetch(res.body));
+      //     dispatch(garageSaleEventsFilter({ gse: data, filter: filterObject }));
+      //   });
+      return res.body;
     })
     .catch(err => {
       console.log('garageSaleEventsFilterRequest Error: ', err);
-      garageSaleEventsFilterRequestHelper(res.body, filter);
+      return err;
     });
-};
-
-const categorySelection = async (data, filter) => {
-  try {
-    if (filter.categories) {
-      data.filter(gse => {
-        let hasCategory = false;
-        categories.forEach(category => {
-          if (gse.category) {
-            hasCategory = true;
-            return;
-          }
-        });
-        return hasCategory;
-      });
-    } else {
-      dispatch(garageSaleEventsFilter(data));
-    }
-  } catch (err) {
-    console.log('err: ', err);
-    dispatch(garageSaleEventsFilter(data));
-  }
 };
 
 export const garageSaleEventFetchRequest = garageSaleEventID => dispatch => {

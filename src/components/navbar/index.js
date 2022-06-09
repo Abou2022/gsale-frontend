@@ -6,12 +6,18 @@ import searchIcon from '../../assets/images/search.svg';
 
 import Modal from '../helpers/modal';
 import UserAuthForm from '../userAuth-form';
+import SearchLocationAutocomplete from '../searchLocationAutocomplete';
 import { renderIf } from './../../lib/util.js';
 import {
   signUpRequest,
   signInRequest,
   signOut,
 } from '../../actions/userAuth-actions.js';
+import { searchCriteriaUpdate } from '../../actions/searchCriteria-actions.js';
+import {
+  garageSaleEventsFilterRequest,
+  filterGarageSaleEvents,
+} from '../../actions/garageSaleEvent-actions.js';
 
 import './navbar.css';
 
@@ -43,6 +49,51 @@ function Navbar(props) {
     }
   };
 
+  // let filter = {
+  //   startDate: '6/17/2022',
+  //   endDate: '6/19/2022',
+  //   lat: '41.031031',
+  //   lng: '-121.054765',
+  //   categories: ['antiques', 'furniture'],
+  // };
+  const handleSearchLocationAutocomplete = (cityState, geoCoords) => {
+    try {
+      console.log('handleSearchLocationAutocomplete: ', cityState, geoCoords);
+      let filter = {
+        startDate: props.searchCriteria.startDate,
+        endDate: props.searchCriteria.endDate,
+        lat: geoCoords[0],
+        lng: geoCoords[1],
+        categories: props.searchCriteria.categories,
+      };
+      console.log('filter: ', filter);
+      console.log('props.garageSaleEvent: ', props.garageSaleEvent);
+      if (!props.garageSaleEvent || !props.garageSaleEvent.length) {
+        console.log(
+          '11111111111111 handleSearchLocationAutocomplete here: ',
+          filter
+        );
+        props.garageSaleEventsFilter(filter).catch(err => {
+          console.log(' garageSaleEventsFilter err: ', err);
+        });
+      } else {
+        console.log(
+          '222222222222222 handleSearchLocationAutocomplete here: ',
+          filter
+        );
+        // here
+        props
+          .filterGarageSaleEventsRequest(props.garageSaleEvent, filter)
+          .catch(err => {
+            console.log(' filterGarageSaleEventsRequest err: ', err);
+          });
+      }
+      // props.searchCriteriaUpdateRequest(filter)
+    } catch (err) {
+      console.log('Err handleSearchLocationAutocomplete: ', err);
+    }
+  };
+
   const handleSignup = async e => {
     try {
       console.log('handleSignup: ', e);
@@ -54,7 +105,10 @@ function Navbar(props) {
   };
 
   const handleSignOut = () => {
+    // localStorage.removeItem("gSaleToken");
+    delete localStorage.gSaleToken;
     props.signOutRequest();
+    props.history.push('/');
   };
 
   let handleComplete =
@@ -77,12 +131,11 @@ function Navbar(props) {
               className="d-flex flex-row form-inline my-2 my-lg-0 p-4"
               onSubmit={handleFormSubmit}
             >
-              <input
-                id="locationInput"
-                type="text"
-                placeholder="Location"
-                name="location"
-              ></input>
+              <SearchLocationAutocomplete
+                handleSearchLocationAutocomplete={
+                  handleSearchLocationAutocomplete
+                }
+              />
               <span className="spacer"></span>
               <input
                 id="dateInput"
@@ -174,18 +227,21 @@ function Navbar(props) {
 const mapStateToProps = state => ({
   userAuth: state.userAuth,
   userProfile: state.userProfile,
+  searchCriteria: state.searchCriteria,
   // attendees: state.attendess,
   // comments: state.comments,
-  // garageSaleEvent: state.garageSaleEvent,
+  garageSaleEvent: state.garageSaleEvent,
   // vendors: state.vendors
 });
 
-let mapDispatchToProps = dispatch => {
-  return {
-    signUp: user => dispatch(signUpRequest(user)),
-    signIn: user => dispatch(signInRequest(user)),
-    signOutRequest: () => dispatch(signOut()),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  signUp: user => dispatch(signUpRequest(user)),
+  signIn: user => dispatch(signInRequest(user)),
+  signOutRequest: () => dispatch(signOut()),
+  searchCriteriaUpdateRequest: data => dispatch(searchCriteriaUpdate(data)),
+  garageSaleEventsFilter: data => dispatch(garageSaleEventsFilterRequest(data)),
+  filterGarageSaleEventsRequest: (data, filterObject) =>
+    dispatch(filterGarageSaleEvents(data, filterObject)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

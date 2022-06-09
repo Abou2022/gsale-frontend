@@ -1,42 +1,82 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { signOut } from '../../actions/userAuth-actions.js';
-import Map from '../map';
+import { garageSaleEventsFilterRequest } from '../../actions/garageSaleEvent-actions';
+import { logError } from '../../lib/util';
+import { userLocationSet } from '../../actions/userLocation-actions';
+import MapLeaflet from '../mapLeaflet';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function Home(props) {
+  let garageSaleEventsFetchedFlag = false;
 
-  componentDidMount() {
-    console.log(this.props.userAuth);
-  }
-  handleSignOut = () => {
-    this.props.signOut();
-    this.props.history.push('/');
+  useEffect(() => {
+    if (!garageSaleEventsFetchedFlag) {
+      garageSaleEventsFetchedFlag = true;
+      handleUserLocation();
+    }
+  }, []);
+
+  const handleUserLocation = () => {
+    if (!props.userLocation) {
+      props
+        .garageSaleEventsFilter(props.searchCriteria)
+        .catch(err => logError(err));
+      const token = localStorage.getItem('gSaleUserLocation');
+      if (token) {
+        props.userLocationSetRequest(JSON.parse(token));
+      } else {
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              localStorage.setItem(
+                'gSaleUserLocation',
+                JSON.stringify({
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                })
+              );
+              props.userLocationSetRequest({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              });
+            },
+            function (err) {
+              console.error('Error Code = ' + err.code + ' - ' + err.message);
+            }
+          );
+        } else {
+          console.log('no navigator in location');
+        }
+      }
+    } else {
+      const filterObject = {
+        startDate: props.searchCriteria.startDate,
+        endDate: props.searchCriteria.endDate,
+        lat: props.userLocation.lat,
+        lng: props.userLocation.lng,
+        categories: props.searchCriteria.categories,
+      };
+      props.garageSaleEventsFilter(filterObject).catch(err => logError(err));
+    }
   };
-  render() {
-    return (
-      <div className="">
-        <p>Home</p>
-        <Map />
-      </div>
-    );
-  }
+
+  return (
+    <div>
+      <MapLeaflet coords={props.garageSaleEvent} />;
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({
-  userAuth: state.userAuth,
-  userProfile: state.userProfile,
-  attendees: state.attendess,
-  comments: state.comments,
   garageSaleEvent: state.garageSaleEvent,
-  vendors: state.vendors,
+  userLocation: state.userLocation,
+  searchCriteria: state.searchCriteria,
 });
 
 const mapDispatchToProps = dispatch => ({
-  signOut: () => dispatch(signOut()),
+  garageSaleEventsFilter: filterObject =>
+    dispatch(garageSaleEventsFilterRequest(filterObject)),
+  userLocationSetRequest: userLocation =>
+    dispatch(userLocationSet(userLocation)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

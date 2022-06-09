@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from '../navbar';
-import Home from '../home';
-import Profile from '../profile';
-import GarageSaleEvent from '../garageSaleEvent';
-import CreateEvent from '../createEvent';
-import NotFound from '../notFound';
+const Navbar = lazy(() => import('../navbar'));
+const Home = lazy(() => import('../home'));
+const Profile = lazy(() => import('../profile'));
+const GarageSaleEvent = lazy(() => import('../garageSaleEvent'));
+const CreateEvent = lazy(() => import('../createEvent'));
+const NotFound = lazy(() => import('../notFound'));
 
 function App() {
   return (
@@ -14,13 +14,15 @@ function App() {
       <div>
         <Navbar />
       </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/garagesale/:id" element={<GarageSaleEvent />} />
-        <Route path="/createevent/:id" element={<CreateEvent />} />
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/garagesale/:id" element={<GarageSaleEvent />} />
+          <Route path="/createevent/:id" element={<CreateEvent />} />
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }
