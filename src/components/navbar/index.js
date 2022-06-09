@@ -6,6 +6,7 @@ import searchIcon from '../../assets/images/search.svg';
 
 import Modal from '../helpers/modal';
 import UserAuthForm from '../userAuth-form';
+import SearchLocationAutocomplete from '../searchLocationAutocomplete';
 import { renderIf } from './../../lib/util.js';
 import {
   signUpRequest,
@@ -43,6 +44,14 @@ function Navbar(props) {
     }
   };
 
+  const handleSearchLocationAutocomplete = async (cityState, geoCoords) => {
+    try {
+      console.log('handleSearchLocationAutocomplete: ', cityState, geoCoords);
+    } catch (err) {
+      console.log('Err handleSearchLocationAutocomplete: ', err);
+    }
+  };
+
   const handleSignup = async e => {
     try {
       console.log('handleSignup: ', e);
@@ -77,12 +86,11 @@ function Navbar(props) {
               className="d-flex flex-row form-inline my-2 my-lg-0 p-4"
               onSubmit={handleFormSubmit}
             >
-              <input
-                id="locationInput"
-                type="text"
-                placeholder="Location"
-                name="location"
-              ></input>
+              <SearchLocationAutocomplete
+                handleSearchLocationAutocomplete={
+                  handleSearchLocationAutocomplete
+                }
+              />
               <span className="spacer"></span>
               <input
                 id="dateInput"
