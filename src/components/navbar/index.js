@@ -49,14 +49,7 @@ function Navbar(props) {
     }
   };
 
-  // let filter = {
-  //   startDate: '6/17/2022',
-  //   endDate: '6/19/2022',
-  //   lat: '41.031031',
-  //   lng: '-121.054765',
-  //   categories: ['antiques', 'furniture'],
-  // };
-  const handleSearchLocationAutocomplete = (cityState, geoCoords) => {
+  const handleSearchLocationAutocomplete = async (cityState, geoCoords) => {
     try {
       console.log('handleSearchLocationAutocomplete: ', cityState, geoCoords);
       let filter = {
@@ -68,27 +61,11 @@ function Navbar(props) {
       };
       console.log('filter: ', filter);
       console.log('props.garageSaleEvent: ', props.garageSaleEvent);
-      if (!props.garageSaleEvent || !props.garageSaleEvent.length) {
-        console.log(
-          '11111111111111 handleSearchLocationAutocomplete here: ',
-          filter
-        );
-        props.garageSaleEventsFilter(filter).catch(err => {
-          console.log(' garageSaleEventsFilter err: ', err);
-        });
-      } else {
-        console.log(
-          '222222222222222 handleSearchLocationAutocomplete here: ',
-          filter
-        );
-        // here
-        props
-          .filterGarageSaleEventsRequest(props.garageSaleEvent, filter)
-          .catch(err => {
-            console.log(' filterGarageSaleEventsRequest err: ', err);
-          });
-      }
-      // props.searchCriteriaUpdateRequest(filter)
+      console.log(
+        '11111111111111 handleSearchLocationAutocomplete here: ',
+        filter
+      );
+      await props.garageSaleEventsFilter(filter);
     } catch (err) {
       console.log('Err handleSearchLocationAutocomplete: ', err);
     }
@@ -228,10 +205,7 @@ const mapStateToProps = state => ({
   userAuth: state.userAuth,
   userProfile: state.userProfile,
   searchCriteria: state.searchCriteria,
-  // attendees: state.attendess,
-  // comments: state.comments,
   garageSaleEvent: state.garageSaleEvent,
-  // vendors: state.vendors
 });
 
 const mapDispatchToProps = dispatch => ({
