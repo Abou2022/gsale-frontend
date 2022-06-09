@@ -35,3 +35,56 @@ export const distance = (lat1, lon1, lat2, lon2) => {
   console.log('dist: ', dist);
   return dist;
 };
+
+export const categoryFilterHelper = (data, filterObject) => {
+  if (filterObject.categories && filterObject.categories.length) {
+    data = data.filter(item => {
+      let hasCategory = false;
+      filterObject.categories.forEach(filterCategory => {
+        console.log(
+          'item.category[filterCategory]: ',
+          item.category[filterCategory]
+        );
+        if (item.category[filterCategory]) {
+          hasCategory = true;
+          return;
+        }
+      });
+      return hasCategory;
+    });
+  }
+  return data;
+};
+
+export const locationFilterHelper = (data, filterObject, radius = 25) => {
+  if (data && data.length && filterObject.lat && filterObject.lng) {
+    data = data.filter(
+      item =>
+        distance(item.lat, item.lng, filterObject.lat, filterObject.lng) <
+        radius
+    );
+  }
+  return data;
+};
+
+export const dateFilterHelper = (data, filterObject) => {
+  // date 2 weeks from now
+  // new Date(Date.now() + 12096e5)
+  const filterEndDate = filterObject.endDate
+    ? new Date(filterObject.endDate)
+    : new Date(Date.now() + 12096e5);
+  const filterStartDate = filterObject.startDate
+    ? new Date(filterObject.startDate)
+    : new Date();
+  let filteredByDates = data.filter(item => {
+    const dataStartDate = new Date(item.startDate);
+    const dataEndDate = new Date(item.endDate);
+    console.log(dataStartDate, dataEndDate);
+    console.log(filterStartDate, filterEndDate);
+    return (
+      (dataEndDate >= filterStartDate && dataEndDate <= filterEndDate) ||
+      (dataStartDate >= filterStartDate && dataStartDate <= filterEndDate)
+    );
+  });
+  return filteredByDates;
+};

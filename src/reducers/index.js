@@ -4,9 +4,11 @@ import userProfile from './userProfile-reducers';
 import attendees from './attendees-reducers';
 import comments from './comments-reducers';
 import garageSaleEvent from './garageSaleEvent-reducers';
+import unfilteredGarageSaleEvent from './unfilteredGarageSaleEvent-reducers';
 import vendors from './vendors-reducers';
 import searchCriteria from './searchCriteria-reducers';
 import appendedScript from './appendedScript-reducers';
+import userLocation from './userLocation-reducers';
 
 export default combineReducers({
   userAuth,
@@ -14,7 +16,9 @@ export default combineReducers({
   attendees,
   comments,
   garageSaleEvent,
+  unfilteredGarageSaleEvent,
   vendors,
   searchCriteria,
   appendedScript,
+  userLocation,
 });

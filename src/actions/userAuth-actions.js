@@ -5,11 +5,10 @@ export const signIn = token => ({
   payload: token,
 });
 
-export const signOut = () => {
-  delete localStorage.gSaleToken;
-  // localStorage.removeItem("gSaleToken");
-  return { type: 'SIGN_OUT' };
-};
+export const signOut = () => ({
+  type: 'SIGN_OUT',
+  payload: null,
+});
 
 export const signUpRequest = user => dispatch => {
   return superagent

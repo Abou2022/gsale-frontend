@@ -15,8 +15,8 @@ import {
 } from '../../actions/userAuth-actions.js';
 import { searchCriteriaUpdate } from '../../actions/searchCriteria-actions.js';
 import {
-  garageSaleEventsFilterRequestHelper,
   garageSaleEventsFilterRequest,
+  filterGarageSaleEvents,
 } from '../../actions/garageSaleEvent-actions.js';
 
 import './navbar.css';
@@ -81,16 +81,11 @@ function Navbar(props) {
           '222222222222222 handleSearchLocationAutocomplete here: ',
           filter
         );
+        // here
         props
-          .garageSaleEventsFilterRequestHelperRequest(
-            props.garageSaleEvent,
-            filter
-          )
+          .filterGarageSaleEventsRequest(props.garageSaleEvent, filter)
           .catch(err => {
-            console.log(
-              ' garageSaleEventsFilterRequestHelperRequest err: ',
-              err
-            );
+            console.log(' filterGarageSaleEventsRequest err: ', err);
           });
       }
       // props.searchCriteriaUpdateRequest(filter)
@@ -110,6 +105,8 @@ function Navbar(props) {
   };
 
   const handleSignOut = () => {
+    // localStorage.removeItem("gSaleToken");
+    delete localStorage.gSaleToken;
     props.signOutRequest();
     props.history.push('/');
   };
@@ -237,17 +234,14 @@ const mapStateToProps = state => ({
   // vendors: state.vendors
 });
 
-let mapDispatchToProps = dispatch => {
-  return {
-    signUp: user => dispatch(signUpRequest(user)),
-    signIn: user => dispatch(signInRequest(user)),
-    signOutRequest: () => dispatch(signOut()),
-    searchCriteriaUpdateRequest: data => dispatch(searchCriteriaUpdate(data)),
-    garageSaleEventsFilterRequestHelperRequest: (gse, filterObject) =>
-      dispatch(garageSaleEventsFilterRequestHelper(gse, filterObject)),
-    garageSaleEventsFilter: data =>
-      dispatch(garageSaleEventsFilterRequest(data)),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  signUp: user => dispatch(signUpRequest(user)),
+  signIn: user => dispatch(signInRequest(user)),
+  signOutRequest: () => dispatch(signOut()),
+  searchCriteriaUpdateRequest: data => dispatch(searchCriteriaUpdate(data)),
+  garageSaleEventsFilter: data => dispatch(garageSaleEventsFilterRequest(data)),
+  filterGarageSaleEventsRequest: (data, filterObject) =>
+    dispatch(filterGarageSaleEvents(data, filterObject)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
