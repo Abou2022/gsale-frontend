@@ -66,47 +66,53 @@ export const categorySelection = (data, filterObject) => dispatch => {
 };
 
 export const categoryFilterHelper = (data, filterObject) => {
-    if (filterObject.categories && filterObject.categories.length) {
-        data = data.filter(gse => {
-          let hasCategory = false;
-          filterObject.categories.forEach(filterCategory => {
-            console.log('gse.category[filterCategory]: ', gse.category[filterCategory]);
-            if (gse.category[filterCategory]) {
-              hasCategory = true;
-              return;
-            }
-          });
-          return hasCategory;
-        });
-    }
-    return data;
-  };
+  if (filterObject.categories && filterObject.categories.length) {
+    data = data.filter(gse => {
+      let hasCategory = false;
+      filterObject.categories.forEach(filterCategory => {
+        console.log(
+          'gse.category[filterCategory]: ',
+          gse.category[filterCategory]
+        );
+        if (gse.category[filterCategory]) {
+          hasCategory = true;
+          return;
+        }
+      });
+      return hasCategory;
+    });
+  }
+  return data;
+};
 
 // garageSaleEventsFilterRequestHelper
 export const locationFilterHelper = (data, filterObject, radius = 25) => {
   if (data && data.length && filterObject.lat && filterObject.lng) {
-    data = data.filter(gse => distance(gse.lat, gse.lng, filterObject.lat, filterObject.lng) < radius);
+    data = data.filter(
+      gse =>
+        distance(gse.lat, gse.lng, filterObject.lat, filterObject.lng) < radius
+    );
   }
   return data;
 };
 
 export const dateFilterHelper = (data, filterObject) => {
-    const todaysDate = new Date();
-    const filterEndDate = new Date(filterObject.endDate);
-    const filterStartDate = new Date(filterObject.startDate);
-    let filteredByDates = data.filter(gse => {
-      const dataStartDate = new Date(gse.startDate);
-      if (filterObject.endDate) {
-        const dataEndDate = new Date(gse.endDate);
-        return (
-          (dataEndDate >= filterStartDate && dataEndDate <= filterEndDate) ||
-          (dataStartDate >= filterStartDate && dataStartDate <= filterEndDate)
-        );
-      } else {
-        return dataStartDate >= todaysDate;
-      }
-    });
-    return filteredByDates;
+  const todaysDate = new Date();
+  const filterEndDate = new Date(filterObject.endDate);
+  const filterStartDate = new Date(filterObject.startDate);
+  let filteredByDates = data.filter(gse => {
+    const dataStartDate = new Date(gse.startDate);
+    if (filterObject.endDate) {
+      const dataEndDate = new Date(gse.endDate);
+      return (
+        (dataEndDate >= filterStartDate && dataEndDate <= filterEndDate) ||
+        (dataStartDate >= filterStartDate && dataStartDate <= filterEndDate)
+      );
+    } else {
+      return dataStartDate >= todaysDate;
+    }
+  });
+  return filteredByDates;
 };
 
 // requires end and start date
@@ -116,10 +122,10 @@ export const garageSaleEventsFilterRequest = filterObject => dispatch => {
   return superagent
     .get(`${process.env.REACT_APP_API_URL}/api/garageSaleEvents`)
     .then(res => {
-        let data = dateFilterHelper(res.body, filterObject);
-        data = locationFilterHelper(data, filterObject);
-        data = categoryFilterHelper(data, filterObject);
-        dispatch(garageSaleEventsFilter({ gse: data, filter: filterObject }));
+      let data = dateFilterHelper(res.body, filterObject);
+      data = locationFilterHelper(data, filterObject);
+      data = categoryFilterHelper(data, filterObject);
+      dispatch(garageSaleEventsFilter({ gse: data, filter: filterObject }));
     })
     .catch(err => {
       console.log('garageSaleEventsFilterRequest Error: ', err);
