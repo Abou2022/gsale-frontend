@@ -7,6 +7,7 @@ import searchIcon from '../../assets/images/search.svg';
 import Modal from '../helpers/modal';
 import UserAuthForm from '../userAuth-form';
 import SearchLocationAutocomplete from '../searchLocationAutocomplete';
+import DatePickerContainer from '../datePickerContainer';
 import { renderIf } from './../../lib/util.js';
 import {
   signUpRequest,
@@ -88,6 +89,17 @@ function Navbar(props) {
     props.history.push('/');
   };
 
+  const handleDateRange = (dateRange) => {
+    props.searchCriteriaUpdateRequest({
+        startDate: dateRange[0] && !dateRange[1] ? null : dateRange[0],
+        endDate: dateRange[1],
+        lat: props.searchCriteria.lat,
+        lng: props.searchCriteria.lng,
+        categories: props.searchCriteria.categories,
+    })
+    console.log("handleDateRange: ", dateRange);
+  };
+
   let handleComplete =
     authFormAction === 'Sign Up' ? handleSignup : handleSignin;
   let profileLink =
@@ -114,12 +126,7 @@ function Navbar(props) {
                 }
               />
               <span className="spacer"></span>
-              <input
-                id="dateInput"
-                type="text"
-                placeholder="Date"
-                name="date"
-              ></input>
+              <DatePickerContainer handleDateRange={handleDateRange}/>
               <span className="spacer"></span>
               <input
                 id="filterInput"
