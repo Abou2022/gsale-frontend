@@ -85,8 +85,8 @@ export const garageSaleEventFetchRequest = garageSaleEventID => dispatch => {
       `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEventID}`
     )
     .then(res => {
-      dispatch(garageSaleEventFetch(res.body));
-      return res.body;
+      dispatch(garageSaleEventFetch(res.body.garageSaleEvent));
+      return res.body.garageSaleEvent;
     })
     .catch(err => {
       console.log('garageSaleEventFetchRequest Error: ', err);
