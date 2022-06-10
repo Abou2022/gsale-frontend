@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react'; //
+import { connect } from 'react-redux'; //
 import { garageSaleEventsFilterRequest } from '../../actions/garageSaleEvent-actions';
 import { logError } from '../../lib/util';
 import { userLocationSet } from '../../actions/userLocation-actions';
-import MapLeaflet from '../mapLeaflet';
+import MapLeaflet from '../mapLeaflet'; //
 
 function Home(props) {
   let garageSaleEventsFetchedFlag = false;
@@ -67,16 +67,18 @@ function Home(props) {
 }
 
 const mapStateToProps = state => ({
-  garageSaleEvent: state.garageSaleEvent,
+  //
+  garageSaleEvent: state.garageSaleEvent, //
   userLocation: state.userLocation,
   searchCriteria: state.searchCriteria,
 });
 
 const mapDispatchToProps = dispatch => ({
+  //
   garageSaleEventsFilter: filterObject =>
     dispatch(garageSaleEventsFilterRequest(filterObject)),
   userLocationSetRequest: userLocation =>
     dispatch(userLocationSet(userLocation)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home); // (, null)(GarageSaleEvent)

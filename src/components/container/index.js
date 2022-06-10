@@ -22,3 +22,6 @@ function Container() {
 }
 
 export default Container;
+
+//api > users.js > function (signup)
+//      garageSaleEvent.js > function(createEvent), function(updateEvent)
