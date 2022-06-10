@@ -1,22 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { garageSaleEventFetchRequest } from '../../actions/garageSaleEvent-actions';
+import { currentGarageSaleEventFetchRequest } from '../../actions/currentGarageSaleEvent-actions';
 import MapLeaflet from '../mapLeaflet';
 import { renderIf } from '../../lib/util';
 
-function GarageSaleEvent({ garageSaleEvent, garageSaleEventFetch }) {
+function GarageSaleEvent(props) {
   const { garageSaleEventId } = useParams();
+  const [garageSaleEvent, setGarageSaleEvent] = useState({});
   let flag = 0;
   useEffect(() => {
     if (!flag) {
       flag++;
-      garageSaleEventFetch(garageSaleEventId)
-        .then(gse => console.log('gse: ', gse))
+      props
+        .currentGarageSaleEventFetch(garageSaleEventId)
+        .then(gse => {
+          setGarageSaleEvent(gse);
+          console.log('gse: ', gse);
+        })
         .catch(err => console.log('garageSaleEventFetch err: ', err));
     }
-    // console.log("garageSaleEventId: ", garageSaleEventId);
-  }, [garageSaleEventFetch, garageSaleEventId]);
+  }, [props.currentGarageSaleEventFetch, garageSaleEventId]);
 
   return (
     <div className="row justify-content-around">
@@ -57,12 +61,12 @@ function GarageSaleEvent({ garageSaleEvent, garageSaleEventFetch }) {
   );
 }
 const mapStateToProps = state => ({
-  garageSaleEvent: state.garageSaleEvent,
+  currentGarageSaleEvent: state.currentGarageSaleEvent,
 });
 
 const mapDispatchToProps = dispatch => ({
-  garageSaleEventFetch: garageSaleEventID =>
-    dispatch(garageSaleEventFetchRequest(garageSaleEventID)),
+  currentGarageSaleEventFetch: garageSaleEventID =>
+    dispatch(currentGarageSaleEventFetchRequest(garageSaleEventID)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GarageSaleEvent);
