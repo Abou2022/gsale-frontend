@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import profilePic from '../../assets/GSale.png';
+import kitchenware from '../../assets/images/kitchenware.png';
+import furniture from '../../assets/images/furniture.png';
+import clothing from '../../assets/images/clothing.png';
+import electronic from '../../assets/images/electronic.png';
+import game from '../../assets/images/game.png';
+import sport from '../../assets/images/sport.png';
+import pet from '../../assets/images/pet.png';
+import bath from '../../assets/images/bath.png';
+import baby from '../../assets/images/baby.png';
 
 function Profile() {
   const [editFirstName, setEditFirstName] = useState(false);
@@ -49,12 +58,15 @@ function Profile() {
   return (
     <div className="container">
       <h1 className="my-4 py-2">Profile</h1>
-      <div className="row">
+      <div className="row d-flex">
+        <div className="col-md-5">
+          <img src={profilePic} alt="pic" />
+        </div>
         <div className="col-md-7">
           <div className="d-flex justify-content-between">
             <div className="">
-              <p className="mb-0 text-muted">First Name</p>
-              <p className="mb-0">
+              <p className="mb-0 text-muted mb-1">First Name</p>
+              <p className="mb-2">
                 {editFirstName ? (
                   <input
                     type="text"
@@ -73,8 +85,8 @@ function Profile() {
           </div>
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">Last Name</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">Last Name</p>
+              <p className="mb-2">
                 {editLastName ? (
                   <input
                     type="text"
@@ -93,8 +105,8 @@ function Profile() {
           </div>
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">Email</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">Email</p>
+              <p className="mb-2">
                 {editEmail ? (
                   <input
                     type="email"
@@ -113,8 +125,8 @@ function Profile() {
           </div>
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">Phone Number</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">Phone Number</p>
+              <p className="mb-2">
                 {editPhoneNumber ? (
                   <input
                     type="string"
@@ -136,7 +148,7 @@ function Profile() {
           <div>
             <p className="text-muted mt-3 mb-1">Categories</p>
             <div className="row">
-              <div className="">
+              <div className="mb-2">
                 <div className="form-check form-check-inline col-md-3">
                   <input
                     className="form-check-input"
@@ -145,6 +157,11 @@ function Profile() {
                     defaultValue="kitchenware"
                   />
                   <label className="form-check-label" htmlFor="kitchenware">
+                    <img
+                      src={kitchenware}
+                      className="mx-auto d-block"
+                      alt="kitchenware"
+                    />
                     Kitchenware
                   </label>
                 </div>
@@ -156,6 +173,11 @@ function Profile() {
                     defaultValue="furniture"
                   />
                   <label className="form-check-label" htmlFor="furniture">
+                    <img
+                      src={furniture}
+                      className="mx-auto d-block"
+                      alt="furniture"
+                    />
                     Furniture
                   </label>
                 </div>
@@ -167,13 +189,18 @@ function Profile() {
                     defaultValue="clothing"
                   />
                   <label className="form-check-label" htmlFor="clothing">
+                    <img
+                      src={clothing}
+                      className="mx-auto d-block"
+                      alt="clothing"
+                    />
                     Clothing
                   </label>
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="">
+              <div className="mb-2">
                 <div className="form-check form-check-inline col-md-3">
                   <input
                     className="form-check-input"
@@ -182,6 +209,11 @@ function Profile() {
                     defaultValue="electronic"
                   />
                   <label className="form-check-label" htmlFor="electronic">
+                    <img
+                      src={electronic}
+                      className="mx-auto d-block"
+                      alt="electronic"
+                    />
                     Electronic
                   </label>
                 </div>
@@ -193,6 +225,7 @@ function Profile() {
                     defaultValue="game"
                   />
                   <label className="form-check-label" htmlFor="game">
+                    <img src={game} className="mx-auto d-block" alt="game" />
                     Game
                   </label>
                 </div>
@@ -200,19 +233,53 @@ function Profile() {
                   <input
                     className="form-check-input"
                     type="checkbox"
-                    id="sportsEquipment"
-                    defaultValue="sportsEquipment"
+                    id="sport"
+                    defaultValue="sport"
                   />
-                  <label className="form-check-label" htmlFor="sportsEquipment">
-                    Sports Equipment
+                  <label className="form-check-label" htmlFor="sport">
+                    <img src={sport} className="mx-auto d-block" alt="sport" />
+                    Sport
+                  </label>
+                </div>
+                <div className="form-check form-check-inline col-md-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="pet"
+                    defaultValue="pet"
+                  />
+                  <label className="form-check-label" htmlFor="pet">
+                    <img src={pet} className="mx-auto d-block" alt="pet" />
+                    Pet
+                  </label>
+                </div>
+                <div className="form-check form-check-inline col-md-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="bath"
+                    defaultValue="bath"
+                  />
+                  <label className="form-check-label" htmlFor="bath">
+                    <img src={bath} className="mx-auto d-block" alt="bath" />
+                    Bath
+                  </label>
+                </div>
+                <div className="form-check form-check-inline col-md-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="baby"
+                    defaultValue="baby"
+                  />
+                  <label className="form-check-label" htmlFor="baby">
+                    <img src={baby} className="mx-auto d-block" alt="baby" />
+                    Baby
                   </label>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="col-md-5">
-          <img src={profilePic} alt="pic" />
         </div>
       </div>
     </div>
