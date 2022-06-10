@@ -80,8 +80,8 @@ function CreateEvent() {
         <div className="col-md-7">
           <div className="d-flex justify-content-between">
             <div className="">
-              <p className="mb-0 text-muted">Event Name</p>
-              <p className="mb-0">
+              <p className="mb-0 text-muted mb-1">Event Name</p>
+              <p className="mb-2">
                 {editEventName ? (
                   <input
                     type="text"
@@ -101,8 +101,8 @@ function CreateEvent() {
 
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">Start Time</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">Start Time</p>
+              <p className="mb-2">
                 {editStartTime ? (
                   <input
                     type="string"
@@ -122,8 +122,8 @@ function CreateEvent() {
 
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">End Time</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">End Time</p>
+              <p className="mb-2">
                 {editEndTime ? (
                   <input
                     type="string"
@@ -143,8 +143,8 @@ function CreateEvent() {
 
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">Start Date</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">Start Date</p>
+              <p className="mb-2">
                 {editStartDate ? (
                   <input
                     type="string"
@@ -164,8 +164,8 @@ function CreateEvent() {
 
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">End Date</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">End Date</p>
+              <p className="mb-2">
                 {editEndDate ? (
                   <input
                     type="string"
@@ -185,8 +185,8 @@ function CreateEvent() {
 
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">Location</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">Location</p>
+              <p className="mb-2">
                 {editLocation ? (
                   <input
                     type="string"
@@ -206,8 +206,8 @@ function CreateEvent() {
 
           <div className="d-flex justify-content-between">
             <div>
-              <p className="text-muted mt-3 mb-0">Description</p>
-              <p className="mb-0">
+              <p className="text-muted mt-3 mb-1">Description</p>
+              <p className="mb-2">
                 {editDescription ? (
                   <input
                     type="string"
