@@ -89,15 +89,15 @@ function Navbar(props) {
     props.history.push('/');
   };
 
-  const handleDateRange = (dateRange) => {
+  const handleDateRange = dateRange => {
     props.searchCriteriaUpdateRequest({
-        startDate: dateRange[0] && !dateRange[1] ? null : dateRange[0],
-        endDate: dateRange[1],
-        lat: props.searchCriteria.lat,
-        lng: props.searchCriteria.lng,
-        categories: props.searchCriteria.categories,
-    })
-    console.log("handleDateRange: ", dateRange);
+      startDate: dateRange[0] && !dateRange[1] ? null : dateRange[0],
+      endDate: dateRange[1],
+      lat: props.searchCriteria.lat,
+      lng: props.searchCriteria.lng,
+      categories: props.searchCriteria.categories,
+    });
+    console.log('handleDateRange: ', dateRange);
   };
 
   let handleComplete =
@@ -126,7 +126,7 @@ function Navbar(props) {
                 }
               />
               <span className="spacer"></span>
-              <DatePickerContainer handleDateRange={handleDateRange}/>
+              <DatePickerContainer handleDateRange={handleDateRange} />
               <span className="spacer"></span>
               <input
                 id="filterInput"
@@ -134,7 +134,7 @@ function Navbar(props) {
                 placeholder="Filter"
                 name="filter"
               ></input>
-              <button id="">
+              <button id="searchIconButton">
                 <img id="searchIcon" src={searchIcon} alt="search icon" />
               </button>
             </form>
@@ -183,6 +183,7 @@ function Navbar(props) {
                 {renderIf(
                   authFormAction === 'Sign In',
                   <button
+                    id="navSignUpButton"
                     className="b-button dark-button"
                     onClick={() => setAuthFormAction('Sign Up')}
                   >
@@ -193,6 +194,7 @@ function Navbar(props) {
                 {renderIf(
                   authFormAction === 'Sign Up',
                   <button
+                    id="navSignInButton"
                     className="b-button dark-button"
                     onClick={() => setAuthFormAction('Sign In')}
                   >

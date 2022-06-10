@@ -1,1 +1,5 @@
-@import '../lib/vars';
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker-wrapper .react-datepicker__input-container input {
+  height: 100%;
+}
