@@ -14,6 +14,7 @@ function DatePickerContainer({ handleDateRange }) {
   return (
     <div>
       <DatePicker
+        wrapperClassName="date-picker"
         selectsRange={true}
         startDate={startDate}
         endDate={endDate}

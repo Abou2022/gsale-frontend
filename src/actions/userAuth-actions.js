@@ -12,7 +12,7 @@ export const signOut = () => ({
 
 export const signUpRequest = user => dispatch => {
   return superagent
-    .post(`${process.env.REACT_APP_API_URL}/api/users`)
+    .post(`https://gsale-backend.herokuapp.com/api/users`)
     .send(user)
     .then(res => {
       console.log('signUpRequest res: ', res);
@@ -28,7 +28,7 @@ export const signUpRequest = user => dispatch => {
 
 export const signInRequest = user => dispatch => {
   return superagent
-    .post(`${process.env.REACT_APP_API_URL}/api/users/login`)
+    .post(`https://gsale-backend.herokuapp.com/api/users/login`)
     .send(user)
     .then(res => {
       console.log(' signInRequest res: ', res);
@@ -44,7 +44,7 @@ export const signInRequest = user => dispatch => {
 
 export const tokenSignInRequest = token => dispatch => {
   return superagent
-    .get(`${process.env.REACT_APP_API_URL}/api/users/token/login`)
+    .get(`https://gsale-backend.herokuapp.com/api/users/token/login`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(signIn(res.body));

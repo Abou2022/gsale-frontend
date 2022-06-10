@@ -58,7 +58,7 @@ export const filterGarageSaleEvents = (data, filterObject) => dispatch => {
 export const garageSaleEventsFilterRequest = filterObject => dispatch => {
   console.log('garageSaleEventsFilterRequest filter: ', filterObject);
   return superagent
-    .get(`${process.env.REACT_APP_API_URL}/api/garageSaleEvents`)
+    .get(`https://gsale-backend.herokuapp.com/api/garageSaleEvents`)
     .then(res => {
       console.log('res.body: ', res.body);
       let data = dateFilterHelper(res.body, filterObject);
@@ -82,7 +82,7 @@ export const garageSaleEventsFilterRequest = filterObject => dispatch => {
 export const garageSaleEventFetchRequest = garageSaleEventID => dispatch => {
   return superagent
     .get(
-      `${process.env.REACT_APP_API_URL}/api/garageSaleEvents/${garageSaleEventID}`
+      `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEventID}`
     )
     .then(res => {
       dispatch(garageSaleEventFetch(res.body));
@@ -96,7 +96,7 @@ export const garageSaleEventFetchRequest = garageSaleEventID => dispatch => {
 
 export const garageSaleEventsFetchRequest = () => dispatch => {
   return superagent
-    .get(`${process.env.REACT_APP_API_URL}/api/garageSaleEvents`)
+    .get(`https://gsale-backend.herokuapp.com/api/garageSaleEvents`)
     .then(res => {
       dispatch(garageSaleEventsFetch(res.body));
       return res.body;
@@ -110,7 +110,7 @@ export const garageSaleEventsFetchRequest = () => dispatch => {
 export const garageSaleEventCreateRequest = garageSaleEvent => dispatch => {
   const token = localStorage.getItem('gSaleToken');
   return superagent
-    .post(`${process.env.REACT_APP_API_URL}/api/garageSaleEvents`)
+    .post(`https://gsale-backend.herokuapp.com/api/garageSaleEvents`)
     .set('Authorization', `Bearer ${token}`)
     .send(garageSaleEvent)
     .then(res => {
@@ -127,7 +127,7 @@ export const garageSaleEventDeleteRequest = garageSaleEventId => dispatch => {
   const token = localStorage.getItem('gSaleToken');
   return superagent
     .delete(
-      `${process.env.REACT_APP_API_URL}/api/garageSaleEvents/${garageSaleEventId}`
+      `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEventId}`
     )
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
@@ -144,7 +144,7 @@ export const garageSaleEventUpdateRequest = garageSaleEvent => dispatch => {
   const token = localStorage.getItem('gSaleToken');
   return superagent
     .put(
-      `${process.env.REACT_APP_API_URL}/api/garageSaleEvents/${garageSaleEvent.id}`
+      `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEvent.id}`
     )
     .set('Authorization', `Bearer ${token}`)
     .send(garageSaleEvent)
