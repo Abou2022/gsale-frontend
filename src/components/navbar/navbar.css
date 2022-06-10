@@ -128,7 +128,8 @@
   -webkit-font-smoothing: antialiased;
 }
 
-#searchFiltersContainer form button {
+#searchIconButton,
+#createEventButton {
   background: transparent;
   border: none;
   border-bottom-left-radius: 50%;
