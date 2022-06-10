@@ -48,6 +48,7 @@ function SetViewOnClick({ animateRef }) {
   return null;
 }
 
+// coords={[{ lat: 47.609974, lng: -122.325264 }]}
 export default function MapLeaflet({ coords }) {
   const animateRef = useRef(false);
   return (
