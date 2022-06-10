@@ -1,5 +1,3 @@
-import { checkAndAdd } from '../lib/util.js';
-
 const validateGarageSaleEvent = garageSaleEvent => {
   if (
     !garageSaleEvent.eventName ||
@@ -20,7 +18,7 @@ let garageSaleEvent = (state = [], action) => {
 
   switch (type) {
     case 'GARAGE_SALE_EVENT_FETCH':
-      return checkAndAdd(payload, state);
+      return payload;
     case 'GARAGE_SALE_EVENTS_FETCH':
       return payload;
     case 'GARAGE_SALE_EVENTS_FILTER':

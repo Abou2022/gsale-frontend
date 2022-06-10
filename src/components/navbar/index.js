@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GSaleLogo from '../../assets/GSale.png';
-import searchIcon from '../../assets/images/search.svg';
+// import searchIcon from '../../assets/images/search.svg';
 
 import Modal from '../helpers/modal';
 import UserAuthForm from '../userAuth-form';
+import FilterBar from '../filterBar';
 import SearchLocationAutocomplete from '../searchLocationAutocomplete';
 import DatePickerContainer from '../datePickerContainer';
 import { renderIf } from './../../lib/util.js';
@@ -127,7 +128,7 @@ function Navbar(props) {
               />
               <span className="spacer"></span>
               <DatePickerContainer handleDateRange={handleDateRange} />
-              <span className="spacer"></span>
+              {/* <span className="spacer"></span>
               <input
                 id="filterInput"
                 type="text"
@@ -136,7 +137,7 @@ function Navbar(props) {
               ></input>
               <button id="searchIconButton">
                 <img id="searchIcon" src={searchIcon} alt="search icon" />
-              </button>
+              </button> */}
             </form>
           </div>
           {renderIf(
@@ -154,6 +155,7 @@ function Navbar(props) {
             props.userProfile && props.userProfile.id,
             <Link to={profileLink}>Profile</Link>
           )}
+          <Link to="/garagesale/1">GSE 1</Link>
           {renderIf(props.userAuth, <p onClick={handleSignOut}>Sign Out</p>)}
           {renderIf(
             !props.userAuth,
@@ -206,6 +208,7 @@ function Navbar(props) {
           </div>
         )}
       </div>
+      <FilterBar />
     </div>
   );
 }
