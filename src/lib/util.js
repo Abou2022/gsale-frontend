@@ -71,6 +71,7 @@ export const dateFilterHelper = (data, filterObject) => {
   const filterEndDate = filterObject.endDate
     ? new Date(filterObject.endDate)
     : new Date(Date.now() + 12096e5);
+
   const filterStartDate = filterObject.startDate
     ? new Date(filterObject.startDate)
     : new Date();

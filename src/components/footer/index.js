@@ -10,6 +10,10 @@ function Footer(props) {
   return (
     <div>
       <Link to={profileLink}>Profile</Link>
+      <div>
+      <Link to="/create">Create</Link>
+      </div>
+
     </div>
   );
 }

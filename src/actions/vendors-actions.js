@@ -27,7 +27,7 @@ export const vendorDelete = vendor => ({
 
 export const vendorFetchRequest = vendorID => dispatch => {
   return superagent
-    .get(`https://gsale-backend.herokuapp.com/api/vendors/${vendorID}`)
+    .get(`${process.env.REACT_APP_API_URL}/api/vendors/${vendorID}`)
     .then(res => {
       dispatch(vendorFetch(res.body));
       return res.body;
@@ -40,7 +40,7 @@ export const vendorFetchRequest = vendorID => dispatch => {
 
 export const vendorsFetchRequest = () => dispatch => {
   return superagent
-    .get(`https://gsale-backend.herokuapp.com/api/vendors`)
+    .get(`${process.env.REACT_APP_API_URL}/api/vendors`)
     .then(res => {
       dispatch(vendorsFetch(res.body));
       return res.body;
@@ -54,7 +54,7 @@ export const vendorsFetchRequest = () => dispatch => {
 export const vendorCreateRequest = vendor => dispatch => {
   const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
-    .post(`https://gsale-backend.herokuapp.com/api/vendors`)
+    .post(`${process.env.REACT_APP_API_URL}/api/vendors`)
     .set('Authorization', `Bearer ${token}`)
     .send(vendor)
     .then(res => {
@@ -70,7 +70,7 @@ export const vendorCreateRequest = vendor => dispatch => {
 export const vendorDeleteRequest = vendorId => dispatch => {
   const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
-    .delete(`https://gsale-backend.herokuapp.com/api/vendors/${vendorId}`)
+    .delete(`${process.env.REACT_APP_API_URL}/api/vendors/${vendorId}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(vendorDelete(res.body));
@@ -85,7 +85,7 @@ export const vendorDeleteRequest = vendorId => dispatch => {
 export const vendorUpdateRequest = vendor => dispatch => {
   const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
-    .put(`https://gsale-backend.herokuapp.com/api/vendors/${vendor.id}`)
+    .put(`${process.env.REACT_APP_API_URL}/api/vendors/${vendor.id}`)
     .set('Authorization', `Bearer ${token}`)
     .send(vendor)
     .then(res => {

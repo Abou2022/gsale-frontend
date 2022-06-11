@@ -15,7 +15,7 @@ export const userProfileFetch = userProfile => ({
 export const userProfileUpdateRequest = profile => (dispatch, getState) => {
   const { userAuth, userProfile } = getState();
   return superagent
-    .put(`https://gsale-backend.herokuapp.com/api/profiles/${userProfile.id}`)
+    .put(`${process.env.REACT_APP_API_URL}/api/profiles/${userProfile.id}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .send(profile)
     .then(res => {
@@ -31,7 +31,7 @@ export const userProfileUpdateRequest = profile => (dispatch, getState) => {
 export const userProfileFetchRequest = () => (dispatch, getState) => {
   const { userAuth, userProfile } = getState();
   return superagent
-    .get(`https://gsale-backend.herokuapp.com/api/profiles/${userProfile.id}`)
+    .get(`${process.env.REACT_APP_API_URL}/api/profiles/${userProfile.id}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(userProfileFetch(res.body));
