@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 import ProfileForm from '../profile-form';
 import {
   userProfileFetchRequest,
@@ -10,8 +10,9 @@ import { tokenSignInRequest } from '../../actions/userAuth-actions';
 import { logError, renderIf, userValidation } from './../../lib/util.js';
 
 function Profile2(props) {
+  let navigate = useNavigate();
   useEffect(() => {
-    userValidation(props);
+    userValidation(props, navigate);
   }, []);
   const handleProfileUpdate = profile => {
     return props.userProfileUpdate(profile).catch(logError);

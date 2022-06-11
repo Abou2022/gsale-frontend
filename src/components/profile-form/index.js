@@ -4,7 +4,12 @@ class ProfileForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.userProfile
-      ? { ...props.userProfile }
+      ? {
+          firstName: props.userProfile.firstName,
+          lastName: props.userProfile.lastName,
+          phoneNumber: props.userProfile.phoneNumber,
+          imageURL: props.userProfile.imageURL,
+        }
       : {
           //   email: '',
           firstName: '',
@@ -15,7 +20,12 @@ class ProfileForm extends React.Component {
   }
   componentWillReceiveProps(props) {
     if (props.userProfile) {
-      this.setState(props.userProfile);
+      this.setState({
+        firstName: props.userProfile.firstName,
+        lastName: props.userProfile.lastName,
+        phoneNumber: props.userProfile.phoneNumber,
+        imageURL: props.userProfile.imageURL,
+      });
     }
   }
   handleSubmit = e => {

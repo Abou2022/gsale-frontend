@@ -17,7 +17,6 @@ let userProfile = (state = null, action) => {
           'USAGE ERROR: can not update when user profile is null'
         );
       }
-      validateUserProfile(payload);
       return { ...state, ...payload };
     case 'USERPROFILE_FETCH':
       if (!payload.vendingEvents) {

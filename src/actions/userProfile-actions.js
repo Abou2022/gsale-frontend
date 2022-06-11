@@ -19,7 +19,7 @@ export const userProfileUpdateRequest = profile => (dispatch, getState) => {
     .set('Authorization', `Bearer ${userAuth}`)
     .send(profile)
     .then(res => {
-      dispatch(userProfileUpdate(res.body));
+      dispatch(userProfileUpdate(profile));
       return res.body;
     })
     .catch(err => {
