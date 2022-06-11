@@ -27,13 +27,10 @@ export const filterGarageSaleEvents = (data, filterObject) => dispatch => {
 
 // eslint-disable-next-line
 export const garageSaleEventsFilterRequest = filterObject => dispatch => {
-  console.log('garageSaleEventsFilterRequest filter: ', filterObject);
   return superagent
     .get(`https://gsale-backend.herokuapp.com/api/garageSaleEvents`)
     .then(res => {
-      console.log('res.body: ', res.body);
       let data = dateFilterHelper(res.body, filterObject);
-      console.log('data: ', data);
       data = locationFilterHelper(data, filterObject);
       data = categoryFilterHelper(data, filterObject);
       dispatch(unfilteredGarageSaleEventsFetch(res.body));

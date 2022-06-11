@@ -20,9 +20,9 @@ function Home(props) {
       props
         .garageSaleEventsFilter(props.searchCriteria)
         .catch(err => logError(err));
-      const token = localStorage.getItem('gSaleUserLocation');
+      const token = JSON.parse(localStorage.getItem('gSaleUserLocation'));
       if (token) {
-        props.userLocationSetRequest(JSON.parse(token));
+        props.userLocationSetRequest(token);
       } else {
         if ('geolocation' in navigator) {
           navigator.geolocation.getCurrentPosition(

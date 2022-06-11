@@ -1,0 +1,49 @@
+@import './../lib/vars';
+
+.form {
+  input {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: $border-radius;
+    border-width: 0px;
+    margin: $margin 0;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  input[type='radio'] {
+    width: 2vw;
+  }
+  input:focus {
+    background-color: $color-primary-hover;
+    border-radius: $border-radius;
+    border-width: 0px;
+  }
+  label {
+    display: inline-block;
+    width: 20%;
+  }
+}
+.userauth-form {
+  input {
+    margin-bottom: 30px;
+  }
+}
+.page-form {
+  width: 50%;
+  display: inline-block;
+}
+.userauth-buttons {
+  text-align: right;
+  position: relative;
+}
+.form label {
+  margin-left: 4px;
+  text-transform: capitalize;
+}
+@media (max-width: 710px) {
+  .modal-close {
+    font-size: 20px;
+  }
+}

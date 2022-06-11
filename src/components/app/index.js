@@ -4,9 +4,11 @@ import { Routes, Route } from 'react-router-dom';
 const Navbar = lazy(() => import('../navbar'));
 const Home = lazy(() => import('../home'));
 const Profile = lazy(() => import('../profile'));
+const Profile2 = lazy(() => import('../profile2'));
 const GarageSaleEvent = lazy(() => import('../garageSaleEvent'));
 const CreateEvent = lazy(() => import('../createEvent'));
 const NotFound = lazy(() => import('../notFound'));
+const Footer = lazy(() => import('../footer'));
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile2/:id" element={<Profile2 />} />
           <Route
             path="/garagesale/:garageSaleEventId"
             element={<GarageSaleEvent />}
@@ -26,6 +29,9 @@ function App() {
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Suspense>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
