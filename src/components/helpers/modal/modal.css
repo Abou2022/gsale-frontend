@@ -33,10 +33,6 @@
   max-height: 100vh;
 }
 
-.modal-header {
-  padding: 3vw;
-}
-
 .modal-heading {
   text-align: center;
   text-transform: uppercase;
@@ -84,7 +80,7 @@
   width: 100%;
   background: #fff;
   height: 90px;
-  padding: 3vw;
+  padding: 3vw 1rem;
 }
 
 .modal-wrapper {

@@ -17,8 +17,6 @@ export const checkAndAdd = (payload, state) => {
 };
 
 export const distance = (lat1, lon1, lat2, lon2) => {
-  console.log(lat1, lon1, lat2, lon2);
-  console.log(typeof lat1, typeof lon1, typeof lat2, typeof lon2);
   var radlat1 = (Math.PI * lat1) / 180;
   var radlat2 = (Math.PI * lat2) / 180;
   var theta = lon1 - lon2;
@@ -32,7 +30,7 @@ export const distance = (lat1, lon1, lat2, lon2) => {
   dist = Math.acos(dist);
   dist = (dist * 180) / Math.PI;
   dist = dist * 60 * 1.1515;
-  console.log('dist: ', dist);
+  console.log('distance: ', dist);
   return dist;
 };
 
@@ -79,12 +77,22 @@ export const dateFilterHelper = (data, filterObject) => {
   let filteredByDates = data.filter(item => {
     const dataStartDate = new Date(item.startDate);
     const dataEndDate = new Date(item.endDate);
-    console.log(dataStartDate, dataEndDate);
-    console.log(filterStartDate, filterEndDate);
     return (
       (dataEndDate >= filterStartDate && dataEndDate <= filterEndDate) ||
       (dataStartDate >= filterStartDate && dataStartDate <= filterEndDate)
     );
   });
   return filteredByDates;
+};
+
+export const userValidation = async props => {
+  try {
+    if (props.userAuth) {
+      return;
+    }
+    const token = JSON.parse(localStorage.getItem('gSaleToken'));
+    return token ? props.tokenSignIn(token) : props.history.replace('/');
+  } catch (err) {
+    return props.history.replace('/');
+  }
 };

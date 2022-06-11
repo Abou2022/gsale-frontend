@@ -52,7 +52,7 @@ export const vendorsFetchRequest = () => dispatch => {
 };
 
 export const vendorCreateRequest = vendor => dispatch => {
-  const token = localStorage.getItem('gSaleToken');
+  const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
     .post(`https://gsale-backend.herokuapp.com/api/vendors`)
     .set('Authorization', `Bearer ${token}`)
@@ -68,7 +68,7 @@ export const vendorCreateRequest = vendor => dispatch => {
 };
 
 export const vendorDeleteRequest = vendorId => dispatch => {
-  const token = localStorage.getItem('gSaleToken');
+  const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
     .delete(`https://gsale-backend.herokuapp.com/api/vendors/${vendorId}`)
     .set('Authorization', `Bearer ${token}`)
@@ -83,7 +83,7 @@ export const vendorDeleteRequest = vendorId => dispatch => {
 };
 
 export const vendorUpdateRequest = vendor => dispatch => {
-  const token = localStorage.getItem('gSaleToken');
+  const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
     .put(`https://gsale-backend.herokuapp.com/api/vendors/${vendor.id}`)
     .set('Authorization', `Bearer ${token}`)

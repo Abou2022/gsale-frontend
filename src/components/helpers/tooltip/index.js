@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderIf } from '../../../lib/util.js';
 import caretUp from './../assets/icons/caret-up.icon.svg';
-import './tooltip.css';
 
 const Tooltip = props => (
   <div className="tooltip">

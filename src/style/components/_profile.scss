@@ -1,0 +1,41 @@
+.form .profileFormLabel {
+  display: none;
+}
+.profile-container {
+  .profileFormLabel {
+    display: inline-block;
+  }
+  .page-form {
+    width: auto;
+  }
+  .profile-form .form {
+    margin: 20px 5%;
+
+    .title {
+      margin: 20px 0;
+    }
+    label {
+      width: auto;
+    }
+  }
+  .createOuter {
+    max-width: 660px;
+    margin: 0 auto 15px;
+  }
+  .profile-image-div {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .profile-image {
+    width: 100%;
+    max-width: 262px;
+    height: auto;
+    margin: auto;
+  }
+  .mainContainerHeader {
+    text-transform: uppercase;
+  }
+  .userProfileData {
+    margin: 0 16px;
+  }
+}
