@@ -66,7 +66,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(currentGarageSaleEventUpdateRequest(garageSaleEvent)),
   currentGarageSaleEventFetch: garageSaleEventId =>
     dispatch(currentGarageSaleEventFetchRequest(garageSaleEventId)),
-  tokenSignIn: token => dispatch(tokenSignInRequest(token)),
+  tokenSignIn: () => dispatch(tokenSignInRequest()),
 });
 
 export default connect(

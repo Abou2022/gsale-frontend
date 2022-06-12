@@ -10,6 +10,7 @@ let userProfile = (state = null, action) => {
   switch (type) {
     case 'SIGN_IN':
       validateUserProfile(payload.profile);
+      payload.profile.category = payload.category;
       return payload.profile;
     case 'USERPROFILE_UPDATE':
       if (!state) {

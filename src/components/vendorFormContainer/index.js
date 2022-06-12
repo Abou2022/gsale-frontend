@@ -70,7 +70,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(currentVendorUpdateRequest(vendorData)),
   currentVendorFetch: vendorDataId =>
     dispatch(currentVendorFetchRequest(vendorDataId)),
-  tokenSignIn: token => dispatch(tokenSignInRequest(token)),
+  tokenSignIn: () => dispatch(tokenSignInRequest()),
 });
 
 export default connect(

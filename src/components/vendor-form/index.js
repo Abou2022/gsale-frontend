@@ -181,8 +181,6 @@ class VendorForm extends React.Component {
   };
   handleCategoryChange = e => {
     let { name } = e.target;
-    console.log('name: ', name, this.state.category[name], `category[${name}]`);
-    // this.setState({ [`category[${name}]`]: !this.state.category[name] });
     this.setState(prevState => ({
       category: { ...prevState.category, [name]: !prevState.category[name] },
     }));

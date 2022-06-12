@@ -23,8 +23,7 @@ function Profile2(props) {
     props.userProfile && props.userProfile.image
       ? props.userProfile.image
       : placeholderImage;
-  let { userProfile } = props;
-  let email = userProfile ? userProfile.email : null;
+  let email = props.userProfile ? props.userProfile.email : null;
 
   return (
     <div className="profile-container page-outer-div">
@@ -34,10 +33,10 @@ function Profile2(props) {
             <div className="col-md-8">
               <div className="createOuter">
                 {renderIf(
-                  userProfile,
+                  props.userProfile,
                   <div className="page-form">
                     <ProfileForm
-                      userProfile={userProfile}
+                      userProfile={props.userProfile}
                       onComplete={handleProfileUpdate}
                       profileAction={profileAction}
                     />
@@ -50,7 +49,7 @@ function Profile2(props) {
               <div className="mainContainer">
                 <div className="mainContainer-header">
                   {renderIf(
-                    userProfile,
+                    props.userProfile,
                     <div className="left">
                       <p className="mainContainerHeader">{email}</p>
                     </div>
@@ -84,7 +83,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   userProfileFetch: () => dispatch(userProfileFetchRequest()),
   userProfileUpdate: profile => dispatch(userProfileUpdateRequest(profile)),
-  tokenSignIn: token => dispatch(tokenSignInRequest(token)),
+  tokenSignIn: () => dispatch(tokenSignInRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile2);

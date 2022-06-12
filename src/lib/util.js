@@ -93,7 +93,7 @@ export const userValidation = async (props, navigate, redirect = true) => {
     }
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
     if (token) {
-      return props.tokenSignIn(token);
+      return props.tokenSignIn();
     } else if (redirect) {
       return navigate('/');
     } else {

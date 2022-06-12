@@ -81,7 +81,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(garageSaleEventsFilterRequest(filterObject)),
   userLocationSetRequest: userLocation =>
     dispatch(userLocationSet(userLocation)),
-  tokenSignIn: token => dispatch(tokenSignInRequest(token)),
+  tokenSignIn: () => dispatch(tokenSignInRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home); // (, null)(GarageSaleEvent)
