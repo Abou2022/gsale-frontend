@@ -6,6 +6,10 @@ const Home = lazy(() => import('../home'));
 const Profile = lazy(() => import('../profile'));
 const Profile2 = lazy(() => import('../profile2'));
 const GarageSaleEvent = lazy(() => import('../garageSaleEvent'));
+const GarageSaleEventFormContainer = lazy(() =>
+  import('../garageSaleEventFormContainer')
+);
+const VendorFormContainer = lazy(() => import('../vendorFormContainer'));
 const CreateEvent = lazy(() => import('../createEvent'));
 const NotFound = lazy(() => import('../notFound'));
 const Footer = lazy(() => import('../footer'));
@@ -26,6 +30,20 @@ function App() {
             element={<GarageSaleEvent />}
           />
           <Route path="/createevent/:id" element={<CreateEvent />} />
+          <Route path="/create" element={<GarageSaleEventFormContainer />} />
+
+          <Route
+            path="/gsale/:garageSaleEventId/updatevendor/:vendorId"
+            element={<VendorFormContainer />}
+          />
+          <Route
+            path="/gsale/:garageSaleEventId/addvendor"
+            element={<VendorFormContainer />}
+          />
+          <Route
+            path="/gsale/:garageSaleEventId"
+            element={<GarageSaleEventFormContainer />}
+          />
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Suspense>

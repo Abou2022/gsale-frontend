@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import GSaleLogo from '../../assets/GSale.png';
-// import searchIcon from '../../assets/images/search.svg';
+import SearchLocationAutocomplete from '../searchLocationAutocomplete';
+import { Link, useNavigate } from 'react-router-dom';
 
+import GSaleLogo from '../../assets/GSale.png';
 import Modal from '../helpers/modal';
 import UserAuthForm from '../userAuth-form';
+import GarageSaleEventForm from '../garageSaleEvent-form';
 import FilterBar from '../filterBar';
-import SearchLocationAutocomplete from '../searchLocationAutocomplete';
 import DatePickerContainer from '../datePickerContainer';
 import { renderIf, logError } from './../../lib/util.js';
 import {
@@ -20,32 +20,21 @@ import {
   garageSaleEventsFilterRequest,
   filterGarageSaleEvents,
 } from '../../actions/garageSaleEvent-actions.js';
-
+import { currentGarageSaleEventCreateRequest } from '../../actions/currentGarageSaleEvent-actions';
 import './navbar.css';
 
 function Navbar(props) {
   const [authFormAction, setAuthFormAction] = useState('Sign Up');
-  const [formDisplay, setFormDisplay] = useState(false);
+  const [authFormDisplay, setAuthFormDisplay] = useState(false);
+  const [gseFormDisplay, setGseFormDisplay] = useState(false);
+  let navigate = useNavigate();
 
-  //   const handleFormSubmit = e => {
-  //     e.preventDefault();
-  //   };
-
-  const handleCreateEvent = e => {
-    console.log('handleCreateEvent event: ', e);
-  };
-
-  //   const handleLoginSignUp = () => {
-  //     setFormDisplay(true);
-  //   };
-
-  const handleSignin = async (user, errCB) => {
+  const handleSignin = async user => {
     try {
       await props.signIn({ password: user.password, email: user.email });
-      setFormDisplay(false);
+      setAuthFormDisplay(false);
     } catch (err) {
       logError(err);
-      errCB(err);
     }
   };
 
@@ -65,13 +54,38 @@ function Navbar(props) {
     }
   };
 
-  const handleSignup = async (user, errCB) => {
+  const handleDateRange = async dateRange => {
     try {
-      await props.signUp({ password: user.password, email: user.email });
-      setFormDisplay(false);
+      const filter = {
+        startDate: dateRange[0] && !dateRange[1] ? null : dateRange[0],
+        endDate: dateRange[1],
+        lat: props.searchCriteria.lat,
+        lng: props.searchCriteria.lng,
+        categories: props.searchCriteria.categories,
+      };
+      if (dateRange[0] && dateRange[1]) {
+        await props.garageSaleEventsFilter(filter);
+      } else if (!dateRange[0] && !dateRange[1]) {
+        const to = setTimeout(() => {
+          if (!dateRange[0] && !dateRange[1]) {
+            clearTimeout(to);
+            props.garageSaleEventsFilter(filter);
+          } else {
+            props.searchCriteriaUpdateRequest(filter);
+          }
+        }, 1500);
+      }
     } catch (err) {
       logError(err);
-      errCB(err);
+    }
+  };
+
+  const handleSignup = async user => {
+    try {
+      await props.signUp({ password: user.password, email: user.email });
+      setAuthFormDisplay(false);
+    } catch (err) {
+      logError(err);
     }
   };
 
@@ -79,18 +93,7 @@ function Navbar(props) {
     // localStorage.removeItem("gSaleToken");
     delete localStorage.gSaleToken;
     props.signOutRequest();
-    props.history.push('/');
-  };
-
-  const handleDateRange = dateRange => {
-    props.searchCriteriaUpdateRequest({
-      startDate: dateRange[0] && !dateRange[1] ? null : dateRange[0],
-      endDate: dateRange[1],
-      lat: props.searchCriteria.lat,
-      lng: props.searchCriteria.lng,
-      categories: props.searchCriteria.categories,
-    });
-    console.log('handleDateRange: ', dateRange);
+    navigate('/');
   };
 
   let handleComplete =
@@ -99,6 +102,18 @@ function Navbar(props) {
     props.userProfile && props.userProfile.id
       ? `/profile/${props.userProfile.id}`
       : '';
+
+  const handleGseCreate = async gse => {
+    try {
+      await props.currentGarageSaleEventCreate({
+        password: gse.password,
+        email: gse.email,
+      });
+      setGseFormDisplay(false);
+    } catch (err) {
+      logError(err);
+    }
+  };
   return (
     <div>
       <div id="navbar" className="border-bottom">
@@ -120,16 +135,6 @@ function Navbar(props) {
               />
               <span className="spacer"></span>
               <DatePickerContainer handleDateRange={handleDateRange} />
-              {/* <span className="spacer"></span>
-              <input
-                id="filterInput"
-                type="text"
-                placeholder="Filter"
-                name="filter"
-              ></input>
-              <button id="searchIconButton">
-                <img id="searchIcon" src={searchIcon} alt="search icon" />
-              </button> */}
             </form>
           </div>
           {renderIf(
@@ -137,7 +142,7 @@ function Navbar(props) {
             <button
               id="createEventButton"
               className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
-              onClick={handleCreateEvent}
+              onClick={() => setGseFormDisplay(false)}
             >
               {' '}
               Create Event
@@ -166,7 +171,7 @@ function Navbar(props) {
             <button
               id="loginSignUpButton"
               className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
-              onClick={() => setFormDisplay(true)}
+              onClick={() => setAuthFormDisplay(true)}
             >
               Login/Sign Up
             </button>
@@ -175,8 +180,44 @@ function Navbar(props) {
       </div>
       <div>
         {renderIf(
-          formDisplay,
+          authFormDisplay,
+          <Modal heading="G-Sale" close={() => setAuthFormDisplay(false)}>
+            <UserAuthForm
+              authFormAction={authFormAction}
+              onComplete={handleComplete}
+            />
+            <div className="userauth-buttons">
+              {renderIf(
+                authFormAction === 'Sign In',
+                <button
+                  id="navSignUpButton"
+                  className="b-button dark-button"
+                  onClick={() => setAuthFormAction('Sign Up')}
+                >
+                  Sign Up
+                </button>
+              )}
+              {renderIf(
+                authFormAction === 'Sign Up',
+                <button
+                  id="navSignInButton"
+                  className="b-button dark-button"
+                  onClick={() => setAuthFormAction('Sign In')}
+                >
+                  Sign In
+                </button>
+              )}
+            </div>
+          </Modal>
+        )}
+        {/* {renderIf(
+          gseFormDisplay,
           <div>
+            <Modal
+              heading="Create Garage Sale"
+              close={() => setGseFormDisplay(false)}
+            >
+              <GarageSaleEventForm onComplete={handleGseCreate} />
             <p>works</p>
 
             <Modal heading="G-Sale" close={() => setFormDisplay(false)}>
@@ -210,7 +251,7 @@ function Navbar(props) {
               </div>
             </Modal>
           </div>
-        )}
+        )} */}
       </div>
       <FilterBar />
     </div>
@@ -232,6 +273,8 @@ const mapDispatchToProps = dispatch => ({
   garageSaleEventsFilter: data => dispatch(garageSaleEventsFilterRequest(data)),
   filterGarageSaleEventsRequest: (data, filterObject) =>
     dispatch(filterGarageSaleEvents(data, filterObject)),
+  currentGarageSaleEventCreate: gse =>
+    dispatch(currentGarageSaleEventCreateRequest(gse)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

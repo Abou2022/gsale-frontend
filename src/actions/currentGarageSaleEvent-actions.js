@@ -1,4 +1,6 @@
 import superagent from 'superagent';
+import moment from 'moment';
+import { categoryFetch } from './category-actions';
 
 export const currentGarageSaleEventFetch = garageSaleEvent => ({
   type: 'CURRENT_GARAGE_SALE_EVENT_FETCH',
@@ -28,6 +30,7 @@ export const currentGarageSaleEventFetchRequest =
       )
       .then(res => {
         dispatch(currentGarageSaleEventFetch(res.body.garageSaleEvent));
+        dispatch(categoryFetch(res.body.garageSaleEvent.category));
         return res.body.garageSaleEvent;
       })
       .catch(err => {
@@ -39,13 +42,28 @@ export const currentGarageSaleEventFetchRequest =
 export const currentGarageSaleEventCreateRequest =
   garageSaleEvent => dispatch => {
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
+    if (garageSaleEvent.startDate) {
+      garageSaleEvent.startTime = moment(
+        new Date(garageSaleEvent.startDate)
+      ).format('hh:mm a');
+    }
+    if (garageSaleEvent.endDate) {
+      garageSaleEvent.endTime = moment(
+        new Date(garageSaleEvent.endDate)
+      ).format('hh:mm a');
+    }
     return superagent
       .post(`https://gsale-backend.herokuapp.com/api/garageSaleEvents`)
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
       .then(res => {
-        dispatch(currentGarageSaleEventCreate(res.body));
-        return res.body;
+        console.log(
+          'currentGarageSaleEventCreateRequest: ',
+          res.body.garageSaleEvent
+        );
+        dispatch(currentGarageSaleEventCreate(res.body.garageSaleEvent));
+        dispatch(categoryFetch(res.body.category));
+        return res.body.garageSaleEvent;
       })
       .catch(err => {
         console.log('garageSaleEventCreateRequest Error: ', err);
@@ -56,6 +74,17 @@ export const currentGarageSaleEventCreateRequest =
 export const currentGarageSaleEventUpdateRequest =
   garageSaleEvent => dispatch => {
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
+    console.log('garagesaleevent: ', garageSaleEvent);
+    if (garageSaleEvent.startDate) {
+      garageSaleEvent.startTime = moment(
+        new Date(garageSaleEvent.startDate)
+      ).format('hh:mm a');
+    }
+    if (garageSaleEvent.endDate) {
+      garageSaleEvent.endTime = moment(
+        new Date(garageSaleEvent.endDate)
+      ).format('hh:mm a');
+    }
     return superagent
       .put(
         `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEvent.id}`
@@ -63,7 +92,9 @@ export const currentGarageSaleEventUpdateRequest =
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
       .then(res => {
-        dispatch(currentGarageSaleEventUpdate(res.body));
+        console.log('res.body: ', res.body);
+        dispatch(currentGarageSaleEventUpdate(garageSaleEvent));
+        dispatch(categoryFetch(garageSaleEvent.category));
         return res.body;
       })
       .catch(err => {

@@ -71,6 +71,7 @@ export const dateFilterHelper = (data, filterObject) => {
   const filterEndDate = filterObject.endDate
     ? new Date(filterObject.endDate)
     : new Date(Date.now() + 12096e5);
+
   const filterStartDate = filterObject.startDate
     ? new Date(filterObject.startDate)
     : new Date();
@@ -85,14 +86,35 @@ export const dateFilterHelper = (data, filterObject) => {
   return filteredByDates;
 };
 
-export const userValidation = async props => {
+export const userValidation = async (props, navigate, redirect = true) => {
   try {
     if (props.userAuth) {
       return;
     }
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
-    return token ? props.tokenSignIn(token) : props.history.replace('/');
+    if (token) {
+      return props.tokenSignIn();
+    } else if (redirect) {
+      return navigate('/');
+    } else {
+      return true;
+    }
   } catch (err) {
-    return props.history.replace('/');
+    return redirect ? navigate('/') : true;
+  }
+};
+
+export const mapItemsToVendors = (vendors, items) => {
+  let j = 0;
+  let len = items.length;
+  for (let i = 0; i < vendors.length; i++) {
+    while (items[j].vendor_id === vendors[i].id && j < len) {
+      if (!vendors[i].items) {
+        vendors[i].items = [items[j]];
+      } else {
+        vendors[i].items.push(items[j]);
+      }
+      j++;
+    }
   }
 };

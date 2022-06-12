@@ -4,12 +4,14 @@ import userProfile from './userProfile-reducers';
 import attendees from './attendees-reducers';
 import comments from './comments-reducers';
 import garageSaleEvent from './garageSaleEvent-reducers';
-import CurrentGarageSaleEvent from './currentGarageSaleEvent-reducers';
+import currentGarageSaleEvent from './currentGarageSaleEvent-reducers';
 import unfilteredGarageSaleEvent from './unfilteredGarageSaleEvent-reducers';
 import vendors from './vendors-reducers';
+import currentVendor from './currentVendor-reducers';
 import searchCriteria from './searchCriteria-reducers';
 import appendedScript from './appendedScript-reducers';
 import userLocation from './userLocation-reducers';
+import category from './category-reducers';
 
 export default combineReducers({
   userAuth,
@@ -17,10 +19,12 @@ export default combineReducers({
   attendees,
   comments,
   garageSaleEvent,
-  CurrentGarageSaleEvent,
+  currentGarageSaleEvent,
   unfilteredGarageSaleEvent,
   vendors,
   searchCriteria,
   appendedScript,
   userLocation,
+  currentVendor,
+  category,
 });

@@ -76,7 +76,7 @@ class UserAuthForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     if (!this.state.error) {
-      this.props.onComplete(this.state, this.handleError).catch(err => {
+      this.props.onComplete(this.state).catch(err => {
         this.setState({ submitted: true });
         console.log('handleSubmit err: ', err);
       });
@@ -88,16 +88,6 @@ class UserAuthForm extends React.Component {
     }));
   };
 
-  handleError = err => {
-    const usernameError =
-      err.status === 401
-        ? 'username or password incorrect'
-        : 'username or email already taken';
-
-    this.setState({
-      usernameError,
-    });
-  };
   render() {
     let { focused, submitted, emailError, passwordError } = this.state;
     return (

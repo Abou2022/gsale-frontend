@@ -41,18 +41,20 @@ export const signInRequest = user => dispatch => {
     });
 };
 
-export const tokenSignInRequest = token => dispatch => {
+export const tokenSignInRequest = () => dispatch => {
+  const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
     .get(`https://gsale-backend.herokuapp.com/api/users/token/login`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
-      dispatch(signIn(res.body));
-      localStorage.setItem('gSaleToken', JSON.stringify(res.body.token));
+      console.log('res.body: ', res.body);
+      //   dispatch(signIn(res.body));
+      //   localStorage.setItem('gSaleToken', JSON.stringify(res.body.token));
       return true;
     })
     .catch(err => {
+      console.log('tokenSignIn err: ', err);
       dispatch(signOut());
-      console.log('tokenSignInRequest Error: ', err);
-      return;
+      return null;
     });
 };
