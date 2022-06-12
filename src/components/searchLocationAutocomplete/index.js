@@ -64,7 +64,7 @@ function SearchLocationAutocomplete({
       appendedScriptFlag = true;
       appendScriptRequest();
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&v=weekly`,
+        `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization`,
         () => handleScriptLoad(setQuery, autoCompleteRef, setGeoCoords)
       );
     }
