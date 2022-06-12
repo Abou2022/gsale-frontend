@@ -57,7 +57,10 @@ export const currentGarageSaleEventCreateRequest =
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
       .then(res => {
-        console.log('currentGarageSaleEventCreateRequest: ', res.body.garageSaleEvent);
+        console.log(
+          'currentGarageSaleEventCreateRequest: ',
+          res.body.garageSaleEvent
+        );
         dispatch(currentGarageSaleEventCreate(res.body.garageSaleEvent));
         dispatch(categoryFetch(res.body.category));
         return res.body.garageSaleEvent;

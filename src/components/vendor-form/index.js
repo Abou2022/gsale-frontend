@@ -70,18 +70,18 @@ class VendorForm extends React.Component {
   }
   componentWillUnmount() {
     this.setState({
-        category: {
-            babyAndKid: false,
-            clothing: false,
-            electronics: false,
-            bath: false,
-            furniture: false,
-            kitchenware: false,
-            pet: false,
-            sporting: false,
-            toysAndGames: false,
-            other: true,
-          },
+      category: {
+        babyAndKid: false,
+        clothing: false,
+        electronics: false,
+        bath: false,
+        furniture: false,
+        kitchenware: false,
+        pet: false,
+        sporting: false,
+        toysAndGames: false,
+        other: true,
+      },
       items: '',
       description: '',
       startDate: '',
@@ -114,21 +114,21 @@ class VendorForm extends React.Component {
       });
     }
     if (this.props.categoryData !== prevProps.categoryData) {
-        this.setState({
-            category: {
-                id: this.props.categoryData.id,
-                babyAndKid: this.props.categoryData.babyAndKid,
-                clothing: this.props.categoryData.clothing,
-                electronics: this.props.categoryData.electronics,
-                bath: this.props.categoryData.bath,
-                furniture: this.props.categoryData.furniture,
-                kitchenware: this.props.categoryData.kitchenware,
-                pet: this.props.categoryData.pet,
-                sporting: this.props.categoryData.sporting,
-                toysAndGames: this.props.categoryData.toysAndGames,
-                other: this.props.categoryData.other,
-              }
-        })
+      this.setState({
+        category: {
+          id: this.props.categoryData.id,
+          babyAndKid: this.props.categoryData.babyAndKid,
+          clothing: this.props.categoryData.clothing,
+          electronics: this.props.categoryData.electronics,
+          bath: this.props.categoryData.bath,
+          furniture: this.props.categoryData.furniture,
+          kitchenware: this.props.categoryData.kitchenware,
+          pet: this.props.categoryData.pet,
+          sporting: this.props.categoryData.sporting,
+          toysAndGames: this.props.categoryData.toysAndGames,
+          other: this.props.categoryData.other,
+        },
+      });
     }
   }
 
@@ -181,9 +181,11 @@ class VendorForm extends React.Component {
   };
   handleCategoryChange = e => {
     let { name } = e.target;
-    console.log("name: ", name, this.state.category[name], `category[${name}]`)
+    console.log('name: ', name, this.state.category[name], `category[${name}]`);
     // this.setState({ [`category[${name}]`]: !this.state.category[name] });
-    this.setState(prevState => ({ category: { ...prevState.category, [name]: !prevState.category[name]}}))
+    this.setState(prevState => ({
+      category: { ...prevState.category, [name]: !prevState.category[name] },
+    }));
   };
   handleStartDateChange = date => {
     console.log('start date:', date);

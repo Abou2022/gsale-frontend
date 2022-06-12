@@ -47,7 +47,11 @@ function VendorFormContainer(props) {
   };
   return (
     <div>
-      <VendorForm onComplete={handleOnComplete} vendorData={vendor} categoryData={props.category} />
+      <VendorForm
+        onComplete={handleOnComplete}
+        vendorData={vendor}
+        categoryData={props.category}
+      />
     </div>
   );
 }

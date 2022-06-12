@@ -50,8 +50,8 @@ export const currentVendorCreateRequest = vendor => dispatch => {
     .set('Authorization', `Bearer ${token}`)
     .send(vendor)
     .then(res => {
-        console.log("res.body: ", res.body);
-        res.body.vendor.category = res.body.category;
+      console.log('res.body: ', res.body);
+      res.body.vendor.category = res.body.category;
       dispatch(currentVendorCreate(res.body.vendor));
       dispatch(categoryFetch(res.body.category));
       return res.body.vendor;
