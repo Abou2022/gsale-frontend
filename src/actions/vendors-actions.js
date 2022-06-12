@@ -20,7 +20,7 @@ export const vendorsFetch = vendors => ({
 // eslint-disable-next-line
 export const vendorsFilterRequest = filterObject => dispatch => {
   return superagent
-    .get(`${process.env.REACT_APP_API_URL}/api/vendors`)
+    .get(`https://gsale-backend.herokuapp.com/api/vendors`)
     .then(res => {
       let data = mapItemsToVendors(res.body.vendor, res.body.item);
       data = dateFilterHelper(data, filterObject);
@@ -38,7 +38,7 @@ export const vendorsFilterRequest = filterObject => dispatch => {
 
 export const vendorsFetchRequest = () => dispatch => {
   return superagent
-    .get(`${process.env.REACT_APP_API_URL}/api/vendors`)
+    .get(`https://gsale-backend.herokuapp.com/api/vendors`)
     .then(res => {
       // to do map data aka filtered vendors  map the res.body.item to these vendors
       const vendors = mapItemsToVendors(res.body.vendor, res.body.item);

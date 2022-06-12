@@ -24,7 +24,7 @@ export const currentVendorDelete = vendor => ({
 
 export const currentVendorFetchRequest = vendorID => dispatch => {
   return superagent
-    .get(`${process.env.REACT_APP_API_URL}/api/vendors/${vendorID}`)
+    .get(`https://gsale-backend.herokuapp.com/api/vendors/${vendorID}`)
     .then(res => {
       dispatch(currentVendorFetch(res.body));
       dispatch(categoryFetch(res.body.category));
@@ -46,7 +46,7 @@ export const currentVendorCreateRequest = vendor => dispatch => {
     vendor.endTime = moment(new Date(vendor.endDate)).format('hh:mm a');
   }
   return superagent
-    .post(`${process.env.REACT_APP_API_URL}/api/vendors`)
+    .post(`https://gsale-backend.herokuapp.com/api/vendors`)
     .set('Authorization', `Bearer ${token}`)
     .send(vendor)
     .then(res => {
@@ -72,7 +72,7 @@ export const currentVendorUpdateRequest = vendor => dispatch => {
     vendor.endTime = moment(new Date(vendor.endDate)).format('hh:mm a');
   }
   return superagent
-    .put(`${process.env.REACT_APP_API_URL}/api/vendors/${vendor.id}`)
+    .put(`https://gsale-backend.herokuapp.com/api/vendors/${vendor.id}`)
     .set('Authorization', `Bearer ${token}`)
     .send(vendor)
     .then(res => {
@@ -90,7 +90,7 @@ export const currentVendorUpdateRequest = vendor => dispatch => {
 export const currentVendorDeleteRequest = vendorId => dispatch => {
   const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
-    .delete(`${process.env.REACT_APP_API_URL}/api/vendors/${vendorId}`)
+    .delete(`https://gsale-backend.herokuapp.com/api/vendors/${vendorId}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(currentVendorDelete(res.body));

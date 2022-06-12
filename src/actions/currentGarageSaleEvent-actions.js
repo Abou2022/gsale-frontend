@@ -26,7 +26,7 @@ export const currentGarageSaleEventFetchRequest =
   garageSaleEventID => dispatch => {
     return superagent
       .get(
-        `${process.env.REACT_APP_API_URL}/api/garageSaleEvents/${garageSaleEventID}`
+        `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEventID}`
       )
       .then(res => {
         dispatch(currentGarageSaleEventFetch(res.body.garageSaleEvent));
@@ -53,7 +53,7 @@ export const currentGarageSaleEventCreateRequest =
       ).format('hh:mm a');
     }
     return superagent
-      .post(`${process.env.REACT_APP_API_URL}/api/garageSaleEvents`)
+      .post(`https://gsale-backend.herokuapp.com/api/garageSaleEvents`)
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
       .then(res => {
@@ -87,7 +87,7 @@ export const currentGarageSaleEventUpdateRequest =
     }
     return superagent
       .put(
-        `${process.env.REACT_APP_API_URL}/api/garageSaleEvents/${garageSaleEvent.id}`
+        `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEvent.id}`
       )
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
@@ -108,7 +108,7 @@ export const currentGarageSaleEventDeleteRequest =
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
     return superagent
       .delete(
-        `${process.env.REACT_APP_API_URL}/api/garageSaleEvents/${garageSaleEventId}`
+        `https://gsale-backend.herokuapp.com/api/garageSaleEvents/${garageSaleEventId}`
       )
       .set('Authorization', `Bearer ${token}`)
       .then(res => {
