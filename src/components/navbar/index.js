@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import SearchLocationAutocomplete from '../searchLocationAutocomplete';
 import { Link, useNavigate } from 'react-router-dom';
 
 import GSaleLogo from '../../assets/GSale.png';
-// import searchIcon from '../../assets/images/search.svg';
-
 import Modal from '../helpers/modal';
 import UserAuthForm from '../userAuth-form';
 import GarageSaleEventForm from '../garageSaleEvent-form';
 import FilterBar from '../filterBar';
-import SearchLocationAutocomplete from '../searchLocationAutocomplete';
 import DatePickerContainer from '../datePickerContainer';
 import { renderIf, logError } from './../../lib/util.js';
 import {
@@ -23,7 +21,6 @@ import {
   filterGarageSaleEvents,
 } from '../../actions/garageSaleEvent-actions.js';
 import { currentGarageSaleEventCreateRequest } from '../../actions/currentGarageSaleEvent-actions';
-
 import './navbar.css';
 
 function Navbar(props) {
@@ -67,7 +64,6 @@ function Navbar(props) {
   };
 
   const handleSignOut = () => {
-    console.log('handle sign out');
     // localStorage.removeItem("gSaleToken");
     delete localStorage.gSaleToken;
     props.signOutRequest();

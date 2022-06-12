@@ -86,14 +86,20 @@ export const dateFilterHelper = (data, filterObject) => {
   return filteredByDates;
 };
 
-export const userValidation = async (props, navigate) => {
+export const userValidation = async (props, navigate, redirect = true) => {
   try {
     if (props.userAuth) {
       return;
     }
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
-    return token ? props.tokenSignIn(token) : navigate('/');
+    if (token) {
+      return props.tokenSignIn(token);
+    } else if (redirect) {
+      return navigate('/');
+    } else {
+      return true;
+    }
   } catch (err) {
-    return navigate('/');
+    return redirect ? navigate('/') : true;
   }
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import GarageSaleEventForm from '../garageSaleEvent-form';
@@ -12,29 +12,43 @@ import { logError, userValidation } from '../../lib/util.js';
 
 function GarageSaleEventFormContainer(props) {
   const { garageSaleEventId } = useParams();
+  const [garageSaleEvent, setGarageSaleEvent] = useState(null);
   let navigate = useNavigate();
+  let flag = 0;
   useEffect(() => {
-    userValidation(props, navigate);
-    if (garageSaleEventId) {
-        props.currentGarageSaleEventFetch(garageSaleEventId)
-            .catch(err => console.log("currentGarageSaleEventFetch err: ", err));
+    if (!flag) {
+      flag++;
+      userValidation(props, navigate);
+      if (garageSaleEventId) {
+        props
+          .currentGarageSaleEventFetch(garageSaleEventId)
+          .then(gse => {
+            setGarageSaleEvent(gse);
+            console.log('gse: ', gse);
+          })
+          .catch(err => console.log('currentGarageSaleEventFetch err: ', err));
+      }
     }
   }, []);
   const handleOnComplete = data => {
-    console.log("gse form container: ", data);
+    console.log('gse form container: ', data);
     if (garageSaleEventId) {
-        return props.currentGarageSaleEventUpdate(data).catch(logError);
+      data.id = garageSaleEventId;
+      return props.currentGarageSaleEventUpdate(data).catch(logError);
     } else {
-        return props.currentGarageSaleEventCreate(data).catch(logError);
+      return props
+        .currentGarageSaleEventCreate(data)
+        .then(gse => navigate(`/gsale/${gse.id}`))
+        .catch(logError);
     }
   };
-  let gseData = garageSaleEventId ? props.currentGarageSaleEvent : null; 
+  //   let gseData = garageSaleEventId ? garageSaleEvent : null;
   return (
     <div>
-    <GarageSaleEventForm
+      <GarageSaleEventForm
         onComplete={handleOnComplete}
-        gse={gseData}
-    />
+        gse={garageSaleEvent}
+      />
     </div>
   );
 }

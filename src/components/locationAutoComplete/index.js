@@ -38,9 +38,16 @@ function LocationAutocomplete({ handleLocationAutocomplete, address }) {
   useEffect(() => {
     if (!handleLoadFlag) {
       handleLoadFlag = true;
-      handleLoad(setQuery, autoCompleteRef, setGeoCoords);
+      if (!window.google || !window.google.maps || !window.google.maps.places) {
+        setTimeout(function () {
+          handleLoad(setQuery, autoCompleteRef, setGeoCoords);
+        }, 3000);
+      } else {
+        handleLoad(setQuery, autoCompleteRef, setGeoCoords);
+      }
     }
-  }, []);
+    setQuery(address);
+  }, [address]);
 
   useEffect(() => {
     if (geoCoords && geoCoords.length) {

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
+import setHours from 'date-fns/setHours';
+import setMinutes from 'date-fns/setMinutes';
 import 'react-datepicker/dist/react-datepicker.css';
 import './dateTimePicker.css';
 
@@ -29,8 +29,14 @@ function DateTimePickerContainer({ handleDate, chosenDate }) {
   // eslint-disable-next-line
   const [startDate, setStartDate] = useState(
     // eslint-disable-next-line
-    setHours(setMinutes(new Date(), 0), 9)
+    setHours(setMinutes(new Date(chosenDate), 0), 9)
   );
+  useEffect(() => {
+    console.log('chosedate: ', chosenDate, typeof chosenDate);
+
+    setStartDate(new Date(chosenDate));
+    // setStartDate(chosenDate);
+  }, [chosenDate]);
   const filterPassedTime = time => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
@@ -38,9 +44,9 @@ function DateTimePickerContainer({ handleDate, chosenDate }) {
   };
 
   const handleChange = date => {
-    console.log("handle change: ", date);
-    setStartDate(date)
-    // handleDate(date);
+    console.log('handle change: ', date);
+    // setStartDate(date);
+    handleDate(date);
   };
   return (
     <div>

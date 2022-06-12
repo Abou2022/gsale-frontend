@@ -51,8 +51,8 @@ export const tokenSignInRequest = token => dispatch => {
       return true;
     })
     .catch(err => {
+      console.log('tokenSignIn err: ', err);
       dispatch(signOut());
-      console.log('tokenSignInRequest Error: ', err);
       return null;
     });
 };

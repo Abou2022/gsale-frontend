@@ -31,7 +31,7 @@ function App() {
           <Route path="/createevent/:id" element={<CreateEvent />} />
           <Route path="/create" element={<GarageSaleEventFormContainer />} />
           <Route
-            path="/update/:garageSaleEventId"
+            path="/gsale/:garageSaleEventId"
             element={<GarageSaleEventFormContainer />}
           />
           <Route path="*" element={<NotFound />}></Route>

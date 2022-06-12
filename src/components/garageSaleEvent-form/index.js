@@ -75,6 +75,35 @@ class GarageSaleEventForm extends React.Component {
       imageURL: '',
     });
   }
+
+  componentDidUpdate(prevProps) {
+    console.log('componentDidUpdate: ', prevProps);
+    if (this.props.gse !== prevProps.gse) {
+      console.log('date type: ', typeof this.props.gse.endDate);
+      this.setState({
+        eventName: this.props.gse.eventName,
+        description: this.props.gse.description,
+        startDate: this.props.gse.startDate,
+        endDate: this.props.gse.endDate,
+        address: this.props.gse.address,
+        lat: this.props.gse.lat,
+        lng: this.props.gse.lng,
+        imageURL: this.props.gse.imageURL,
+        eventNameError: null,
+        descriptionError: null,
+        startDateError: null,
+        endDateError: null,
+        addressError: null,
+        latError: null,
+        lngError: null,
+        imageURLError: null,
+        error: null,
+        focused: null,
+        submitted: false,
+      });
+    }
+  }
+
   validateInput = e => {
     let { name, value } = e.target;
 
@@ -229,10 +258,7 @@ class GarageSaleEventForm extends React.Component {
         })}
       >
         {renderIf(this.props.gse, <h2>update.</h2>)}
-        {renderIf(
-          !this.props.gse,
-          <h2>create a Garage Sale Event.</h2>
-        )}
+        {renderIf(!this.props.gse, <h2>create a Garage Sale Event.</h2>)}
         <input
           className={classToggler({ error: this.state.eventNameError })}
           type="text"
@@ -277,7 +303,7 @@ class GarageSaleEventForm extends React.Component {
           show={this.state.focused === 'imageURL' || this.state.submitted}
         />
         <DateTimePickerContainer
-          handleDate={this.handleStartDate}
+          handleDate={this.handleStartDateChange}
           chosenDate={this.state.startDate}
         />
         <Tooltip
@@ -286,7 +312,7 @@ class GarageSaleEventForm extends React.Component {
         />
 
         <DateTimePickerContainer
-          handleDate={this.handleEndDate}
+          handleDate={this.handleEndDateChange}
           chosenDate={this.state.endDate}
         />
         <Tooltip

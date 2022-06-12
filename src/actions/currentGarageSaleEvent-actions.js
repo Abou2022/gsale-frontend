@@ -40,22 +40,22 @@ export const currentGarageSaleEventFetchRequest =
 export const currentGarageSaleEventCreateRequest =
   garageSaleEvent => dispatch => {
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
-    console.log("currentGarageSaleEventCreateRequest: ", garageSaleEvent);
     if (garageSaleEvent.startDate) {
-        garageSaleEvent.startTime = moment(new Date(garageSaleEvent.startDate)).format('hh:mm a');
-        console.log("garageSaleEvent.startTime: ", garageSaleEvent.startTime);
+      garageSaleEvent.startTime = moment(
+        new Date(garageSaleEvent.startDate)
+      ).format('hh:mm a');
     }
     if (garageSaleEvent.endDate) {
-        garageSaleEvent.endTime = moment(new Date(garageSaleEvent.endDate)).format('hh:mm a');
-        console.log("garageSaleEvent.endTime: ", garageSaleEvent.endTime);
+      garageSaleEvent.endTime = moment(
+        new Date(garageSaleEvent.endDate)
+      ).format('hh:mm a');
     }
-// console.log(typeof str);
     return superagent
       .post(`${process.env.REACT_APP_API_URL}/api/garageSaleEvents`)
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
       .then(res => {
-        console.log("currentGarageSaleEventCreateRequest: ", res.body);
+        console.log('currentGarageSaleEventCreateRequest: ', res.body);
         dispatch(currentGarageSaleEventCreate(res.body));
         return res.body;
       })
@@ -68,6 +68,17 @@ export const currentGarageSaleEventCreateRequest =
 export const currentGarageSaleEventUpdateRequest =
   garageSaleEvent => dispatch => {
     const token = JSON.parse(localStorage.getItem('gSaleToken'));
+    console.log('garagesaleevent: ', garageSaleEvent);
+    if (garageSaleEvent.startDate) {
+      garageSaleEvent.startTime = moment(
+        new Date(garageSaleEvent.startDate)
+      ).format('hh:mm a');
+    }
+    if (garageSaleEvent.endDate) {
+      garageSaleEvent.endTime = moment(
+        new Date(garageSaleEvent.endDate)
+      ).format('hh:mm a');
+    }
     return superagent
       .put(
         `${process.env.REACT_APP_API_URL}/api/garageSaleEvents/${garageSaleEvent.id}`
@@ -75,7 +86,8 @@ export const currentGarageSaleEventUpdateRequest =
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
       .then(res => {
-        dispatch(currentGarageSaleEventUpdate(res.body));
+        console.log('res.body: ', res.body);
+        dispatch(currentGarageSaleEventUpdate(garageSaleEvent));
         return res.body;
       })
       .catch(err => {

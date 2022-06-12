@@ -22,8 +22,13 @@ let currentGarageSaleEvent = (state = {}, action) => {
       validateGarageSaleEvent(payload);
       return payload;
     case 'CURRENT_GARAGE_SALE_EVENT_UPDATE':
-      validateGarageSaleEvent(payload);
-      return payload;
+      if (!state) {
+        throw new Error(
+          'USAGE ERROR: can not update when current garagesale event is null'
+        );
+      }
+      console.log('payload: ', payload);
+      return { ...state, ...payload };
     case 'CURRENT_GARAGE_SALE_EVENT_DELETE':
       return {};
     case 'SIGN_OUT':
