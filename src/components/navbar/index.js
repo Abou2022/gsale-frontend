@@ -9,7 +9,7 @@ import UserAuthForm from '../userAuth-form';
 import FilterBar from '../filterBar';
 import SearchLocationAutocomplete from '../searchLocationAutocomplete';
 import DatePickerContainer from '../datePickerContainer';
-import { renderIf } from './../../lib/util.js';
+import { renderIf, logError } from './../../lib/util.js';
 import {
   signUpRequest,
   signInRequest,
@@ -24,62 +24,54 @@ import {
 import './navbar.css';
 
 function Navbar(props) {
-  let [authFormAction, setAuthFormAction] = useState('Sign Up');
-  let [formDisplay, setFormDisplay] = useState(false);
+  const [authFormAction, setAuthFormAction] = useState('Sign Up');
+  const [formDisplay, setFormDisplay] = useState(false);
 
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    console.log('form submitted event: ', e);
-  };
+  //   const handleFormSubmit = e => {
+  //     e.preventDefault();
+  //   };
 
   const handleCreateEvent = e => {
     console.log('handleCreateEvent event: ', e);
   };
 
-  const handleLoginSignUp = e => {
-    console.log('handleLoginSignUp event: ', e);
-    setFormDisplay(true);
-  };
+  //   const handleLoginSignUp = () => {
+  //     setFormDisplay(true);
+  //   };
 
-  const handleSignin = async e => {
+  const handleSignin = async (user, errCB) => {
     try {
-      console.log('handleSignin: ', e);
-      await props.signIn({ password: e.password, email: e.email });
+      await props.signIn({ password: user.password, email: user.email });
       setFormDisplay(false);
     } catch (err) {
-      console.log('signIn err: ', err);
+      logError(err);
+      errCB(err);
     }
   };
 
+  // eslint-disable-next-line
   const handleSearchLocationAutocomplete = async (cityState, geoCoords) => {
     try {
-      console.log('handleSearchLocationAutocomplete: ', cityState, geoCoords);
-      let filter = {
+      const filter = {
         startDate: props.searchCriteria.startDate,
         endDate: props.searchCriteria.endDate,
         lat: geoCoords[0],
         lng: geoCoords[1],
         categories: props.searchCriteria.categories,
       };
-      console.log('filter: ', filter);
-      console.log('props.garageSaleEvent: ', props.garageSaleEvent);
-      console.log(
-        '11111111111111 handleSearchLocationAutocomplete here: ',
-        filter
-      );
       await props.garageSaleEventsFilter(filter);
     } catch (err) {
-      console.log('Err handleSearchLocationAutocomplete: ', err);
+      logError(err);
     }
   };
 
-  const handleSignup = async e => {
+  const handleSignup = async (user, errCB) => {
     try {
-      console.log('handleSignup: ', e);
-      await props.signUp({ password: e.password, email: e.email });
+      await props.signUp({ password: user.password, email: user.email });
       setFormDisplay(false);
     } catch (err) {
-      console.log('signUp err: ', err);
+      logError(err);
+      errCB(err);
     }
   };
 
@@ -119,7 +111,7 @@ function Navbar(props) {
           <div id="searchFiltersContainer">
             <form
               className="d-flex flex-row form-inline my-2 my-lg-0 p-4"
-              onSubmit={handleFormSubmit}
+              onSubmit={e => e.preventDefault()}
             >
               <SearchLocationAutocomplete
                 handleSearchLocationAutocomplete={
@@ -174,7 +166,7 @@ function Navbar(props) {
             <button
               id="loginSignUpButton"
               className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
-              onClick={handleLoginSignUp}
+              onClick={() => setFormDisplay(true)}
             >
               Login/Sign Up
             </button>
