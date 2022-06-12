@@ -15,9 +15,8 @@ export const signUpRequest = user => dispatch => {
     .post(`https://gsale-backend.herokuapp.com/api/users`)
     .send(user)
     .then(res => {
-      console.log('signUpRequest res: ', res);
       dispatch(signIn(res.body));
-      localStorage.setItem('gSaleToken', res.body.token);
+      localStorage.setItem('gSaleToken', JSON.stringify(res.body.token));
       return res.body;
     })
     .catch(err => {
@@ -33,7 +32,7 @@ export const signInRequest = user => dispatch => {
     .then(res => {
       console.log(' signInRequest res: ', res);
       dispatch(signIn(res.body));
-      localStorage.setItem('gSaleToken', res.body.token);
+      localStorage.setItem('gSaleToken', JSON.stringify(res.body.token));
       return res.body;
     })
     .catch(err => {
@@ -42,17 +41,20 @@ export const signInRequest = user => dispatch => {
     });
 };
 
-export const tokenSignInRequest = token => dispatch => {
+export const tokenSignInRequest = () => dispatch => {
+  const token = JSON.parse(localStorage.getItem('gSaleToken'));
   return superagent
     .get(`https://gsale-backend.herokuapp.com/api/users/token/login`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
-      dispatch(signIn(res.body));
-      localStorage.setItem('gSaleToken', res.body.token);
-      return res.body;
+      console.log('res.body: ', res.body);
+      //   dispatch(signIn(res.body));
+      //   localStorage.setItem('gSaleToken', JSON.stringify(res.body.token));
+      return true;
     })
     .catch(err => {
-      console.log('tokenSignInRequest Error: ', err);
-      return err;
+      console.log('tokenSignIn err: ', err);
+      dispatch(signOut());
+      return null;
     });
 };

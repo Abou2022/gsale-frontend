@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react'; //
-import { connect } from 'react-redux'; //
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { garageSaleEventsFilterRequest } from '../../actions/garageSaleEvent-actions';
-import { logError } from '../../lib/util';
+import { logError, userValidation } from '../../lib/util';
 import { userLocationSet } from '../../actions/userLocation-actions';
-import MapLeaflet from '../mapLeaflet'; //
+import { tokenSignInRequest } from '../../actions/userAuth-actions';
+import MapLeaflet from '../mapLeaflet';
 
 function Home(props) {
   let garageSaleEventsFetchedFlag = false;
-
+  let navigate = useNavigate();
   useEffect(() => {
+    userValidation(props, navigate, false);
     if (!garageSaleEventsFetchedFlag) {
       garageSaleEventsFetchedFlag = true;
       handleUserLocation();
@@ -20,9 +23,9 @@ function Home(props) {
       props
         .garageSaleEventsFilter(props.searchCriteria)
         .catch(err => logError(err));
-      const token = localStorage.getItem('gSaleUserLocation');
+      const token = JSON.parse(localStorage.getItem('gSaleUserLocation'));
       if (token) {
-        props.userLocationSetRequest(JSON.parse(token));
+        props.userLocationSetRequest(token);
       } else {
         if ('geolocation' in navigator) {
           navigator.geolocation.getCurrentPosition(
@@ -67,18 +70,18 @@ function Home(props) {
 }
 
 const mapStateToProps = state => ({
-  //
-  garageSaleEvent: state.garageSaleEvent, //
+  userAuth: state.userAuth,
+  garageSaleEvent: state.garageSaleEvent,
   userLocation: state.userLocation,
   searchCriteria: state.searchCriteria,
 });
 
 const mapDispatchToProps = dispatch => ({
-  //
   garageSaleEventsFilter: filterObject =>
     dispatch(garageSaleEventsFilterRequest(filterObject)),
   userLocationSetRequest: userLocation =>
     dispatch(userLocationSet(userLocation)),
+  tokenSignIn: () => dispatch(tokenSignInRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home); // (, null)(GarageSaleEvent)

@@ -4,9 +4,15 @@ import { Routes, Route } from 'react-router-dom';
 const Navbar = lazy(() => import('../navbar'));
 const Home = lazy(() => import('../home'));
 const Profile = lazy(() => import('../profile'));
+const Profile2 = lazy(() => import('../profile2'));
 const GarageSaleEvent = lazy(() => import('../garageSaleEvent'));
+const GarageSaleEventFormContainer = lazy(() =>
+  import('../garageSaleEventFormContainer')
+);
+const VendorFormContainer = lazy(() => import('../vendorFormContainer'));
 const CreateEvent = lazy(() => import('../createEvent'));
 const NotFound = lazy(() => import('../notFound'));
+const Footer = lazy(() => import('../footer'));
 
 function App() {
   return (
@@ -18,11 +24,32 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/garagesale/:id" element={<GarageSaleEvent />} />
+          <Route path="/profile2/:id" element={<Profile2 />} />
+          <Route
+            path="/garagesale/:garageSaleEventId"
+            element={<GarageSaleEvent />}
+          />
           <Route path="/createevent/:id" element={<CreateEvent />} />
+          <Route path="/create" element={<GarageSaleEventFormContainer />} />
+
+          <Route
+            path="/gsale/:garageSaleEventId/updatevendor/:vendorId"
+            element={<VendorFormContainer />}
+          />
+          <Route
+            path="/gsale/:garageSaleEventId/addvendor"
+            element={<VendorFormContainer />}
+          />
+          <Route
+            path="/gsale/:garageSaleEventId"
+            element={<GarageSaleEventFormContainer />}
+          />
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Suspense>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

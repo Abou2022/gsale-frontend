@@ -11,6 +11,8 @@ let searchCriteria = (state = initialState, action) => {
   switch (type) {
     case 'GARAGE_SALE_EVENTS_FILTER':
       return payload.filter;
+    case 'VENDORS_FILTER':
+      return payload.filter;
     case 'SEARCH_CRITERIA_UPDATE':
       return payload;
     case 'SEARCH_CRITERIA_CLEAR':

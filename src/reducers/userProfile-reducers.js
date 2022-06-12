@@ -10,6 +10,7 @@ let userProfile = (state = null, action) => {
   switch (type) {
     case 'SIGN_IN':
       validateUserProfile(payload.profile);
+      payload.profile.category = payload.category;
       return payload.profile;
     case 'USERPROFILE_UPDATE':
       if (!state) {
@@ -17,7 +18,6 @@ let userProfile = (state = null, action) => {
           'USAGE ERROR: can not update when user profile is null'
         );
       }
-      validateUserProfile(payload);
       return { ...state, ...payload };
     case 'USERPROFILE_FETCH':
       if (!payload.vendingEvents) {

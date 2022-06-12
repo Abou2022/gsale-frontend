@@ -7,7 +7,6 @@ function DatePickerContainer({ handleDateRange }) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const handleOnChange = update => {
-    console.log('update: ', update);
     setDateRange(update);
     handleDateRange(update);
   };

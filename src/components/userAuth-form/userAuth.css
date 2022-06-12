@@ -1,0 +1,50 @@
+#loginContainer {
+  align-items: center;
+  margin-right: 16px;
+  padding-left: 20px;
+  /* background-color: rgb(255, 255, 255); */
+  background-color: rgb(194, 255, 199);
+  border-bottom-color: rgb(221, 221, 221);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(221, 221, 221);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: rgb(221, 221, 221);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-color: rgb(221, 221, 221);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px,
+    rgba(0, 0, 0, 0.05) 0px 4px 12px 0px;
+  box-sizing: border-box;
+  color: rgb(34, 34, 34);
+  display: inline-flex;
+  font-family: Circular, -apple-system, 'system-ui', Roboto, 'Helvetica Neue',
+    sans-serif;
+  font-size: 16px;
+  height: 33px;
+  line-break: strict;
+  line-height: 20px;
+  max-width: 100%;
+  text-align: left;
+  text-size-adjust: 100%;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: box-shadow;
+  transition-timing-function: ease;
+  vertical-align: middle;
+  visibility: visible;
+  -webkit-box-align: center;
+  -webkit-font-smoothing: antialiased;
+}
