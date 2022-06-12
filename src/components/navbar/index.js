@@ -54,6 +54,32 @@ function Navbar(props) {
     }
   };
 
+  const handleDateRange = async dateRange => {
+    try {
+      const filter = {
+        startDate: dateRange[0] && !dateRange[1] ? null : dateRange[0],
+        endDate: dateRange[1],
+        lat: props.searchCriteria.lat,
+        lng: props.searchCriteria.lng,
+        categories: props.searchCriteria.categories,
+      };
+      if (dateRange[0] && dateRange[1]) {
+        await props.garageSaleEventsFilter(filter);
+      } else if (!dateRange[0] && !dateRange[1]) {
+        const to = setTimeout(() => {
+          if (!dateRange[0] && !dateRange[1]) {
+            clearTimeout(to);
+            props.garageSaleEventsFilter(filter);
+          } else {
+            props.searchCriteriaUpdateRequest(filter);
+          }
+        }, 1500);
+      }
+    } catch (err) {
+      logError(err);
+    }
+  };
+
   const handleSignup = async user => {
     try {
       await props.signUp({ password: user.password, email: user.email });
@@ -68,17 +94,6 @@ function Navbar(props) {
     delete localStorage.gSaleToken;
     props.signOutRequest();
     navigate('/');
-  };
-
-  const handleDateRange = dateRange => {
-    props.searchCriteriaUpdateRequest({
-      startDate: dateRange[0] && !dateRange[1] ? null : dateRange[0],
-      endDate: dateRange[1],
-      lat: props.searchCriteria.lat,
-      lng: props.searchCriteria.lng,
-      categories: props.searchCriteria.categories,
-    });
-    console.log('handleDateRange: ', dateRange);
   };
 
   let handleComplete =
