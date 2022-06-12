@@ -103,3 +103,18 @@ export const userValidation = async (props, navigate, redirect = true) => {
     return redirect ? navigate('/') : true;
   }
 };
+
+export const mapItemsToVendors = (vendors, items) => {
+  let j = 0;
+  let len = items.length;
+  for (let i = 0; i < vendors.length; i++) {
+    while (items[j].vendor_id === vendors[i].id && j < len) {
+      if (!vendors[i].items) {
+        vendors[i].items = [items[j]];
+      } else {
+        vendors[i].items.push(items[j]);
+      }
+      j++;
+    }
+  }
+};

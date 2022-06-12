@@ -2,11 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 
 let autoComplete;
 
-function handleLoad(updateQuery, autoCompleteRef, updateGeoCoords) {
+function handleLoad(
+  updateQuery,
+  autoCompleteRef,
+  updateGeoCoords,
+  autoCompleteTypeAddress
+) {
+  const type = autoCompleteTypeAddress ? 'address' : '(cities)';
   autoComplete = new window.google.maps.places.Autocomplete(
     autoCompleteRef.current,
-    { types: ['(cities)'], componentRestrictions: { country: 'us' } }
-    // { types: ["address"], componentRestrictions: { country: "us" } }
+    { types: [type], componentRestrictions: { country: 'us' } }
   );
 
   autoComplete.setFields([
@@ -29,7 +34,11 @@ async function handlePlaceSelect(updateQuery, updateGeoCoords) {
   ]);
 }
 
-function LocationAutocomplete({ handleLocationAutocomplete, address }) {
+function LocationAutocomplete({
+  handleLocationAutocomplete,
+  address,
+  autoCompleteTypeAddress,
+}) {
   const [query, setQuery] = useState(address);
   const [geoCoords, setGeoCoords] = useState('');
   const autoCompleteRef = useRef(null);
@@ -40,10 +49,20 @@ function LocationAutocomplete({ handleLocationAutocomplete, address }) {
       handleLoadFlag = true;
       if (!window.google || !window.google.maps || !window.google.maps.places) {
         setTimeout(function () {
-          handleLoad(setQuery, autoCompleteRef, setGeoCoords);
+          handleLoad(
+            setQuery,
+            autoCompleteRef,
+            setGeoCoords,
+            autoCompleteTypeAddress
+          );
         }, 3000);
       } else {
-        handleLoad(setQuery, autoCompleteRef, setGeoCoords);
+        handleLoad(
+          setQuery,
+          autoCompleteRef,
+          setGeoCoords,
+          autoCompleteTypeAddress
+        );
       }
     }
     setQuery(address);

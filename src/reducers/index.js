@@ -7,6 +7,7 @@ import garageSaleEvent from './garageSaleEvent-reducers';
 import currentGarageSaleEvent from './currentGarageSaleEvent-reducers';
 import unfilteredGarageSaleEvent from './unfilteredGarageSaleEvent-reducers';
 import vendors from './vendors-reducers';
+import currentVendor from './currentVendor-reducers';
 import searchCriteria from './searchCriteria-reducers';
 import appendedScript from './appendedScript-reducers';
 import userLocation from './userLocation-reducers';
@@ -23,4 +24,5 @@ export default combineReducers({
   searchCriteria,
   appendedScript,
   userLocation,
+  currentVendor,
 });

@@ -22,7 +22,7 @@ let currentGarageSaleEvent = (state = {}, action) => {
       validateGarageSaleEvent(payload);
       return payload;
     case 'CURRENT_GARAGE_SALE_EVENT_UPDATE':
-      if (!state) {
+      if (state == {}) {
         throw new Error(
           'USAGE ERROR: can not update when current garagesale event is null'
         );

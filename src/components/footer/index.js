@@ -9,9 +9,17 @@ function Footer(props) {
       : '';
   return (
     <div>
-      <Link to={profileLink}>Profile</Link>
       <div>
-        <Link to="/create">Create</Link>
+        <Link to={profileLink}>Profile</Link>
+      </div>
+      <div>
+        <Link to="/create">Create GSE</Link>
+      </div>
+      <div>
+        <Link to="/gsale/5/addvendor">Create Vendor</Link>
+      </div>
+      <div>
+        <Link to="/gsale/5/updatevendor/6">Update Vendor</Link>
       </div>
     </div>
   );
