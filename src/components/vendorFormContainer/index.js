@@ -47,7 +47,7 @@ function VendorFormContainer(props) {
   };
   return (
     <div>
-      <VendorForm onComplete={handleOnComplete} vendorData={vendor} />
+      <VendorForm onComplete={handleOnComplete} vendorData={vendor} categoryData={props.category} />
     </div>
   );
 }
@@ -56,6 +56,7 @@ const mapStateToProps = state => ({
   userAuth: state.userAuth,
   userProfile: state.userProfile,
   currentVendor: state.currentVendor,
+  category: state.category,
 });
 
 const mapDispatchToProps = dispatch => ({

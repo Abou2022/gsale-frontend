@@ -11,7 +11,19 @@ class VendorForm extends React.Component {
     super(props);
     this.state = this.props.vendorData
       ? {
-          category: this.props.vendorData.category,
+          category: {
+            id: this.props.vendorData.category.id,
+            babyAndKid: this.props.vendorData.category.babyAndKid,
+            clothing: this.props.vendorData.category.clothing,
+            electronics: this.props.vendorData.category.electronics,
+            bath: this.props.vendorData.category.bath,
+            furniture: this.props.vendorData.category.furniture,
+            kitchenware: this.props.vendorData.category.kitchenware,
+            pet: this.props.vendorData.category.pet,
+            sporting: this.props.vendorData.category.sporting,
+            toysAndGames: this.props.vendorData.category.toysAndGames,
+            other: this.props.vendorData.category.other,
+          },
           items: this.props.vendorData.items,
           description: this.props.vendorData.description,
           startDate: this.props.vendorData.startDate,
@@ -28,7 +40,18 @@ class VendorForm extends React.Component {
           submitted: false,
         }
       : {
-          category: {},
+          category: {
+            babyAndKid: false,
+            clothing: false,
+            electronics: false,
+            bath: false,
+            furniture: false,
+            kitchenware: false,
+            pet: false,
+            sporting: false,
+            toysAndGames: false,
+            other: true,
+          },
           items: [],
           description: '',
           startDate: new Date(Date.now()),
@@ -47,7 +70,18 @@ class VendorForm extends React.Component {
   }
   componentWillUnmount() {
     this.setState({
-      category: '',
+        category: {
+            babyAndKid: false,
+            clothing: false,
+            electronics: false,
+            bath: false,
+            furniture: false,
+            kitchenware: false,
+            pet: false,
+            sporting: false,
+            toysAndGames: false,
+            other: true,
+          },
       items: '',
       description: '',
       startDate: '',
@@ -63,7 +97,6 @@ class VendorForm extends React.Component {
     if (this.props.vendorData !== prevProps.vendorData) {
       console.log('date type: ', typeof this.props.vendorData.endDate);
       this.setState({
-        category_id: this.props.vendorData.category_id,
         items: this.props.vendorData.items,
         description: this.props.vendorData.description,
         startDate: this.props.vendorData.startDate,
@@ -79,6 +112,23 @@ class VendorForm extends React.Component {
         focused: null,
         submitted: false,
       });
+    }
+    if (this.props.categoryData !== prevProps.categoryData) {
+        this.setState({
+            category: {
+                id: this.props.categoryData.id,
+                babyAndKid: this.props.categoryData.babyAndKid,
+                clothing: this.props.categoryData.clothing,
+                electronics: this.props.categoryData.electronics,
+                bath: this.props.categoryData.bath,
+                furniture: this.props.categoryData.furniture,
+                kitchenware: this.props.categoryData.kitchenware,
+                pet: this.props.categoryData.pet,
+                sporting: this.props.categoryData.sporting,
+                toysAndGames: this.props.categoryData.toysAndGames,
+                other: this.props.categoryData.other,
+              }
+        })
     }
   }
 
@@ -128,6 +178,12 @@ class VendorForm extends React.Component {
     let { name, value } = e.target;
     this.validateInput({ ...e });
     this.setState({ [name]: value });
+  };
+  handleCategoryChange = e => {
+    let { name } = e.target;
+    console.log("name: ", name, this.state.category[name], `category[${name}]`)
+    // this.setState({ [`category[${name}]`]: !this.state.category[name] });
+    this.setState(prevState => ({ category: { ...prevState.category, [name]: !prevState.category[name]}}))
   };
   handleStartDateChange = date => {
     console.log('start date:', date);
@@ -218,6 +274,88 @@ class VendorForm extends React.Component {
           message={this.state.addressError}
           show={this.state.submitted}
         />
+
+        <div className="checkbox">
+          <input
+            type="checkbox"
+            name="babyAndKid"
+            checked={this.state.category.babyAndKid ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Baby and Kids</label>
+
+          <input
+            type="checkbox"
+            name="clothing"
+            checked={this.state.category.clothing ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Clothing</label>
+
+          <input
+            type="checkbox"
+            name="electronics"
+            checked={this.state.category.electronics ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Electronics</label>
+
+          <input
+            type="checkbox"
+            name="bath"
+            checked={this.state.category.bath ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Bath</label>
+
+          <input
+            type="checkbox"
+            name="furniture"
+            checked={this.state.category.furniture ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Furniture</label>
+
+          <input
+            type="checkbox"
+            name="kitchenware"
+            checked={this.state.category.kitchenware ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Kitchenware</label>
+
+          <input
+            type="checkbox"
+            name="pet"
+            checked={this.state.category.pet ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Pet</label>
+
+          <input
+            type="checkbox"
+            name="sporting"
+            checked={this.state.category.sporting ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>sporting goods</label>
+
+          <input
+            type="checkbox"
+            name="toysAndGames"
+            checked={this.state.category.toysAndGames ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>toys And Games</label>
+
+          <input
+            type="checkbox"
+            name="other"
+            checked={this.state.category.other ? true : false}
+            onChange={this.handleCategoryChange}
+          />
+          <label>Other</label>
+        </div>
 
         <p className="textRight">
           <button className="red-button b-button" type="submit">

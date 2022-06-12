@@ -11,6 +11,7 @@ import currentVendor from './currentVendor-reducers';
 import searchCriteria from './searchCriteria-reducers';
 import appendedScript from './appendedScript-reducers';
 import userLocation from './userLocation-reducers';
+import category from './category-reducers';
 
 export default combineReducers({
   userAuth,
@@ -25,4 +26,5 @@ export default combineReducers({
   appendedScript,
   userLocation,
   currentVendor,
+  category,
 });

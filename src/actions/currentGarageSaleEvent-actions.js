@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import moment from 'moment';
+import { categoryFetch } from './category-actions';
 
 export const currentGarageSaleEventFetch = garageSaleEvent => ({
   type: 'CURRENT_GARAGE_SALE_EVENT_FETCH',
@@ -29,6 +30,7 @@ export const currentGarageSaleEventFetchRequest =
       )
       .then(res => {
         dispatch(currentGarageSaleEventFetch(res.body.garageSaleEvent));
+        dispatch(categoryFetch(res.body.garageSaleEvent.category));
         return res.body.garageSaleEvent;
       })
       .catch(err => {
@@ -55,9 +57,10 @@ export const currentGarageSaleEventCreateRequest =
       .set('Authorization', `Bearer ${token}`)
       .send(garageSaleEvent)
       .then(res => {
-        console.log('currentGarageSaleEventCreateRequest: ', res.body);
-        dispatch(currentGarageSaleEventCreate(res.body));
-        return res.body;
+        console.log('currentGarageSaleEventCreateRequest: ', res.body.garageSaleEvent);
+        dispatch(currentGarageSaleEventCreate(res.body.garageSaleEvent));
+        dispatch(categoryFetch(res.body.category));
+        return res.body.garageSaleEvent;
       })
       .catch(err => {
         console.log('garageSaleEventCreateRequest Error: ', err);
@@ -88,6 +91,7 @@ export const currentGarageSaleEventUpdateRequest =
       .then(res => {
         console.log('res.body: ', res.body);
         dispatch(currentGarageSaleEventUpdate(garageSaleEvent));
+        dispatch(categoryFetch(garageSaleEvent.category));
         return res.body;
       })
       .catch(err => {

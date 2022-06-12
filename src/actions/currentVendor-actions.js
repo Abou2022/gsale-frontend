@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import moment from 'moment';
+import { categoryFetch } from './category-actions';
 
 export const currentVendorFetch = vendor => ({
   type: 'CURRENT_VENDOR_FETCH',
@@ -26,6 +27,7 @@ export const currentVendorFetchRequest = vendorID => dispatch => {
     .get(`${process.env.REACT_APP_API_URL}/api/vendors/${vendorID}`)
     .then(res => {
       dispatch(currentVendorFetch(res.body));
+      dispatch(categoryFetch(res.body.category));
       return res.body;
     })
     .catch(err => {
@@ -48,8 +50,11 @@ export const currentVendorCreateRequest = vendor => dispatch => {
     .set('Authorization', `Bearer ${token}`)
     .send(vendor)
     .then(res => {
-      dispatch(currentVendorCreate(res.body));
-      return res.body;
+        console.log("res.body: ", res.body);
+        res.body.vendor.category = res.body.category;
+      dispatch(currentVendorCreate(res.body.vendor));
+      dispatch(categoryFetch(res.body.category));
+      return res.body.vendor;
     })
     .catch(err => {
       console.log('vendorCreateRequest Error: ', err);
@@ -73,6 +78,7 @@ export const currentVendorUpdateRequest = vendor => dispatch => {
     .then(res => {
       console.log('res.body: ', res.body);
       dispatch(currentVendorUpdate(vendor));
+      dispatch(categoryFetch(vendor.category));
       return res.body;
     })
     .catch(err => {
