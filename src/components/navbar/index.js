@@ -117,7 +117,7 @@ function Navbar(props) {
   return (
     <div>
       <div id="navbar" className="border-bottom">
-        <div className="d-flex flex-row form-inline justify-content-between m-3 p-2">
+        <div className="d-flex flex-row justify-content-between m-3 p-2">
           <div id="navGSaleLogoContainer">
             <Link to="/">
               <img id="navGSaleLogo" src={GSaleLogo} alt="gsale logo" />
@@ -150,12 +150,21 @@ function Navbar(props) {
           )}
           {renderIf(
             props.userProfile && props.userProfile.id,
-            <Link to={profileLink}>Profile</Link>
+            <button className="btn btn-outline-success my-2 my-sm-0 rounded-pill">
+              <Link className="text-success" to={profileLink}>
+                Profile
+              </Link>
+            </button>
           )}
-          <Link to="/garagesale/1">GSE 1</Link>
+          {/* <Link to="/garagesale/1">GSE 1</Link> */}
           {renderIf(
             props.userAuth,
-            <p onClick={() => handleSignOut()}>Sign Out</p>
+            <button
+              className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
           )}
           {renderIf(
             !props.userAuth,
@@ -201,7 +210,7 @@ function Navbar(props) {
             </div>
           </Modal>
         )}
-        {renderIf(
+        {/* {renderIf(
           gseFormDisplay,
           <div>
             <Modal
@@ -209,9 +218,40 @@ function Navbar(props) {
               close={() => setGseFormDisplay(false)}
             >
               <GarageSaleEventForm onComplete={handleGseCreate} />
+            <p>works</p>
+
+            <Modal heading="G-Sale" close={() => setFormDisplay(false)}>
+              <UserAuthForm
+                authFormAction={authFormAction}
+                onComplete={handleComplete}
+              />
+
+              <div className="userauth-buttons mt-2">
+                {renderIf(
+                  authFormAction === 'Sign In',
+                  <button
+                    id="navSignUpButton"
+                    className="btn btn-outline-success btn-sm rounded-pill mt-2"
+                    onClick={() => setAuthFormAction('Sign Up')}
+                  >
+                    Sign Up
+                  </button>
+                )}
+
+                {renderIf(
+                  authFormAction === 'Sign Up',
+                  <button
+                    id="navSignInButton"
+                    className="btn btn-outline-success btn-sm rounded-pill"
+                    onClick={() => setAuthFormAction('Sign In')}
+                  >
+                    Sign In
+                  </button>
+                )}
+              </div>
             </Modal>
           </div>
-        )}
+        )} */}
       </div>
       <FilterBar />
     </div>
