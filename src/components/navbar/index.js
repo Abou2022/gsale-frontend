@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import GSaleLogo from '../../assets/GSale.png';
 import Modal from '../helpers/modal';
 import UserAuthForm from '../userAuth-form';
+// eslint-disable-next-line
 import GarageSaleEventForm from '../garageSaleEvent-form';
 import FilterBar from '../filterBar';
 import DatePickerContainer from '../datePickerContainer';
@@ -26,6 +27,7 @@ import './navbar.css';
 function Navbar(props) {
   const [authFormAction, setAuthFormAction] = useState('Sign Up');
   const [authFormDisplay, setAuthFormDisplay] = useState(false);
+  // eslint-disable-next-line
   const [gseFormDisplay, setGseFormDisplay] = useState(false);
   let navigate = useNavigate();
 
@@ -102,7 +104,7 @@ function Navbar(props) {
     props.userProfile && props.userProfile.id
       ? `/profile/${props.userProfile.id}`
       : '';
-
+  // eslint-disable-next-line
   const handleGseCreate = async gse => {
     try {
       await props.currentGarageSaleEventCreate({
@@ -219,13 +221,11 @@ function Navbar(props) {
             >
               <GarageSaleEventForm onComplete={handleGseCreate} />
             <p>works</p>
-
             <Modal heading="G-Sale" close={() => setFormDisplay(false)}>
               <UserAuthForm
                 authFormAction={authFormAction}
                 onComplete={handleComplete}
               />
-
               <div className="userauth-buttons mt-2">
                 {renderIf(
                   authFormAction === 'Sign In',
@@ -237,7 +237,6 @@ function Navbar(props) {
                     Sign Up
                   </button>
                 )}
-
                 {renderIf(
                   authFormAction === 'Sign Up',
                   <button
