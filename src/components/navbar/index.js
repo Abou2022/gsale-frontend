@@ -110,7 +110,7 @@ function Navbar(props) {
   return (
     <div>
       <div id="navbar" className="border-bottom">
-        <div className="d-flex flex-row form-inline justify-content-between m-3 p-2">
+        <div className="d-flex flex-row justify-content-between m-3 p-2">
           <div id="navGSaleLogoContainer">
             <Link to="/">
               <img id="navGSaleLogo" src={GSaleLogo} alt="gsale logo" />
@@ -153,10 +153,22 @@ function Navbar(props) {
           )}
           {renderIf(
             props.userProfile && props.userProfile.id,
-            <Link to={profileLink}>Profile</Link>
+            <button className="btn btn-outline-success my-2 my-sm-0 rounded-pill">
+              <Link className="text-success" to={profileLink}>
+                Profile
+              </Link>
+            </button>
           )}
-          <Link to="/garagesale/1">GSE 1</Link>
-          {renderIf(props.userAuth, <p onClick={handleSignOut}>Sign Out</p>)}
+          {/* <Link to="/garagesale/1">GSE 1</Link> */}
+          {renderIf(
+            props.userAuth,
+            <button
+              className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+          )}
           {renderIf(
             !props.userAuth,
             <button
@@ -181,12 +193,12 @@ function Navbar(props) {
                 onComplete={handleComplete}
               />
 
-              <div className="userauth-buttons">
+              <div className="userauth-buttons mt-2">
                 {renderIf(
                   authFormAction === 'Sign In',
                   <button
                     id="navSignUpButton"
-                    className="b-button dark-button"
+                    className="btn btn-outline-success btn-sm rounded-pill mt-2"
                     onClick={() => setAuthFormAction('Sign Up')}
                   >
                     Sign Up
@@ -197,7 +209,7 @@ function Navbar(props) {
                   authFormAction === 'Sign Up',
                   <button
                     id="navSignInButton"
-                    className="b-button dark-button"
+                    className="btn btn-outline-success btn-sm rounded-pill"
                     onClick={() => setAuthFormAction('Sign In')}
                   >
                     Sign In

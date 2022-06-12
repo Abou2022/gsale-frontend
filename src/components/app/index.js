@@ -7,6 +7,7 @@ const Profile = lazy(() => import('../profile'));
 const GarageSaleEvent = lazy(() => import('../garageSaleEvent'));
 const CreateEvent = lazy(() => import('../createEvent'));
 const NotFound = lazy(() => import('../notFound'));
+// const FilterBar = lazy(() => import('../filterBar'));
 
 function App() {
   return (

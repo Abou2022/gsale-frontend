@@ -1,5 +1,6 @@
 import React from 'react';
 import { isEmail, isAscii } from 'validator';
+import './userAuth.css';
 
 import Tooltip from '../helpers/tooltip';
 import { classToggler, renderIf } from '../../lib/util';
@@ -99,17 +100,18 @@ class UserAuthForm extends React.Component {
         {renderIf(
           this.props.authFormAction === 'Sign Up',
           <div>
-            <h2 className="title">sign up.</h2>
+            <h2 className="title">Sign Up</h2>
           </div>
         )}
         {renderIf(
           this.props.authFormAction !== 'Sign Up',
           <div>
-            <h2 className="title">sign in.</h2>
+            <h2 className="title">Sign In</h2>
           </div>
         )}
         <input
           className={classToggler({ error: emailError })}
+          id="loginContainer"
           type="text"
           name="email"
           placeholder="Email Address"
@@ -121,9 +123,10 @@ class UserAuthForm extends React.Component {
         <Tooltip message={emailError} show={focused === 'email' || submitted} />
         <input
           className={classToggler({ passwordError })}
+          id="loginContainer"
           type="password"
           name="password"
-          placeholder="Password (case sensitive)"
+          placeholder="Password"
           value={this.state.password}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
@@ -133,7 +136,10 @@ class UserAuthForm extends React.Component {
           message={passwordError}
           show={focused === 'password' || submitted}
         />
-        <button className="red-button b-button float-right ml20" type="submit">
+        <button
+          className="btn btn-outline-success btn-sm rounded-pill"
+          type="submit"
+        >
           {' '}
           {this.props.authFormAction}{' '}
         </button>
