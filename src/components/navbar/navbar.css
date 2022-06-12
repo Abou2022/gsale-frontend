@@ -128,8 +128,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-#searchIconButton,
-#createEventButton {
+#searchIconButton {
   background: transparent;
   border: none;
   border-bottom-left-radius: 50%;
