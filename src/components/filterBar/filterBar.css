@@ -3,3 +3,26 @@
     text-align: center;
     vertical-align: bottom;
 } */
+
+.filter__option-icon:hover {
+background: transparent !important;
+/* border-color: rgba(70, 240, 78, 0.827); */
+border-color: #4bb543;
+}
+
+/* media queries (med) */
+@media screen and (max-width: 1024px) {
+    .about__container {
+        grid-template: 1fr;
+        gap: 0;
+    }
+
+    .about__me {
+        width: 50%;
+        margin: 2rem auto 4rem;
+    }
+
+    .about__content p {
+        margin: 1rem 0 1.5rem;
+    }
+  }

@@ -9,6 +9,7 @@ import sport from '../../assets/images/sport.png';
 import pet from '../../assets/images/pet.png';
 import bath from '../../assets/images/bath.png';
 import baby from '../../assets/images/baby.png';
+import './profile.css';
 
 function Profile() {
   const [editFirstName, setEditFirstName] = useState(false);
@@ -56,13 +57,13 @@ function Profile() {
   };
 
   return (
-    <div className="container">
+    <div className="container profile__container">
       <h1 className="my-4 py-2">Profile</h1>
       <div className="row d-flex">
         <div className="col-md-5">
           <img src={profilePic} alt="pic" />
         </div>
-        <div className="col-md-7">
+        <div className="col-md-7 profile__container-content">
           <div className="d-flex justify-content-between">
             <div className="">
               <p className="mb-0 text-muted mb-1">First Name</p>
@@ -147,138 +148,127 @@ function Profile() {
           </div>
           <div>
             <p className="text-muted mt-3 mb-1">Categories</p>
-            <div className="row">
-              <div className="mb-2">
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="kitchenware"
-                    defaultValue="kitchenware"
+            {/* <div className="row"> */}
+            <div className="category__container">
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="kitchenware"
+                  defaultValue="kitchenware"
+                />
+                <label className="form-check-label" htmlFor="kitchenware">
+                  <img
+                    src={kitchenware}
+                    className="d-block"
+                    alt="kitchenware"
                   />
-                  <label className="form-check-label" htmlFor="kitchenware">
-                    <img
-                      src={kitchenware}
-                      className="mx-auto d-block"
-                      alt="kitchenware"
-                    />
-                    Kitchenware
-                  </label>
-                </div>
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="furniture"
-                    defaultValue="furniture"
-                  />
-                  <label className="form-check-label" htmlFor="furniture">
-                    <img
-                      src={furniture}
-                      className="mx-auto d-block"
-                      alt="furniture"
-                    />
-                    Furniture
-                  </label>
-                </div>
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="clothing"
-                    defaultValue="clothing"
-                  />
-                  <label className="form-check-label" htmlFor="clothing">
-                    <img
-                      src={clothing}
-                      className="mx-auto d-block"
-                      alt="clothing"
-                    />
-                    Clothing
-                  </label>
-                </div>
+                  <p className="category__text">Kitchenware</p>
+                </label>
+              </div>
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="furniture"
+                  defaultValue="furniture"
+                />
+                <label className="form-check-label" htmlFor="furniture">
+                  <img src={furniture} className="d-block" alt="furniture" />
+                  Furniture
+                </label>
+              </div>
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="clothing"
+                  defaultValue="clothing"
+                />
+                <label className="form-check-label" htmlFor="clothing">
+                  <img src={clothing} className="d-block" alt="clothing" />
+                  Clothing
+                </label>
+              </div>
+              {/* </div> */}
+              {/* </div> */}
+              {/* <div className="row"> */}
+              {/* <div className="mb-2"> */}
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="electronic"
+                  defaultValue="electronic"
+                />
+                <label className="form-check-label" htmlFor="electronic">
+                  <img src={electronic} className="d-block" alt="electronic" />
+                  Electronic
+                </label>
+              </div>
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="game"
+                  defaultValue="game"
+                />
+                <label className="form-check-label" htmlFor="game">
+                  <img src={game} className="d-block" alt="game" />
+                  Game
+                </label>
+              </div>
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="sport"
+                  defaultValue="sport"
+                />
+                <label className="form-check-label" htmlFor="sport">
+                  <img src={sport} className="d-block" alt="sport" />
+                  Sport
+                </label>
+              </div>
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="pet"
+                  defaultValue="pet"
+                />
+                <label className="form-check-label" htmlFor="pet">
+                  <img src={pet} className="d-block" alt="pet" />
+                  Pet
+                </label>
+              </div>
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="bath"
+                  defaultValue="bath"
+                />
+                <label className="form-check-label" htmlFor="bath">
+                  <img src={bath} className="d-block" alt="bath" />
+                  Bath
+                </label>
+              </div>
+              <div className="form-check category__form">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="baby"
+                  defaultValue="baby"
+                />
+                <label className="form-check-label" htmlFor="baby">
+                  <img src={baby} className="d-block" alt="baby" />
+                  Baby
+                </label>
               </div>
             </div>
-            <div className="row">
-              <div className="mb-2">
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="electronic"
-                    defaultValue="electronic"
-                  />
-                  <label className="form-check-label" htmlFor="electronic">
-                    <img
-                      src={electronic}
-                      className="mx-auto d-block"
-                      alt="electronic"
-                    />
-                    Electronic
-                  </label>
-                </div>
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="game"
-                    defaultValue="game"
-                  />
-                  <label className="form-check-label" htmlFor="game">
-                    <img src={game} className="mx-auto d-block" alt="game" />
-                    Game
-                  </label>
-                </div>
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="sport"
-                    defaultValue="sport"
-                  />
-                  <label className="form-check-label" htmlFor="sport">
-                    <img src={sport} className="mx-auto d-block" alt="sport" />
-                    Sport
-                  </label>
-                </div>
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="pet"
-                    defaultValue="pet"
-                  />
-                  <label className="form-check-label" htmlFor="pet">
-                    <img src={pet} className="mx-auto d-block" alt="pet" />
-                    Pet
-                  </label>
-                </div>
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="bath"
-                    defaultValue="bath"
-                  />
-                  <label className="form-check-label" htmlFor="bath">
-                    <img src={bath} className="mx-auto d-block" alt="bath" />
-                    Bath
-                  </label>
-                </div>
-                <div className="form-check form-check-inline col-md-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="baby"
-                    defaultValue="baby"
-                  />
-                  <label className="form-check-label" htmlFor="baby">
-                    <img src={baby} className="mx-auto d-block" alt="baby" />
-                    Baby
-                  </label>
-                </div>
-              </div>
-            </div>
+            {/* </div> */}
+            {/* </div> */}
           </div>
         </div>
       </div>

@@ -16,51 +16,78 @@ function FilterBar() {
   return (
     <div className="d-flex">
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={kitchenware} alt="kitchenware" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={furniture} alt="furniture" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={clothing} alt="clothing" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={electronic} alt="electronic" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={game} alt="game" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={sport} alt="sport" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={pet} alt="pet" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={bath} alt="bath" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light filter__option-icon"
+        >
           <img src={baby} alt="baby" />
         </button>
       </div>
-      {/* <button type="submit" className="btn btn-outline-light mx-auto d-block">
+      {/* <button type="submit" className="btn btn-outline-light  filter__option-icon mx-auto d-block">
           <img src={furniture} alt="furniture" />
           furniture
         </button> */}
