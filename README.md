@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# [Final Project - GSale](https://gsalefrontend.herokuapp.com/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Badge](https://img.shields.io/badge/license-MIT-blue)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+# Description
 
-### `npm start`
+Welcome to GSale, a full-stack garage sale event organizer application that allows users to search for the hottest local deals in their area or host their own sale.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This platform aims to be a fun and unique way for users to filter through available sales by date, location, and item category based on their needs. Additionally, users will be able to create their own sale event listing.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Our goal is to help users explore their creative side by offering a balance between simplicity and robust functionality all within one easy-to-use application.
 
-### `npm test`
+Check out our deployed project [here](https://gsalefrontend.herokuapp.com/)! 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+&nbsp;
 
-### `npm run build`
+---
+# Table of Contents
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [User Story](#user-story)
+  - [Technologies Used](#technologies-used)
+  - [Acceptance-Criteria](#acceptance-criteria)
+  - [Demo](#demo)
+  - [Screenshots](#screenshots)
+  - [Contributing](#contributing)
+  - [Contact](#contact)
+  - [License](#license)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+&nbsp;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
+# Installation
 
-### `npm run eject`
+Instructions: 
+1. Fork the application repository from GitHub and clone this project to your machine.
+2. Open the project with your preferred text-editor, such as VS code.
+3. Prerequisite installations: Node.js, MySQL, React
+4. This project includes a `package.json` file that specifies dependencies for this project, which can be installed by running the command `"npm install"`
+5. Run command "npm start" to start the react app on your local host server. It will automatically open
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+&nbsp;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
+# User Story
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+AS A USER, I want:
+1. to be able to filter garage sales by location, date, and category, SO THAT I can search for specific items or sales based on my preferences
+2. to be able to update my profile to include item categories I am interested in
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+&nbsp;
 
-## Learn More
+---
+# Technologies Used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+General Technologies: 
+- [HTML](https://html.com/)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [Javascript](https://www.javascript.com/)
+- [Node](https://www.npmjs.com/package/node)
+- [Heroku](https://www.heroku.com/)
+- [React](https://reactjs.org/)
+- [Google Maps API](https://developers.google.com/maps)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+&nbsp;
 
-### Code Splitting
+---
+# Acceptance-Criteria
+Project requirements:
+- Must use a Node and Express web server
+- Must be backed by a MySQL database with a Sequelize ORM 
+- Must have both GET and POST routes for retrieving and adding new data
+- Must be deployed using Heroku (with data)
+- Must utilize at least one new library, package or technology that we haven't discussed
+- Must have a front end/UI built on React
+- Must have a folder structure that meets the MVC paradigm
+- Must meet good-quality coding standards (indentation, scoping, naming, etc.)
+- Must protect API keys in Node with environmental variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+&nbsp;
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Screenshots
 
-### Making a Progressive Web App
+## Homepage
+![Homepage](./public/Assets/Homepage%20Demo.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Signup Page
+![Signup](./public/Assets/Upload%20Demo.gif)
 
-### Advanced Configuration
+## Sale Event Page
+![Event](./public/Assets/Editor%20Demo.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Page
+![Updating Account](./public/Assets/UpdateAccount.gif)
 
-### Deployment
+&nbsp;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
+# Contributing
 
-### `npm run build` fails to minify
+This project was completed as a collaborative group for Project 3 from the University of Washington Web Development Bootcamp. If you would like to contribute, please feel free to contact any of the team members with questions or comments.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+&nbsp;
+
+---
+# Credits
+- [Google Maps API](https://developers.google.com/maps) - map API
+
+---
+# Contact
+
+If you have any questions feel free to contact our team:
+- Andrew Ryu | [Github](https://github.com/ryuandrew) | [email](andrewryu@outlook.com)
+- Bakary Sylla | [Github](https://github.com/Abou2022) | [email](syllabakary2002@gmail.com)
+- Brian Bixby | [Github](https://github.com/brianbixby) | [email](BrianBixby0@gmail.com)
+- Joe Choe | [Github](https://github.com/jchoe125) | [email](joechoe125@gmail.com)
+
+&nbsp;
+
+---
+## License
+
+[MIT License](./LICENSE) 
+
+Copyright (c) 2022
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
