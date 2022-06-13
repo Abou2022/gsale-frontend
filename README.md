@@ -88,16 +88,14 @@ Project requirements:
 # Screenshots
 
 ## Homepage
-![Homepage](./public/Assets/Homepage%20Demo.gif)
+![Homepage](src\assets\HomePage.JPG)
 
 ## Signup Page
-![Signup](./public/Assets/Upload%20Demo.gif)
+![Signup](src\assets\SignUpPage.JPG)
 
-## Sale Event Page
-![Event](./public/Assets/Editor%20Demo.gif)
+## Filtering function
+![Filter](src\assets\Filtering.JPG)
 
-## Page
-![Updating Account](./public/Assets/UpdateAccount.gif)
 
 &nbsp;
 
