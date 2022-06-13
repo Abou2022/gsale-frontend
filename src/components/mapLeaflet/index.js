@@ -58,11 +58,13 @@ export default function MapLeaflet({ coords }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {coords.length > 0 &&
-        coords.map(({ lat, lng, address, description }, index) => {
+        coords.map(({ lat, lng, address, description, id }, index) => {
+            const myLink = `/garagesale/${id}`
           return (
             <Marker key={index} position={[lat, lng]} icon={icon}>
               <Popup>
                 {address} <br /> {description}
+                <a href={myLink}>View Details</a>
               </Popup>
             </Marker>
           );
