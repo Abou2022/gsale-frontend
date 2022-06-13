@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './filterBar.css';
 
 // import profilePic from '../../assets/GSale.png';
@@ -12,70 +13,133 @@ import pet from '../../assets/images/pet.png';
 import bath from '../../assets/images/bath.png';
 import baby from '../../assets/images/baby.png';
 
-function FilterBar() {
+// eslint-disable-next-line
+import { searchCriteriaUpdate } from '../../actions/searchCriteria-actions.js';
+// eslint-disable-next-line
+import {
+  garageSaleEventsFilterRequest,
+  filterGarageSaleEvents,
+} from '../../actions/garageSaleEvent-actions.js';
+
+// eslint-disable-next-line
+function FilterBar(props) {
+  const handleFilter = e => {
+    const category = e.target.name;
+    let categoryFilter;
+    if (!props.searchCriteria.categories.includes(category)) {
+      categoryFilter = [...props.searchCriteria.categories, category];
+    } else {
+      categoryFilter = [...props.searchCriteria.categories].splice();
+      categoryFilter.splice(categoryFilter.indexOf(category), 1);
+    }
+    console.log('categoryFilter: ', categoryFilter);
+    const filter = {
+      startDate: props.searchCriteria.startDate,
+      endDate: props.searchCriteria.endDate,
+      lat: props.searchCriteria.lat,
+      lng: props.searchCriteria.lng,
+      categories: categoryFilter,
+    };
+    props
+      .garageSaleEventsFilter(filter)
+      .catch(err => console.log('err: ', err));
+  };
   return (
     <div className="d-flex">
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={kitchenware} alt="kitchenware" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img name="kitchenware" src={kitchenware} alt="kitchenware" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={furniture} alt="furniture" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={furniture} name="furniture" alt="furniture" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={clothing} alt="clothing" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={clothing} name="clothing" alt="clothing" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={electronic} alt="electronic" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={electronic} name="electronic" alt="electronic" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={game} alt="game" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={game} name="game" alt="game" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={sport} alt="sport" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={sport} name="sport" alt="sport" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={pet} alt="pet" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={pet} name="pet" alt="pet" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={bath} alt="bath" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={bath} name="bath" alt="bath" />
         </button>
       </div>
       <div className="mx-auto">
-        <button type="submit" className="btn p-0 btn-outline-light">
-          <img src={baby} alt="baby" />
+        <button
+          type="submit"
+          className="btn p-0 btn-outline-light"
+          onClick={handleFilter}
+        >
+          <img src={baby} name="baby" alt="baby" />
         </button>
       </div>
-      {/* <button type="submit" className="btn btn-outline-light mx-auto d-block">
-          <img src={furniture} alt="furniture" />
-          furniture
-        </button> */}
     </div>
   );
 }
 
-export default FilterBar;
+// eslint-disable-next-line
+const mapStateToProps = state => ({
+  searchCriteria: state.searchCriteria,
+});
+// eslint-disable-next-line
+const mapDispatchToProps = dispatch => ({
+  garageSaleEventsFilter: data => dispatch(garageSaleEventsFilterRequest(data)),
+  filterGarageSaleEventsRequest: (data, filterObject) =>
+    dispatch(filterGarageSaleEvents(data, filterObject)),
+});
 
-// const mapStateToProps = state => ({
-
-// });
-
-// const mapDispatchToProps = dispatch => ({
-
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(FilterBar);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterBar);
