@@ -39,10 +39,6 @@ export const categoryFilterHelper = (data, filterObject) => {
     data = data.filter(item => {
       let hasCategory = false;
       filterObject.categories.forEach(filterCategory => {
-        console.log(
-          'item.category[filterCategory]: ',
-          item.category[filterCategory]
-        );
         if (item.category[filterCategory]) {
           hasCategory = true;
           return;
