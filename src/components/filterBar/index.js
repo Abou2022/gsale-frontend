@@ -49,7 +49,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img name="kitchenware" src={kitchenware} alt="kitchenware" />
@@ -58,7 +58,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={furniture} name="furniture" alt="furniture" />
@@ -67,7 +67,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={clothing} name="clothing" alt="clothing" />
@@ -76,7 +76,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={electronic} name="electronic" alt="electronic" />
@@ -85,7 +85,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={game} name="game" alt="game" />
@@ -94,7 +94,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={sport} name="sport" alt="sport" />
@@ -103,7 +103,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={pet} name="pet" alt="pet" />
@@ -112,7 +112,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={bath} name="bath" alt="bath" />
@@ -121,7 +121,7 @@ function FilterBar(props) {
       <div className="mx-auto">
         <button
           type="submit"
-          className="btn p-0 btn-outline-light"
+          className="btn p-0 btn-outline-light filter__option-icon"
           onClick={handleFilter}
         >
           <img src={baby} name="baby" alt="baby" />

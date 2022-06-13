@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import profilePic from '../../assets/GSale.png';
+import './createEvent.css';
 
 function CreateEvent() {
   const [editEventName, setEditEventName] = useState(false);
@@ -74,10 +75,10 @@ function CreateEvent() {
   };
 
   return (
-    <div className="container">
+    <div className="container create__container">
       <h1 className="my-4 py-2">Create Event</h1>
-      <div className="row">
-        <div className="col-md-7">
+      <div className="row create__container-1">
+        <div className="col-md-7 create__container-content">
           <div className="d-flex justify-content-between">
             <div className="">
               <p className="mb-0 text-muted mb-1">Event Name</p>
@@ -227,7 +228,7 @@ function CreateEvent() {
             </button>
           </div>
         </div>
-        <div className="col-md-5">
+        <div className="col-md-5 create__image">
           <img src={profilePic} alt="pic" />
         </div>
       </div>

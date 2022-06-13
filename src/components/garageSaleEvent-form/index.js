@@ -5,6 +5,7 @@ import Tooltip from '../helpers/tooltip';
 import { classToggler, renderIf } from '../../lib/util';
 import DateTimePickerContainer from '../dateTimePickerContainer';
 import LocationAutocomplete from '../locationAutoComplete';
+import './garageSaleEvent-form.css';
 
 class GarageSaleEventForm extends React.Component {
   constructor(props) {
@@ -255,87 +256,96 @@ class GarageSaleEventForm extends React.Component {
         className={classToggler({
           'form currentGarageSaleEvent-form': true,
           error: this.state.error && this.state.submitted,
+          garageSale__container: true,
         })}
       >
-        {renderIf(this.props.gse, <h2>update.</h2>)}
-        {renderIf(!this.props.gse, <h2>create a Garage Sale Event.</h2>)}
-        <input
-          className={classToggler({ error: this.state.eventNameError })}
-          type="text"
-          name="eventName"
-          placeholder="event name"
-          value={this.state.eventName}
-          onChange={this.handleChange}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-        />
-        <Tooltip
-          message={this.state.eventNameError}
-          show={this.state.focused === 'eventName' || this.state.submitted}
-        />
-        <input
-          className={classToggler({ error: this.state.descriptionError })}
-          type="text"
-          name="description"
-          placeholder="event description"
-          value={this.state.description}
-          onChange={this.handleChange}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-        />
-        <Tooltip
-          message={this.state.descriptionError}
-          show={this.state.focused === 'description' || this.state.submitted}
-        />
+        {renderIf(this.props.gse, <h2>Update</h2>)}
+        {renderIf(
+          !this.props.gse,
+          <h2 className="createGarageSale">Create a Garage Sale Event</h2>
+        )}
+        <div className="garageSale__content">
+          <input
+            className={classToggler({ error: this.state.eventNameError })}
+            type="text"
+            name="eventName"
+            placeholder="event name"
+            value={this.state.eventName}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+          />
+          <Tooltip
+            message={this.state.eventNameError}
+            show={this.state.focused === 'eventName' || this.state.submitted}
+          />
+          <input
+            className={classToggler({ error: this.state.descriptionError })}
+            type="text"
+            name="description"
+            placeholder="event description"
+            value={this.state.description}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+          />
+          <Tooltip
+            message={this.state.descriptionError}
+            show={this.state.focused === 'description' || this.state.submitted}
+          />
 
-        <input
-          className={classToggler({ error: this.state.imageURLError })}
-          type="text"
-          name="imageURL"
-          placeholder="event image url"
-          value={this.state.imageURL}
-          onChange={this.handleChange}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-        />
-        <Tooltip
-          message={this.state.imageURLError}
-          show={this.state.focused === 'imageURL' || this.state.submitted}
-        />
-        <DateTimePickerContainer
-          handleDate={this.handleStartDateChange}
-          chosenDate={this.state.startDate}
-        />
-        <Tooltip
-          message={this.state.startDateError}
-          show={this.state.submitted}
-        />
+          <input
+            className={classToggler({ error: this.state.imageURLError })}
+            type="text"
+            name="imageURL"
+            placeholder="event image url"
+            value={this.state.imageURL}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+          />
+          <Tooltip
+            message={this.state.imageURLError}
+            show={this.state.focused === 'imageURL' || this.state.submitted}
+          />
+          <DateTimePickerContainer
+            handleDate={this.handleStartDateChange}
+            chosenDate={this.state.startDate}
+          />
+          <Tooltip
+            message={this.state.startDateError}
+            show={this.state.submitted}
+          />
 
-        <DateTimePickerContainer
-          handleDate={this.handleEndDateChange}
-          chosenDate={this.state.endDate}
-        />
-        <Tooltip
-          message={this.state.endDateError}
-          show={this.state.submitted}
-        />
+          <DateTimePickerContainer
+            handleDate={this.handleEndDateChange}
+            chosenDate={this.state.endDate}
+          />
+          <Tooltip
+            message={this.state.endDateError}
+            show={this.state.submitted}
+          />
 
-        <LocationAutocomplete
-          handleLocationAutocomplete={this.handleLocationAutocomplete}
-          address={this.state.address}
-          autoCompleteTypeAddress={false}
-        />
-        <Tooltip
-          message={this.state.addressError}
-          show={this.state.submitted}
-        />
+          <LocationAutocomplete
+            handleLocationAutocomplete={this.handleLocationAutocomplete}
+            address={this.state.address}
+            autoCompleteTypeAddress={false}
+          />
+          <Tooltip
+            message={this.state.addressError}
+            show={this.state.submitted}
+          />
 
-        <p className="textRight">
-          <button className="red-button b-button" type="submit">
-            {' '}
-            {buttonText}{' '}
-          </button>
-        </p>
+          <p className="textRight">
+            <button
+              className="btn btn-outline-success my-2 my-sm-1 rounded-pill"
+              type="submit"
+            >
+              {' '}
+              {buttonText}{' '}
+            </button>
+          </p>
+        </div>
       </form>
     );
   }
