@@ -49,7 +49,7 @@ function SetViewOnClick({ animateRef }) {
 }
 
 // coords={[{ lat: 47.609974, lng: -122.325264 }]}
-export default function MapLeaflet({ coords }) {
+export default function MapLeaflet({ coords, isDetailPage }) {
   const animateRef = useRef(false);
   return (
     <MapContainer zoom={13} style={{ height: '90vh' }}>
@@ -59,13 +59,15 @@ export default function MapLeaflet({ coords }) {
       />
       {coords.length > 0 &&
         coords.map(({ lat, lng, address, description, id }, index) => {
-            const myLink = `/garagesale/${id}`
+          const myLink = `/garagesale/${id}`;
           return (
             <Marker key={index} position={[lat, lng]} icon={icon}>
-              <Popup>
-                {address} <br /> {description}
-                <a href={myLink}>View Details</a>
-              </Popup>
+              {!isDetailPage && (
+                <Popup>
+                  {address} <br /> {description}
+                  <a href={myLink}>View Details</a>
+                </Popup>
+              )}
             </Marker>
           );
         })}

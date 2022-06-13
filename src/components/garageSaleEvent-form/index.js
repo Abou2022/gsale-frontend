@@ -1,7 +1,5 @@
 import React from 'react';
 import { isAscii, isURL } from 'validator';
-
-import Tooltip from '../helpers/tooltip';
 import { classToggler, renderIf } from '../../lib/util';
 import DateTimePickerContainer from '../dateTimePickerContainer';
 import LocationAutocomplete from '../locationAutoComplete';
@@ -77,33 +75,33 @@ class GarageSaleEventForm extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    console.log('componentDidUpdate: ', prevProps);
-    if (this.props.gse !== prevProps.gse) {
-      console.log('date type: ', typeof this.props.gse.endDate);
-      this.setState({
-        eventName: this.props.gse.eventName,
-        description: this.props.gse.description,
-        startDate: this.props.gse.startDate,
-        endDate: this.props.gse.endDate,
-        address: this.props.gse.address,
-        lat: this.props.gse.lat,
-        lng: this.props.gse.lng,
-        imageURL: this.props.gse.imageURL,
-        eventNameError: null,
-        descriptionError: null,
-        startDateError: null,
-        endDateError: null,
-        addressError: null,
-        latError: null,
-        lngError: null,
-        imageURLError: null,
-        error: null,
-        focused: null,
-        submitted: false,
-      });
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   console.log('componentDidUpdate: ', prevProps);
+  //   if (this.props.gse !== prevProps.gse) {
+  //     console.log('date type: ', typeof this.props.gse.endDate);
+  //     this.setState({
+  //       eventName: this.props.gse.eventName,
+  //       description: this.props.gse.description,
+  //       startDate: this.props.gse.startDate,
+  //       endDate: this.props.gse.endDate,
+  //       address: this.props.gse.address,
+  //       lat: this.props.gse.lat,
+  //       lng: this.props.gse.lng,
+  //       imageURL: this.props.gse.imageURL,
+  //       eventNameError: null,
+  //       descriptionError: null,
+  //       startDateError: null,
+  //       endDateError: null,
+  //       addressError: null,
+  //       latError: null,
+  //       lngError: null,
+  //       imageURLError: null,
+  //       error: null,
+  //       focused: null,
+  //       submitted: false,
+  //     });
+  //   }
+  // }
 
   validateInput = e => {
     let { name, value } = e.target;
@@ -180,27 +178,31 @@ class GarageSaleEventForm extends React.Component {
     this.setState({
       ...errors,
       error: !!(
-        errors.eventNameError ||
-        errors.descriptionError ||
-        errors.startDateError ||
-        // startTimeError ||
-        errors.endDateError ||
-        // endTimeError ||
-        errors.addressError ||
+        (
+          errors.eventNameError ||
+          errors.descriptionError ||
+          errors.startDateError ||
+          // startTimeError ||
+          errors.endDateError ||
+          // endTimeError ||
+          errors.addressError
+        )
         // latError ||
         // lngError ||
-        errors.imageURLError
+        // errors.imageURLError
       ),
     });
   };
   handleFocus = e => this.setState({ focused: e.target.name });
-  handleBlur = e =>
-    this.setState(state => ({
-      focused: state.focused === e.target.name ? null : state.focused,
-    }));
+  handleBlur = () => {
+    // this.setState(state => ({
+    //   focused: state.focused === e.target.name ? null : state.focused,
+    // }));
+    // this.validateInput(e);
+  };
+
   handleChange = e => {
     let { name, value } = e.target;
-    this.validateInput({ ...e });
     this.setState({ [name]: value });
   };
   handleStartDateChange = date => {
@@ -224,32 +226,45 @@ class GarageSaleEventForm extends React.Component {
     if (!this.state.error) {
       this.props.onComplete(this.state).catch(err => {
         console.error(err);
-        this.setState({
-          error: err,
-          submitted: true,
-        });
       });
     }
     this.setState(state => ({
       submitted: true,
       eventNameError:
-        !state.eventNameError && state.eventName ? null : 'required',
+        !state.eventNameError && state.eventName
+          ? null
+          : 'Event name is required.',
       descriptionError:
-        !state.descriptionError && state.description ? null : 'required',
+        !state.descriptionError && state.description
+          ? null
+          : 'Description is required.',
       startDateError:
-        !state.startDateError && state.startDate ? null : 'required',
+        !state.startDateError && state.startDate
+          ? null
+          : 'Start date is required.',
       //   startTimeError:
       //     !state.startTimeError && state.startTime ? null : 'required',
-      endDateError: !state.endDateError && state.endDate ? null : 'required',
+      endDateError:
+        !state.endDateError && state.endDate ? null : 'End date is required',
       //   endTimeError: !state.endTimeError && state.endTime ? null : 'required',
-      addressError: !state.addressError && state.address ? null : 'required',
+      addressError:
+        !state.addressError && state.address ? null : 'Address is required',
       //   latError: !state.latError && state.lat ? null : 'required',
       //   lngError: !state.lngError && state.lng ? null : 'required',
-      imageURLError: !state.imageURLError && state.imageURL ? null : 'required',
+      // imageURLError: !state.imageURLError && state.imageURL ? null : 'required',
     }));
   };
   render() {
     let buttonText = this.props.gse ? 'update' : 'create';
+    const errors = [
+      this.state.addressError,
+      this.state.descriptionError,
+      this.state.endDateError,
+      this.state.eventNameError,
+      this.state.latError,
+      this.state.lngError,
+      this.state.startDateError,
+    ].filter(val => !!val);
     return (
       <form
         onSubmit={this.handleSubmit}
@@ -265,6 +280,15 @@ class GarageSaleEventForm extends React.Component {
           <h2 className="createGarageSale">Create a Garage Sale Event</h2>
         )}
         <div className="garageSale__content">
+          {!!errors.length && (
+            <ul>
+              {errors.map((error, i) => (
+                <li style={{ color: 'red' }} key={`error-${i}`}>
+                  {error}
+                </li>
+              ))}
+            </ul>
+          )}
           <input
             className={classToggler({ error: this.state.eventNameError })}
             type="text"
@@ -275,10 +299,6 @@ class GarageSaleEventForm extends React.Component {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />
-          <Tooltip
-            message={this.state.eventNameError}
-            show={this.state.focused === 'eventName' || this.state.submitted}
-          />
           <input
             className={classToggler({ error: this.state.descriptionError })}
             type="text"
@@ -288,10 +308,6 @@ class GarageSaleEventForm extends React.Component {
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
-          />
-          <Tooltip
-            message={this.state.descriptionError}
-            show={this.state.focused === 'description' || this.state.submitted}
           />
 
           <input
@@ -304,36 +320,19 @@ class GarageSaleEventForm extends React.Component {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />
-          <Tooltip
-            message={this.state.imageURLError}
-            show={this.state.focused === 'imageURL' || this.state.submitted}
-          />
           <DateTimePickerContainer
             handleDate={this.handleStartDateChange}
             chosenDate={this.state.startDate}
-          />
-          <Tooltip
-            message={this.state.startDateError}
-            show={this.state.submitted}
           />
 
           <DateTimePickerContainer
             handleDate={this.handleEndDateChange}
             chosenDate={this.state.endDate}
           />
-          <Tooltip
-            message={this.state.endDateError}
-            show={this.state.submitted}
-          />
-
           <LocationAutocomplete
             handleLocationAutocomplete={this.handleLocationAutocomplete}
             address={this.state.address}
             autoCompleteTypeAddress={false}
-          />
-          <Tooltip
-            message={this.state.addressError}
-            show={this.state.submitted}
           />
 
           <p className="textRight">

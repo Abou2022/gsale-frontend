@@ -102,7 +102,7 @@ function Navbar(props) {
     authFormAction === 'Sign Up' ? handleSignup : handleSignin;
   let profileLink =
     props.userProfile && props.userProfile.id
-      ? `/profile/${props.userProfile.id}`
+      ? `/profile2/${props.userProfile.id}`
       : '';
   // eslint-disable-next-line
   const handleGseCreate = async gse => {
@@ -151,7 +151,10 @@ function Navbar(props) {
           )}
           {renderIf(
             props.userProfile && props.userProfile.id,
-            <button className="btn btn-outline-success my-2 my-sm-0 rounded-pill">
+            <button
+              id="profileButton"
+              className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
+            >
               <Link className="text-success" to={profileLink}>
                 Profile
               </Link>

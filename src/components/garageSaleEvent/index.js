@@ -31,31 +31,34 @@ function GarageSaleEvent(props) {
           <div className="card-body">
             <h5 className="card-title text-muted">
               {garageSaleEvent.eventName}
-              {garageSaleEvent.endTime}
             </h5>
-            <p className="card-text">
-              Just about everything must go! Electronics, Furniture,
-              Kitchenware, Games, Sports Equipments, Bathroom Supplies, Clothes,
-              and anything else that belongs in house that you can think of!
-            </p>
+            <p className="card-text">{garageSaleEvent.description}</p>
             <h5 className="card-title text-muted">Address</h5>
-            <p className="card-text">1234 Main St Seattle, WA 98125</p>
+            <p className="card-text">{garageSaleEvent.address}</p>
             <h5 className="card-title text-muted">Date</h5>
-            <p className="card-text">06/13/2022</p>
+            <p className="card-text">
+              {garageSaleEvent.startDate} - {garageSaleEvent.endDate}
+            </p>
             <h5 className="card-title text-muted">Time</h5>
-            <p className="card-text">9AM - 6PM</p>
-            <h5 className="card-title text-muted">Categories</h5>
+            <p className="card-text">
+              {garageSaleEvent.startTime} - {garageSaleEvent.endTime}
+            </p>
+            {/* <h5 className="card-title text-muted">Categories</h5>
             <p className="card-text">
               Kitchenware, Furniture, CLothing, Electronics, Games, Sports, Pet,
               Bath, Baby
-            </p>
+            </p> */}
           </div>
           <div className="card-footer text-muted">Map</div>
         </div>
       )}
 
       <div>
-        <MapLeaflet coords={[{ lat: 47.609974, lng: -122.325264 }]} />;
+        <MapLeaflet
+          isDetailPage
+          coords={[{ lat: garageSaleEvent.lat, lng: garageSaleEvent.lng }]}
+        />
+        ;
       </div>
     </div>
   );
