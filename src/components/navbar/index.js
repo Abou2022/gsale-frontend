@@ -146,8 +146,7 @@ function Navbar(props) {
               className="btn btn-outline-success my-2 my-sm-0 rounded-pill"
               onClick={() => setGseFormDisplay(false)}
             >
-              {' '}
-              Create Event
+              <Link to="/create">Create Event</Link>
             </button>
           )}
           {renderIf(
