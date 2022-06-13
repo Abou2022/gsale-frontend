@@ -32,15 +32,15 @@ function GarageSaleEventFormContainer(props) {
   }, []);
   const handleOnComplete = data => {
     console.log('gse form container: ', data);
-    if (garageSaleEventId) {
-      data.id = garageSaleEventId;
-      return props.currentGarageSaleEventUpdate(data).catch(logError);
-    } else {
-      return props
-        .currentGarageSaleEventCreate(data)
-        .then(gse => navigate(`/gsale/${gse.id}`))
-        .catch(logError);
-    }
+    // if (garageSaleEventId) {
+    //   data.id = garageSaleEventId;
+    //   return props.currentGarageSaleEventUpdate(data).catch(logError);
+    // } else {
+    return props
+      .currentGarageSaleEventCreate(data)
+      .then(gse => navigate(`/garagesale/${gse.id}`))
+      .catch(logError);
+    // }
   };
   //   let gseData = garageSaleEventId ? garageSaleEvent : null;
   return (
